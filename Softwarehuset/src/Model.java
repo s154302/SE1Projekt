@@ -1,6 +1,6 @@
 
 public class Model {
-	public static void main(String[] args) {
-		System.out.println("Hello, World!");
-	}
+	public ArrayList<Employee> employeeList;
+	public ArrayList<NonProjectActivity> nonProjectActivityList;
+	public ArrayList<Project> projectList;
 }
