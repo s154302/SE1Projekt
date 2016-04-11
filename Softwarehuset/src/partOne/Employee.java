@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package partOne;
-
-public class Employee {
-	
-	
-	public Employee(){
-		
-	}
-
-}
-=======
 package partOne;
 
 public class Employee {
@@ -20,4 +8,4 @@ public class Employee {
 	}
 
 }
->>>>>>> d288f06917c57f43b2e940af7fa90fddaf2c4912
+
