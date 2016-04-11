@@ -24,6 +24,9 @@ public class CreateProject {
 		//list of nonprojects
 		ArrayList<NonProjectActivity> nonProjectActivityList = new ArrayList<NonProjectActivity>();
 		
+		//Time
+		TimeManager time = new TimeManager();
+		
 		//list of projects
 		ArrayList<Project> projectList = new ArrayList<Project>();
 		
