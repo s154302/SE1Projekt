@@ -24,7 +24,7 @@ public class CreateProject {
 		//list of nonprojects
 		ArrayList<NonProjectActivity> nonProjectActivityList = new ArrayList<NonProjectActivity>();
 		
-		//Time
+		//Time 
 		TimeManager time = new TimeManager();
 		
 		//list of projects
@@ -35,7 +35,7 @@ public class CreateProject {
 		assertEquals(model.projectList, null);
 
 		
-		model.createProject("DTU - campusNet", dateStart, dateFinish);
+		model.createProject("DTU - campusNet", time.startTime(), time.startTime.oneyear);
 		
 		Assert.assertNotNull(model.projectList);
 		
