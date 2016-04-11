@@ -1,0 +1,5 @@
+INDEX VERSION 1.127+C:\Users\Alexander\OneDrive\Universitet\DTU\2. Semester\Software Engineering 1\SE1Projekt\SE1Projekt\.metadata\.plugins\org.eclipse.jdt.core
+826278982.index
+3353941442.index
+3746456938.index
+1179071696.index
