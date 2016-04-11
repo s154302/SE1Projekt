@@ -1,3 +1,4 @@
+package softwareProject.app;
 
 public class Model {
 	public ArrayList<Employee> employeeList;
