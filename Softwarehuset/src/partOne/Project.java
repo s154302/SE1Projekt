@@ -1,5 +1,6 @@
 package partOne;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,12 +25,18 @@ public class Project {
 //	        if (builder.name == null) throw new NullPointerException("name");
 //	        if (builder.projectManager == null) throw new NullPointerException("projectManager");
 		createSerialNumber();
+<<<<<<< HEAD
+		this.name = name;
+		this.projectManager = projectManager;
+		this.activityList = new ArrayList<Activity>();
+=======
 		this.name = builder.name;
 		this.projectManager = builder.projectManager;
 		this.startDate = builder.startDate;
+>>>>>>> 440655f444dc4469ce9029b6c2ab3bc09253d6cd
 	}
 
-	// Automatically generates the projects serial. 
+	// Automatically generates the projects serial.
 	private void createSerialNumber() {
 		this.serialNumber = 0;
 	}
@@ -54,10 +61,15 @@ public class Project {
 		return startDate;
 	}
 	// Creates an activity and adds it to the activity list.
-	public void createActivity(String name, int expectedWorkload, Employee projectManager) {
-		Activity activity = new Activity(name, expectedWorkload, projectManager);
-		this.activityList.add(activity);
-		Collections.sort(this.activityList);
+	public void createActivity(String name, int expectedWorkload, Employee projectManager)
+			throws OperationNotAllowedException {
+		if (this.projectManager == projectManager) {
+			Activity activity = new Activity(name, expectedWorkload, projectManager);
+			this.activityList.add(activity);
+			Collections.sort(this.activityList);
+		} else {
+			throw new OperationNotAllowedException("Create activity operation not allowed if not project manager.");
+		}
 	}
 
 	public boolean notStarted() {
