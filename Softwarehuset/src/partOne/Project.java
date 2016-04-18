@@ -5,17 +5,21 @@ import java.util.List;
 
 public class Project {
 
-	private String name;
-	private int serialNumber;
-	private Employee projectManager;
+	private final String name;
+	private  int serialNumber;
+	private final Employee projectManager;
+	private final int startDate;
 
 	public List<Employee> employeeList;
 	public List<Activity> activityList;
 
-	public Project(String name, Employee projectManager) {
+	 Project(ProjectBuilder builder) {
+//	        if (builder.name == null) throw new NullPointerException("name");
+//	        if (builder.projectManager == null) throw new NullPointerException("projectManager");
 		createSerialNumber();
-		this.name = name;
-		this.projectManager = projectManager;
+		this.name = builder.name;
+		this.projectManager = builder.projectManager;
+		this.startDate = builder.startDate;
 	}
 
 	// Automatically generates the projects serial. 
@@ -33,6 +37,12 @@ public class Project {
 	public boolean notStarted() {
 		// Specifies whether the project has started?
 		return false;
+	}
+	public String getName(){
+		return name;
+	}
+	public Employee getProjectManager(){
+		return projectManager;
 	}
 
 	public Employee getProjectManger() {
