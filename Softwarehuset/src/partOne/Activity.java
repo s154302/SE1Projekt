@@ -1,5 +1,6 @@
 package partOne;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Activity implements Comparable<Activity> {
 		this.name = name;
 		this.expectedWorkload = expectedWorkload;
 		this.projectManager = projectManager;
+		this.employeeList = new ArrayList<Employee>();
 	}
 
 	// Add an employee to the activity and sort the employeeList.
@@ -44,6 +46,10 @@ public class Activity implements Comparable<Activity> {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public int getExpectedWorkload() {
+		return this.expectedWorkload;
 	}
 
 }

@@ -1,5 +1,6 @@
 package partOne;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Employee implements Comparable<Employee> {
 
 	public Employee(String name) {
 		this.name = name;
+		this.activityList = new ArrayList<Activity>();
 	}
 
 	// Checks whether the employee has room for more activities.

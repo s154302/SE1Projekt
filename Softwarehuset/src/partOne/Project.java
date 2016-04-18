@@ -35,4 +35,8 @@ public class Project {
 		return false;
 	}
 
+	public Employee getProjectManger() {
+		return this.projectManager;
+	}
+
 }
