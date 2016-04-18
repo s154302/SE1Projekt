@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class testCreateActivity {
+public class TestCreateActivity {
 
 	// Tests the createActivity method while using a project manager account.
 	@Test
