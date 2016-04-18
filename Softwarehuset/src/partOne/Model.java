@@ -22,7 +22,7 @@ public class Model {
 	}
 	
 	// Creates a new project and adds it to the project list.
-	public void createProject(String name, Employee projectManager) {
+	public void createProject(String name, Employee projectManager, int startDate) {
 		this.projectList.add(new Project(name, projectManager));
 	}
 	
