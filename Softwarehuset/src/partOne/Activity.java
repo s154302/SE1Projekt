@@ -1,12 +1,14 @@
 package partOne;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Activity {
 
 	private String name;
-	public ArrayList<Employee> employeeList;
 	private int expectedWorkload;
+	private TimeManager timeManager;
+	
+	public List<Employee> employeeList;
 
 	public Activity(String name, int expectedWorkload) {
 		this.name = name;

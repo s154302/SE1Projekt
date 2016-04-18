@@ -17,6 +17,14 @@ public class Employee {
 		}
 		return false;
 	}
+	
+	public void addToActivityList() {
+		
+	}
+	
+	public void removeFromActivityList() {
+		
+	}
 
 }
 
