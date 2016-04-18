@@ -21,7 +21,7 @@ public class Project {
 			this.name = name;
 		}
 
-		if (projectManager != null) {
+		if (!projectManager.equals(null)) {
 			this.projectManager = projectManager;
 		}
 	}
