@@ -1,7 +1,7 @@
 package partOne;
 import java.util.ArrayList;
 
-import com.oracle.webservices.internal.api.databinding.Databinding.Builder;
+//import com.oracle.webservices.internal.api.databinding.Databinding.Builder;
 import static partOne.ProjectBuilder.project;
 
 public class Model {
@@ -25,9 +25,38 @@ public class Model {
 	}
 	
 	// Creates a new project and adds it to the project list.
-	public void createProject(String name, Employee projectManager) {
+	public void createProject(String name, Employee projectManager, int startDate) {
+		
 //		this.projectList.add(
-		Project project = new ProjectBuilder().withName("hej")		
+		Project project;
+//		Not finished building
+//		if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name == null && startDate != 0 && projectManager != null)	{
+//			project = project().withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate == 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+//		else if(name != null && startDate != 0 && projectManager != null)	{
+//			project = project().withName(name).withProjectManager(projectManager).withStartDate(startDate).build();
+//		}
+		this.projectList.add(project);
+		System.out.println(projectList.get(0).getProjectManager().getName());
+		System.out.println(projectList.get(0).getName());
 		
 	}
 	
