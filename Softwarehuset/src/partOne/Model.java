@@ -8,14 +8,9 @@ public class Model {
 	public ArrayList<Project> projectList;
 
 	public Model() {
-
-	}
-
-	public Model(ArrayList<Employee> employeeList, ArrayList<NonProjectActivity> nonProjectActivityList,
-			ArrayList<Project> projectList) {
-		this.employeeList = employeeList;
-		this.nonProjectActivityList = nonProjectActivityList;
-		this.projectList = projectList;
+		this.employeeList = new ArrayList<Employee>();
+		this.nonProjectActivityList = new ArrayList<NonProjectActivity>();
+		this.projectList = new ArrayList<Project>();
 	}
 
 	// Creates a new employee and adds it to the employee list.
