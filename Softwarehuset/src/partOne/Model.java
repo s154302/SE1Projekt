@@ -1,5 +1,6 @@
 package partOne;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Model {
 	public ArrayList<Employee> employeeList;
@@ -39,5 +40,13 @@ public class Model {
 	// Deletes an employee.
 	public void removeEmployee(Employee employee) {
 		this.employeeList.remove(employee);
+	}
+
+	public void add(List<Employee> employeeList, List<NonProjectActivity> nonProjectActivityList,
+			List<Project> projectList) {
+		this.employeeList = (ArrayList<Employee>) employeeList;
+		this.nonProjectActivityList = (ArrayList<NonProjectActivity>) nonProjectActivityList;
+		this.projectList = (ArrayList<Project>) projectList;
+		
 	}
 }
