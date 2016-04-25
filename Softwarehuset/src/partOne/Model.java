@@ -8,6 +8,7 @@ public class Model {
 	public ArrayList<Project> projectList;
 
 	public Model() {
+		projectList = new ArrayList<Project>();
 
 	}
 

@@ -20,14 +20,27 @@ public class Project {
 			int endYear, int endMonth, int endDayOfMonth) {
 		createSerialNumber();
 		this.activityList = new ArrayList<Activity>();
-		this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
-		this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
+		if(startYear == 0 || startMonth == 0||startDayOfMonth == 0){
+			
+		}
+		else{
+			this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
+		}
+	if(endYear == 0 || endMonth == 0||endDayOfMonth == 0){
+			
+		}
+		else{
+			this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
+		}
+		
+		
+		
 
 		if (name != null) {
 			this.name = name;
 		}
 
-		if (!projectManager.equals(null)) {
+		if (projectManager != null) {
 			this.projectManager = projectManager;
 		}
 	}

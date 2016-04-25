@@ -1,10 +1,7 @@
 package partOne;
 
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import org.junit.Before;
+import java.time.LocalDate;
 import org.junit.Test;
 
 // USER STORY 1:
@@ -18,13 +15,14 @@ public class TestCreateProject {
 	@Test
 	//Test without parameters
 	public void testCreateProjectEmpty(){
-		model.createProject(null, null);
+		model.createProject(null, null, 1994, 01, 27, 1994, 01, 27);
 		
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(null,model.projectList.get(0).getName());
 		assertEquals(null, model.projectList.get(0).getProjectManager());
-//		assertEquals(0, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
@@ -32,14 +30,14 @@ public class TestCreateProject {
 	public void testCreateProjectName(){
 		String name = "softwareProject";
 		
-		model.createProject(name, null, 0);
+		model.createProject(name, null, 1994, 01, 27, 1994, 01, 27);
 		
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(name,model.projectList.get(0).getName());
 		assertEquals(null, model.projectList.get(0).getProjectManager());
-//		assertEquals(0, model.projectList.get(0).getStartDate());
-		
+		assertEquals(0, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
@@ -47,25 +45,48 @@ public class TestCreateProject {
 	public void testCreateProjectManager(){
 		Employee e1 = new Employee("Hans"); 
 		
-		model.createProject(null, e1, 0);
+		model.createProject(null, e1, 1994, 01, 27, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(null,model.projectList.get(0).getName());
 		assertEquals(e1, model.projectList.get(0).getProjectManager());
-//		assertEquals(0, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
 	//Test with startDate
 	public void testCreateProjectStartDate(){
-		int date = 42;
+		int startYear = 2016;
+		int startMonth = 04;
+		int startDay = 25;
+		LocalDate testDate = LocalDate.of(startYear, startMonth, startDay);
 		
-		model.createProject(null, null, date);
+		
+		model.createProject(null, null, startYear, startMonth, startDay, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(null,model.projectList.get(0).getName());
 		assertEquals(null, model.projectList.get(0).getProjectManager());
-//		assertEquals(date, model.projectList.get(0).getStartDate());
+		assertEquals(testDate, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
+	}
+	
+	@Test
+	//Test with endDate
+	public void testCreateProjectEndDate(){
+		int endYear = 2016;
+		int endMonth = 04;
+		int endDay = 25;
+		LocalDate testDate = LocalDate.of(endYear, endMonth, endDay);
+		
+		
+		model.createProject(null, null, 0, 0, 0, endYear, endMonth, endDay);
+		assertEquals(1,model.projectList.size());
+		//assertEquals(0,model.projectList.get(0).getSerialNumber());
+		assertEquals(null,model.projectList.get(0).getName());
+		assertEquals(null, model.projectList.get(0).getProjectManager());
+		assertEquals(testDate, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
@@ -74,40 +95,51 @@ public class TestCreateProject {
 		Employee e1 = new Employee("Hans"); 
 		String name = "softwareProject";
 		
-		model.createProject(name, e1, 0);
+		model.createProject(name, e1, 1994, 01, 27, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(name,model.projectList.get(0).getName());
 		assertEquals(e1, model.projectList.get(0).getProjectManager());
-//		assertEquals(null, model.projectList.get(0).getStartDate());
+		assertEquals(null, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
 	//test with name and startDate
 	public void testCreateProjectNameStartDate(){
 		String name = "Softwarehuset";
-		int date = 42;
+		int startYear = 2016;
+		int startMonth = 04;
+		int startDay = 25;
+		LocalDate testDate = LocalDate.of(startYear, startMonth, startDay);
 		
-		model.createProject(name, null, 0);
+		
+		model.createProject(name, null, startYear, startMonth, startDay, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(name,model.projectList.get(0).getName());
 		assertEquals(null, model.projectList.get(0).getProjectManager());
-//		assertEquals(date, model.projectList.get(0).getStartDate());
+		assertEquals(testDate, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
 	//test with project manager and startDate
 	public void testCreateProjectManagerStartDate(){
 		Employee e1 = new Employee("Hans");
-		int date = 42;
+		int startYear = 2016;
+		int startMonth = 04;
+		int startDay = 25;
+		LocalDate testDate = LocalDate.of(startYear, startMonth, startDay);
 		
-		model.createProject(null, e1, date);
+		
+		model.createProject(null, e1, startYear, startMonth, startDay, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(null,model.projectList.get(0).getName());
 		assertEquals(e1, model.projectList.get(0).getProjectManager());
-//		assertEquals(date, model.projectList.get(0).getStartDate());
+		assertEquals(testDate, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 	
 	@Test
@@ -115,13 +147,19 @@ public class TestCreateProject {
 	public void testCreateProjectNameManagerStartDate(){
 		String name = "Softwarehuset";
 		Employee e1 = new Employee("Hans");
-		int date = 42;
+		int startYear = 2016;
+		int startMonth = 04;
+		int startDay = 25;
+		LocalDate testDate = LocalDate.of(startYear, startMonth, startDay);
 		
-		model.createProject(null, e1, date);
+		
+		
+		model.createProject(null, e1, startYear, startMonth, startDay, 1994, 01, 27);
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
 		assertEquals(name,model.projectList.get(0).getName());
 		assertEquals(e1, model.projectList.get(0).getProjectManager());
-//		assertEquals(date, model.projectList.get(0).getStartDate());
+		assertEquals(testDate, model.projectList.get(0).getStartDate());
+		assertEquals(0, model.projectList.get(0).getEndDate());
 	}
 }
