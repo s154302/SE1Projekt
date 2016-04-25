@@ -25,8 +25,9 @@ public class Model {
 
 	// Creates a new project and adds it to the project list.
 
-	public void createProject(String name, Employee projectManager) {
-		this.projectList.add(new Project(name, projectManager));
+	public void createProject(String name, Employee projectManager, int startYear, int startMonth, int startDayOfMonth,
+			int endYear, int endMonth, int endDayOfMonth) {
+		this.projectList.add(new Project(name, projectManager, startYear, startMonth, startDayOfMonth, endYear, endMonth, endDayOfMonth));
 	}
 
 	// Creates a new Non-project activity and adds it to its list.

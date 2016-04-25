@@ -2,7 +2,6 @@ package partOne;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class Project {
 	// this.startDate = 0;
 	// }
 
-	public Calendar getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
@@ -77,6 +76,10 @@ public class Project {
 
 	public Employee getProjectManger() {
 		return this.projectManager;
+	}
+	
+	public LocalDate getEndDate(){
+		return endDate;
 	}
 
 }

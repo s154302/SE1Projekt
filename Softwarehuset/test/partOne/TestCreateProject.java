@@ -18,7 +18,7 @@ public class TestCreateProject {
 	@Test
 	//Test without parameters
 	public void testCreateProjectEmpty(){
-		model.createProject(null, null, 0);
+		model.createProject(null, null);
 		
 		assertEquals(1,model.projectList.size());
 		//assertEquals(0,model.projectList.get(0).getSerialNumber());
