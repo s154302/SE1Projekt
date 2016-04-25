@@ -1,21 +1,28 @@
 package partOne;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 public class Project {
 
 	private String name;
 	private int serialNumber;
 	private Employee projectManager;
-	private Calendar startDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 
 	public List<Employee> employeeList;
 	public List<Activity> activityList;
 
-	public Project(String name, Employee projectManager) {
+	public Project(String name, Employee projectManager, int startYear, int startMonth, int startDayOfMonth,
+			int endYear, int endMonth, int endDayOfMonth) {
 		createSerialNumber();
 		this.activityList = new ArrayList<Activity>();
-		this.startDate = Calendar.getInstance();
+		this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
+		this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
 
 		if (name != null) {
 			this.name = name;
