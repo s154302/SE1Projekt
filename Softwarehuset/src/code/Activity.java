@@ -1,4 +1,4 @@
-package partOne;
+package code;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,9 +18,11 @@ public class Activity implements Comparable<Activity> {
 		this.expectedWorkload = expectedWorkload;
 		this.projectManager = projectManager;
 		this.employeeList = new ArrayList<Employee>();
+		this.timeManager = new TimeManager(employeeList);
 	}
 
-	// Add an employee to the activity and sort the employeeList.
+	// Add an employee to the activity and sort the employeeList. Also assigns
+	// the employee to the time manager.
 	public void addEmployee(List<Employee> employees) {
 		for (Employee e : employees) {
 			if (e.isAvailable()) {
@@ -28,7 +30,9 @@ public class Activity implements Comparable<Activity> {
 				e.addToActivityList(this);
 			}
 		}
+		this.timeManager.addEmployees(employees);
 		Collections.sort(this.employeeList);
+
 	}
 
 	// Check whether the employee is the project manager.

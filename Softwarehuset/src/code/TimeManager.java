@@ -1,4 +1,4 @@
-package partOne;
+package code;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +7,7 @@ public class TimeManager {
 	private HashMap<Employee, Double> employeeTimeList = new HashMap<Employee, Double>();;
 
 	public TimeManager(List<Employee> employees) {
-
-		for (Employee e : employees) {
-			this.employeeTimeList.put(e, 0.0);
-		}
+		addEmployees(employees);
 	}
 
 	// Adds the specified work to an employees completed workload.
@@ -24,4 +21,10 @@ public class TimeManager {
 		return this.employeeTimeList.get(employee);
 	}
 
+	// Adds a list of employees to the TimeManager.
+	public void addEmployees(List<Employee> employees) {
+		for (Employee e : employees) {
+			this.employeeTimeList.put(e, 0.0);
+		}
+	}
 }

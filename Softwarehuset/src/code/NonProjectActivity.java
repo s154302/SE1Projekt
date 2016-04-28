@@ -1,4 +1,4 @@
-package partOne;
+package code;
 
 import java.util.Collections;
 import java.util.List;

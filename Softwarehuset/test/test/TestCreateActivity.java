@@ -1,8 +1,12 @@
-package partOne;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import code.Employee;
+import code.OperationNotAllowedException;
+import code.Project;
 
 public class TestCreateActivity {
 

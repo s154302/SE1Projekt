@@ -1,4 +1,4 @@
-package partOne;
+package code;
 
 public class ProjectBuilder {
 	

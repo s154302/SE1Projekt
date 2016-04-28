@@ -1,10 +1,10 @@
-package partOne;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestEditProject {
+public class TestCreateProjectRepport {
 
 	@Test
 	public void test() {

@@ -1,10 +1,14 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 public class Frame extends JFrame{
 	
@@ -26,30 +30,52 @@ public class Frame extends JFrame{
 		buttonPanel = new ButtonPanel(this);
 
 		// setting up the layout
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.anchor = c.FIRST_LINE_START;
+		this.setLayout(new BorderLayout());
+//		gbc.anchor = gbc.FIRST_LINE_START;
+//		
+//		// adding project Panel
+//		gbc.fill = GridBagConstraints.VERTICAL;
+//        gbc.gridx = 0; 
+//        gbc.gridy = 0;
+//        gbc.gridwidth = 1;
+//        gbc.gridheight = 2;
+//        gbc.fill = GridBagConstraints.BOTH;
+		this.add(projectPanel, "West");
 		
-		// adding project Panel
-		c.fill = GridBagConstraints.VERTICAL;
-		c.gridx = 0;
-		c.gridy = 0;
-		this.add(projectPanel, c);
+//		// adding activity panel
+//        gbc.gridx = 1; 
+//        gbc.gridy = 0;
+//        gbc.gridwidth = 2;
+//        gbc.gridheight = 1;
+//        gbc.fill = GridBagConstraints.BOTH;
+		this.add(activityPanel, "Center");
 		
-		// adding activity panel
-		c.gridx = 1;
-		c.gridy = 0;
-		this.add(activityPanel, c);
-		
-		// adding button panel
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 1;
-		c.gridy = 4;
-		this.add(buttonPanel, c);
+//		// adding button panel
+//        gbc.gridx = 1; 
+//        gbc.gridy = 1;
+//        gbc.gridwidth = 1;
+//        gbc.gridheight = 1;
+//        gbc.fill = GridBagConstraints.BOTH;
+		this.add(buttonPanel, "South");
 		
 		
 		
 	}
+	
+//	private JPanel gbcComponent(int x, int y, int w, int h){
+//
+//        gbc.gridx = x; 
+//        gbc.gridy = y;
+//        gbc.gridwidth = w;
+//        gbc.gridheight = h;
+//        gbc.fill = GridBagConstraints.BOTH;
+//        JPanel panel = new JPanel();
+//        JTextField text = new JTextField("(" + w + ", " + h + ")");
+//        panel.setBorder(new TitledBorder("(" + x + ", " + y + ")"));        
+//        panel.add(text);
+//        return panel;
+//
+//    }
 	
 	public void showIt(){
 		this.setVisible(true);

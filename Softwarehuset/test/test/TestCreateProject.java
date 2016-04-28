@@ -1,8 +1,11 @@
-package partOne;
+package test;
 
 import static org.junit.Assert.*;
 import java.time.LocalDate;
 import org.junit.Test;
+
+import code.Employee;
+import code.Model;
 
 // USER STORY 1:
 //Softwarehuset har faet en opgave fra DTU, som skal være færdig om d.

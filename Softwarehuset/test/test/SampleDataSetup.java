@@ -1,4 +1,4 @@
-package partOne;
+package test;
 
 //import static org.junit.Assert.fail;
 
@@ -7,6 +7,11 @@ import java.util.List;
 
 import org.junit.Before;
 //import org.junit.Test;
+
+import code.Employee;
+import code.Model;
+import code.NonProjectActivity;
+import code.Project;
 
 public class SampleDataSetup {
 	Model model;
