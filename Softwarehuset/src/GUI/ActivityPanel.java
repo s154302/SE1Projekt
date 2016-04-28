@@ -9,18 +9,33 @@ import javax.swing.JPanel;
 
 public class ActivityPanel extends JPanel {
 	
-	public ActivityPanel(Frame f){
+	public ActivityPanel(Frame f){ 
 		this.setBackground(Color.RED);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.weighty = 1;
-        gbc.gridx = 1; 
+        gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 3;
+		
+        gbc.gridx = 0; 
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
+		this.add(new Label("Activity"), gbc);
 		
-		this.add(new Label("Activity"));
+        gbc.gridx = 0; 
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        this.add(new Label("Activity2"), gbc);
+        
+        gbc.gridx = 0; 
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        this.add(new Label("Activity3"), gbc);
+		
+		
 	}
 
 }

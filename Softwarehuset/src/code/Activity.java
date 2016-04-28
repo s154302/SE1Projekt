@@ -56,4 +56,10 @@ public class Activity implements Comparable<Activity> {
 		return this.expectedWorkload;
 	}
 
+	public TimeManager getTimeManager() {
+		return timeManager;
+	}
+	
+	
+
 }

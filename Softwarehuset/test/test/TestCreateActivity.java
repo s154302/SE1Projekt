@@ -18,7 +18,7 @@ public class TestCreateActivity {
 		Employee e = new Employee(eName);
 
 		String pName = "Coding";
-		Project p = new Project(pName, e);
+		Project p = new Project(pName,e, 0, 0, 0, 0, 0, 0);
 
 		String aName = "Refactoring";
 		int expectedWorkload = 5;
@@ -42,7 +42,7 @@ public class TestCreateActivity {
 		Employee e2 = new Employee(eName2);
 
 		String pName = "Coding";
-		Project p = new Project(pName, e1);
+		Project p = new Project(pName, e1, 0, 0, 0, 0, 0, 0);
 
 		assertEquals(p.getProjectManger(), e1);
 

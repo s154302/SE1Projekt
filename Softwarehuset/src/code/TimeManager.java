@@ -27,4 +27,8 @@ public class TimeManager {
 			this.employeeTimeList.put(e, 0.0);
 		}
 	}
+	
+	public boolean containsKey(Employee e) {
+		return this.employeeTimeList.containsKey(e);
+	}
 }

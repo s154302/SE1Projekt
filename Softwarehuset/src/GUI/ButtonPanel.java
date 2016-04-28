@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ButtonPanel extends JPanel {
@@ -13,14 +14,26 @@ public class ButtonPanel extends JPanel {
 		this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.weighty = 1;
-        gbc.gridx = 1; 
-        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+        
+        gbc.gridx = 0; 
+        gbc.gridy = 0; 
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
+		this.add(new JButton("Button1"), gbc);
 		
-		this.add(new Label("Buttons"));
+        gbc.gridx = 2; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+		this.add(new JButton("Button2"), gbc);
+		
+        gbc.gridx = 3; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+		this.add(new JButton("Button3"), gbc);
 		
 	}
 
