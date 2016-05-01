@@ -1,5 +1,6 @@
 package code;
 
+import java.awt.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -94,5 +95,9 @@ public class Model {
 	// Deletes an employee.
 	public void removeEmployee(Employee employee) {
 		this.employeeList.remove(employee);
+	}
+
+	public ArrayList<Project> projectList() {
+		return projectList;
 	}
 }

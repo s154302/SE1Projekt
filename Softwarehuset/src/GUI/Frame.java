@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import code.Model;
+
 public class Frame extends JFrame{
 	
 	private ProjectPanel projectPanel;
@@ -18,14 +20,19 @@ public class Frame extends JFrame{
 
 	public Frame(){
 
+		System.out.println("frame");
 		//constructing frame
 		this.setSize(600,500);
-		this.setLocation(100,50);
+		this.setLocation(100,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Software Huset");	
 		
+		//initializing the model
+		Model model = new Model();
+		
+		
 		//making the panels to the frame
-		projectPanel = new ProjectPanel(this);
+		projectPanel = new ProjectPanel(this, model);
 		activityPanel = new ActivityPanel(this);
 		buttonPanel = new ButtonPanel(this);
 
@@ -52,7 +59,7 @@ public class Frame extends JFrame{
 		this.add(activityPanel, gbc);
 		
 		// adding button panel
-        gbc.gridx = 2; 
+        gbc.gridx = 2;
         gbc.gridy = 5;
         gbc.gridwidth = 4;
         gbc.gridheight = 1;

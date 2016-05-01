@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class ButtonPanel extends JPanel {
 	
 	public ButtonPanel(Frame f){
+		System.out.println("button");
 		this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
