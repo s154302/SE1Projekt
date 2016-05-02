@@ -1,15 +1,14 @@
-package partOne;
+package code;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
 public class Project {
 
 	private String name;
-	private int serialNumber;
+	private String serialNumber;
 	private Employee projectManager;
 	private LocalDate startDate;
 	private LocalDate endDate;
@@ -21,32 +20,35 @@ public class Project {
 			int endYear, int endMonth, int endDayOfMonth) {
 		createSerialNumber();
 		this.activityList = new ArrayList<Activity>();
-		this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
-		this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
+		if (startYear == 0 || startMonth == 0 || startDayOfMonth == 0) {
+
+		} else {
+			this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
+		}
+		if (endYear == 0 || endMonth == 0 || endDayOfMonth == 0) {
+
+		} else {
+			this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
+		}
 
 		if (name != null) {
 			this.name = name;
 		}
 
-		if (!projectManager.equals(null)) {
+		if (projectManager != null) {
 			this.projectManager = projectManager;
 		}
 	}
 
-	// Automatically generates the projects serial.
-	private void createSerialNumber() {
-		this.serialNumber = 0;
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 
-	public int getSerialNumber() {
+	public String getSerialNumber() {
 		return serialNumber;
 	}
 
-	// public void setStartDate (){
-	// this.startDate = 0;
-	// }
-
-	public Calendar getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
@@ -77,6 +79,10 @@ public class Project {
 
 	public Employee getProjectManger() {
 		return this.projectManager;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
 	}
 
 }
