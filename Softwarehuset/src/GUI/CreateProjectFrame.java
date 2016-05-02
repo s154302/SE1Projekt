@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import code.Model;
 
 public class CreateProjectFrame extends JFrame {
+	
+	private CreateProjectPanel cPP;
 
 	public CreateProjectFrame(Model model, ButtonListener bL) {
 		this.setSize(400, 250);
@@ -20,5 +22,9 @@ public class CreateProjectFrame extends JFrame {
 
 	public void showIt() {
 		this.setVisible(true);
+	}
+	
+	public CreateProjectPanel getCreateProjectPanel() {
+		return cPP;
 	}
 }
