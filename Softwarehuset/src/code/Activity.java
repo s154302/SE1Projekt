@@ -34,7 +34,10 @@ public class Activity implements Comparable<Activity> {
 		Collections.sort(this.employeeList);
 
 	}
-
+	public void removeEmployee(Employee employee){
+		employee.removeFromActivityList(this);
+		employeeList.remove(employeeList.indexOf(employee));
+	}
 	// Check whether the employee is the project manager.
 	public boolean isProjectManager(Employee employee) {
 		if (this.projectManager == employee) {
@@ -60,6 +63,11 @@ public class Activity implements Comparable<Activity> {
 		return timeManager;
 	}
 	
-	
+	public void setName(String name){
+		this.name = name;
+	}
+	public void setExpectedWorkload(int expectedWorkload){
+		this.expectedWorkload = expectedWorkload;
+	}
 
 }

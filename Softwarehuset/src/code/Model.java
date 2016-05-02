@@ -1,6 +1,5 @@
 package code;
 
-import java.awt.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,15 +11,9 @@ public class Model {
 	private int counter = 0;
 
 	public Model() {
-		projectList = new ArrayList<Project>();
-
-	}
-
-	public Model(ArrayList<Employee> employeeList, ArrayList<NonProjectActivity> nonProjectActivityList,
-			ArrayList<Project> projectList) {
-		this.employeeList = employeeList;
-		this.nonProjectActivityList = nonProjectActivityList;
-		this.projectList = projectList;
+		this.projectList = new ArrayList<Project>();
+		this.nonProjectActivityList = new ArrayList<NonProjectActivity>();
+		this.employeeList = new ArrayList<Employee>();
 	}
 
 	// Creates a new employee and adds it to the employee list.
@@ -31,7 +24,7 @@ public class Model {
 	// Creates a new project and adds it to the project list.
 
 	public void createProject(String name, Employee projectManager, int startYear, int startMonth, int startDayOfMonth,
-			int endYear, int endMonth, int endDayOfMonth) {
+			int endYear, int endMonth, int endDayOfMonth) throws OperationNotAllowedException {
 		Project p = new Project(name, projectManager, startYear, startMonth, startDayOfMonth, endYear,
 				endMonth, endDayOfMonth);
 		p.setSerialNumber(createSerialNumber());
@@ -62,7 +55,7 @@ public class Model {
 			mString = String.valueOf(m);
 		}
 
-		yString = String.valueOf(y).substring(1, 3);
+		yString = String.valueOf(y).substring(2, 4);
 
 		return counter() + "-" + dString + mString + yString;
 	}
@@ -70,11 +63,14 @@ public class Model {
 	public String counter() {
 		this.counter++;
 		String counterString;
-		if(this.counter > 1000) {
+		if(this.counter>9999 ){
+			counter = 1;
+		}
+		if(this.counter > 999) {
 			counterString = String.valueOf(this.counter);
-		} else if(this.counter > 100) {
+		} else if(this.counter > 99) {
 			counterString = "0" + this.counter;
-		} else if(this.counter > 10) {
+		} else if(this.counter > 9) {
 			counterString = "00" + this.counter;
 		} else {
 			counterString = "000" + this.counter;

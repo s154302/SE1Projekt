@@ -9,7 +9,10 @@ public class OperationNotAllowedException extends Exception {
 	public String getOperation() {
 		if(this.getMessage().contains("Create activity")) {
 			return "Create activity";
-		} else if(this.getMessage().contains("")) {
+		} else if(this.getMessage().contains("Create project")) {
+			return "Create project";
+		}
+		else if(this.getMessage().contains("")) {
 			return "";
 		}
 		return null;

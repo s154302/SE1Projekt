@@ -17,16 +17,17 @@ public class Project {
 	public List<Activity> activityList;
 
 	public Project(String name, Employee projectManager, int startYear, int startMonth, int startDayOfMonth,
-			int endYear, int endMonth, int endDayOfMonth) {
-		createSerialNumber();
+			int endYear, int endMonth, int endDayOfMonth) throws OperationNotAllowedException {
+		
+		
 		this.activityList = new ArrayList<Activity>();
 		if (startYear == 0 || startMonth == 0 || startDayOfMonth == 0) {
-
+			this.startDate=null;
 		} else {
 			this.startDate = LocalDate.of(startYear, startMonth, startDayOfMonth);
 		}
 		if (endYear == 0 || endMonth == 0 || endDayOfMonth == 0) {
-
+			this.endDate=null;
 		} else {
 			this.endDate = LocalDate.of(endYear, endMonth, endDayOfMonth);
 		}
@@ -38,6 +39,26 @@ public class Project {
 		if (projectManager != null) {
 			this.projectManager = projectManager;
 		}
+		if(this.startDate != null){
+			if( LocalDate.now().isAfter(this.startDate) )
+			{
+				throw new OperationNotAllowedException("Create project not allowed if start date is after end date.");
+			}
+		}
+		if(this.endDate != null){
+			if( LocalDate.now().isAfter(this.endDate) )
+			{
+				throw new OperationNotAllowedException("Create project not allowed if start date is after end date.");
+			}
+		}
+		if(this.endDate!=null && this.startDate !=null){
+			if(this.endDate.isBefore(this.startDate))
+			{
+				throw new OperationNotAllowedException("Create project not allowed if start date is after end date.");
+			}
+			
+		}
+
 	}
 
 	public void setSerialNumber(String serialNumber) {
@@ -64,11 +85,6 @@ public class Project {
 		}
 	}
 
-	public boolean notStarted() {
-		// Specifies whether the project has started?
-		return false;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -77,12 +93,23 @@ public class Project {
 		return projectManager;
 	}
 
-	public Employee getProjectManger() {
-		return this.projectManager;
-	}
-
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
+	public void setName(String newName){
+		name = newName;
+	}
+	
+	public void setProjectManager(Employee e1){
+		projectManager = e1;
+	}
+	
+	public void setStartDate(int startYear, int startMonth, int startDay){
+		startDate = LocalDate.of(startYear, startMonth, startDay);
+	}
+	
+	public void setEndDate(int endYear, int endMonth, int endDay){
+		endDate = LocalDate.of(endYear, endMonth, endDay);
+	}
 }
