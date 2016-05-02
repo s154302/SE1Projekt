@@ -21,23 +21,34 @@ public class Frame extends JFrame{
 	private ProjectPanel projectPanel;
 	private ActivityPanel activityPanel;
 	private ButtonPanel buttonPanel;
+	private boolean firstRun = true;
+	private GridBagConstraints gbc;
+	private Model model;
 
 	public Frame(){
 
-		System.out.println("frame");
 		//constructing frame
 		this.setSize(1000,700);
 		this.setLocation(100,50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Software Huset");	
+		this.setTitle("Software Huset");
+		
+		// setting up the layout
+		this.setLayout(new GridBagLayout());
+		gbc = new GridBagConstraints();
+		gbc.anchor = gbc.FIRST_LINE_START;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+
 		
 		//initializing the model
-		Model model = new Model();
-		for (int i = 1; i <= 5; i++) {
+		model = new Model();
+		for (int i = 1; i <= 50; i++) {
 			model.createEmployee("Employee" + i);
 		}
 
-		for (int i = 1; i <= 50; i++) {
+		for (int i = 1; i <= 30; i++) {
 			try {
 				model.createProject("Project" + i, model.employeeList.get(1), 2017, 12, 12, 2017, 12, 13);
 			} catch (OperationNotAllowedException e) {
@@ -48,9 +59,10 @@ public class Frame extends JFrame{
 
 		int a = 1;
 		for (Project p : model.projectList) {
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 6; i++) {
 				try {
-					p.createActivity(a+"Activity" + i, i * 2, model.employeeList.get(1));
+					p.setProjectManager(model.employeeList.get(a));
+					p.createActivity(a+"Activity" + i, i * (a*a)%30, model.employeeList.get(a));
 				} catch (OperationNotAllowedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -59,31 +71,47 @@ public class Frame extends JFrame{
 			a++;
 		}
 
-		for (int i = 1; i <= 5; i++) {
-			try {
-				model.projectList.get(1).createActivity("Activity" + i, i * 3, model.employeeList.get(1));
-			} catch (OperationNotAllowedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
 		model.nonProjectActivityList.add(new NonProjectActivity());	
 		
 		
 		//making the panels to the frame
-		projectPanel = new ProjectPanel(this, model);
-		activityPanel = projectPanel.getActivityPanel();
-		buttonPanel = new ButtonPanel(this, model);
+		this.projectPanel = new ProjectPanel(this, model);
+		this.activityPanel = projectPanel.getActivityPanel();
+		this.buttonPanel = new ButtonPanel(this, model);
 
 
-		// setting up the layout
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = gbc.FIRST_LINE_START;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1;
-		gbc.weighty = 1;
+
+
+		update(projectPanel, activityPanel, buttonPanel);
+
+		
+	}
+	
+	
+	public void showIt(){
+		this.setVisible(true);
+	}
+
+
+	public ProjectPanel getProjectPanel() {
+		// TODO Auto-generated method stub
+		return projectPanel;
+	}
+	
+	public void update(ProjectPanel projectPanel, ActivityPanel activityPanel, ButtonPanel buttonPanel){
+		if(firstRun ){
+			firstRun = false;
+		} else{
+			System.out.println(firstRun);
+			this.remove(this.projectPanel);
+			this.remove(this.activityPanel);
+			this.remove(this.buttonPanel);
+			this.projectPanel = projectPanel;
+			this.activityPanel = activityPanel;
+			this.buttonPanel = buttonPanel;
+		}
+
+		projectPanel.geta();
 		
 		// adding project Panel
         gbc.gridx = 0; 
@@ -105,18 +133,24 @@ public class Frame extends JFrame{
         gbc.gridwidth = 4;
         gbc.gridheight = 1;
 		this.add(buttonPanel, gbc);
-		
 	}
 	
-	
-	public void showIt(){
-		this.setVisible(true);
-	}
+//	public ButtonPanel getButtonPanel(){
+//		return buttonPanel;
+//	}
 
 
-	public ProjectPanel getProjectPanel() {
+	public void updateActivityPanel(ActivityPanel activityPanel) {
 		// TODO Auto-generated method stub
-		return projectPanel;
+		if(!firstRun){
+			this.remove(this.activityPanel);
+		}
+		this.activityPanel = activityPanel;
+        gbc.gridx = 2; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 5;
+		this.add(activityPanel);
 	}
 
 }

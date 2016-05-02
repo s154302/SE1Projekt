@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,20 +15,10 @@ import code.Project;
 public class ProjectPanel extends JPanel {
 	private ActivityPanel activityPanel;
 	private Model model;
-	private Project p;
 	
 	public ProjectPanel(Frame f, Model model){ 
 		System.out.println("project");
 		this.model=model;
-//		this.setBackground(Color.BLUE);
-//		GridBagConstraints gbc = new GridBagConstraints();
-//		this.setLayout(new GridBagLayout());
-//		gbc.weighty = 1;
-//
-//        gbc.gridx = 0; 
-//        gbc.gridy = 0;
-//        gbc.gridwidth = 2;
-//        gbc.gridheight = 1;
 
 		//Making activity panel:
 		activityPanel = new ActivityPanel(f, model, model.projectList().get(0));
@@ -59,10 +50,9 @@ public class ProjectPanel extends JPanel {
 		
 		
 		//adding back to menu button
-//		ButtonListener buttonList = new ButtonListener(frame);
-//		JButton backButton = new JButton("Back to menu");
-//		this.add(backButton, BorderLayout.SOUTH);
-//		
+		ButtonListener buttonList = new ButtonListener(model);
+		JButton backButton = new JButton("something");
+		this.add(backButton, BorderLayout.SOUTH);	
 		
 
 	}
@@ -76,10 +66,12 @@ public class ProjectPanel extends JPanel {
 		
 		for(int i = 0; i<model.projectList().size();i++){
 			if(model.projectList().get(i).getSerialNumber().equals(string)){
-				activityPanel.updateActivityList(p);
+				activityPanel.updateActivityList(model.projectList().get(i));
 			}
 		}
 	}
 	
-	
+	public String geta(){
+		return model.projectList().get(0).getSerialNumber();
+	}
 }
