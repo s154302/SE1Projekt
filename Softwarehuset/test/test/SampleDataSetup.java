@@ -43,7 +43,6 @@ public class SampleDataSetup {
 
 		model.nonProjectActivityList.add(new NonProjectActivity());
 
-		model = new Model(model.employeeList, model.nonProjectActivityList, model.projectList);
 
 	}
 

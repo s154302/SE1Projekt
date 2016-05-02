@@ -31,6 +31,7 @@ public class Employee implements Comparable<Employee> {
 	// removes an activity from the employee's activity list.
 	public void removeFromActivityList(Activity activity) {
 		this.activityList.remove(activity);
+		Collections.sort(this.activityList);
 	}
 
 	// Implements comparable to sort using the employee's name.
