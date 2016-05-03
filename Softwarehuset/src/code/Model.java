@@ -96,4 +96,18 @@ public class Model {
 	public ArrayList<Project> projectList() {
 		return projectList;
 	}
+	
+	//Tænker at at lave noget der skriver til en .txt fil? 
+	public void reportProject(Project project){
+		int totalWorkload =0;
+		int completedWorkload = 0;
+		for (Activity activity : project.activityList){
+			totalWorkload = totalWorkload + activity.getExpectedWorkload();
+			for(Employee employee : activity.employeeList){
+				//completedWorkload = compledtedWorkload + employee.
+			}
+		}
+		
+	}
+	
 }
