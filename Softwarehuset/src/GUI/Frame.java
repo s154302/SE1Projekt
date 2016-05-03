@@ -25,6 +25,7 @@ public class Frame extends JFrame{
 	public Frame(){
 
 		System.out.println("frame");
+				
 		//constructing frame
 		this.setSize(1000,700);
 		this.setLocation(100,50);
@@ -70,6 +71,7 @@ public class Frame extends JFrame{
 
 		model.nonProjectActivityList.add(new NonProjectActivity());	
 		
+
 		
 		//making the panels to the frame
 		projectPanel = new ProjectPanel(this, model);
@@ -105,6 +107,7 @@ public class Frame extends JFrame{
         gbc.gridwidth = 4;
         gbc.gridheight = 1;
 		this.add(buttonPanel, gbc);
+		
 		
 	}
 	

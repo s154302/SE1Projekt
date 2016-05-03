@@ -1,0 +1,17 @@
+0001-040516 Softwarehuset - Data from 04.05.16
+
+Total Expected workload: 40, Completed workload: 20, Remaining workload: 5 (50%)
+
+Aktiviteter
+Aktivitet1 Expected workload: 10, Completed workload: 5, Remaining workload: 5 (50%)
+Aktivitet2 Expected workload: 10, Completed workload: 5, Remaining workload: 5 (50%)
+Aktivitet3 Expected workload: 10, Completed workload: 5, Remaining workload: 5 (50%)
+Aktivitet4 Expected workload: 10, Completed workload: 5, Remaining workload: 5 (50%)
+
+
+
+Emilie: 5 Hours (25%)
+Simon: 5 Hours (25%)
+Mathias: 5 Hours (25%)
+Alexander: 5 Hours (25%)
+
