@@ -138,9 +138,10 @@ public class Model {
 		
 		write.println();
 		
-		for (Employee employee : project.employeeList){
-			write.println(employee.getName()+ " :");
-		}
+//		for (Employee employee : project.employeeList){
+//			write.println(employee.getName()+ " :");
+//		}
+		write.close();
 	}
 	
 }

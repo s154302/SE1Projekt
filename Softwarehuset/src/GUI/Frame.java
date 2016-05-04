@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +24,7 @@ public class Frame extends JFrame{
 	private ActivityPanel activityPanel;
 	private ButtonPanel buttonPanel;
 
-	public Frame(){
+	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
 		System.out.println("frame");
 				
@@ -108,7 +110,7 @@ public class Frame extends JFrame{
         gbc.gridheight = 1;
 		this.add(buttonPanel, gbc);
 		
-		
+		model.reportProject(model.projectList.get(0));
 	}
 	
 	
