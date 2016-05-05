@@ -42,13 +42,13 @@ public class Project {
 		if(this.startDate != null){
 			if( LocalDate.now().isAfter(this.startDate) )
 			{
-				throw new OperationNotAllowedException("Create project not allowed if start date is after end date.");
+				throw new OperationNotAllowedException("Create project not allowed if start date is before current date.");
 			}
 		}
 		if(this.endDate != null){
 			if( LocalDate.now().isAfter(this.endDate) )
 			{
-				throw new OperationNotAllowedException("Create project not allowed if start date is after end date.");
+				throw new OperationNotAllowedException("Create project not allowed if end date is before current date.");
 			}
 		}
 		if(this.endDate!=null && this.startDate !=null){
