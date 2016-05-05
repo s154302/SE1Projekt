@@ -61,14 +61,16 @@ public class ProjectPanel extends JPanel {
 		return activityPanel;
 	}
 
-	public void setActivityPanel(String string) {
+	public ActivityPanel setActivityPanel(String string) {
 		// TODO Auto-generated method stub
 		
 		for(int i = 0; i<model.projectList().size();i++){
 			if(model.projectList().get(i).getSerialNumber().equals(string)){
 				activityPanel.updateActivityList(model.projectList().get(i));
+				return activityPanel;
 			}
 		}
+	return null;
 	}
 	
 	public String geta(){

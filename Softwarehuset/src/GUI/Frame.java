@@ -99,7 +99,7 @@ public class Frame extends JFrame{
 	}
 	
 	public void update(ProjectPanel projectPanel, ActivityPanel activityPanel, ButtonPanel buttonPanel){
-		if(firstRun ){
+		if(firstRun){
 			firstRun = false;
 		} else{
 			System.out.println(firstRun);
@@ -142,15 +142,10 @@ public class Frame extends JFrame{
 
 	public void updateActivityPanel(ActivityPanel activityPanel) {
 		// TODO Auto-generated method stub
-		if(!firstRun){
-			this.remove(this.activityPanel);
-		}
+
 		this.activityPanel = activityPanel;
-        gbc.gridx = 2; 
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
-        gbc.gridheight = 5;
-		this.add(activityPanel);
+
+		this.revalidate();
 	}
 
 }

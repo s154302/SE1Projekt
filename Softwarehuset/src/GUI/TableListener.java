@@ -25,7 +25,7 @@ public class TableListener implements ListSelectionListener{
             System.out.println(table.getValueAt(table.getSelectedRow(), 1).toString());
             //activityPanel = new ActivityPanel(f, model, table.getValueAt(table.getSelectedRow(), 0);
             //activityPanel = new ActivityPanel(f, model, model.projectList.get(table.getRowCount()-1));
-            f.getProjectPanel().setActivityPanel(table.getValueAt(table.getSelectedRow(), 0).toString());
+            f.updateActivityPanel(f.getProjectPanel().setActivityPanel(table.getValueAt(table.getSelectedRow(), 0).toString()));
             
         }
 

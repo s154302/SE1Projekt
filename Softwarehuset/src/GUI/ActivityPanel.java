@@ -24,7 +24,6 @@ public class ActivityPanel extends JPanel {
 		this.f = f;
 		this.model = model;
 				
-		System.out.println("activity");
 //		this.setBackground(Color.RED);
 //		this.setLayout(new GridBagLayout());
 //		GridBagConstraints gbc = new GridBagConstraints();
