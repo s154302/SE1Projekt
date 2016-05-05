@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -13,6 +14,14 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 	private Model model;
 	private CreateProjectFrame cPF;
+=======
+
+import code.Model;
+
+public class ButtonListener implements ActionListener {
+
+	Model model;
+>>>>>>> Emilie
 
 	public ButtonListener(Model model) {
 		this.model = model;
@@ -20,6 +29,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 
 		String actionCommand = e.getActionCommand();
 
@@ -62,13 +72,33 @@ public class ButtonListener implements ActionListener, ItemListener {
 			this.cPF.dispose();
 			break;
 
+=======
+		String actionCommand = e.getActionCommand();
+		
+		switch (actionCommand) {
+		case "Create Project":
+			CreateProjectFrame pF = new CreateProjectFrame(model);
+			break;
+			
+		case "Confirm":
+
+			break;
+
+		case "Cancel":
+			
+			break;
+			
+>>>>>>> Emilie
 		}
 
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 
 	}
 
+=======
+>>>>>>> Emilie
 }
