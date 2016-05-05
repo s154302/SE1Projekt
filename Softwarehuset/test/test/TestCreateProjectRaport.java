@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -24,7 +25,10 @@ public class TestCreateProjectRaport {
 		model.createProject("Softwarehuset", employee, 0, 0, 0, 0, 0, 0);
 		Project project = model.projectList.get(0);
 		project.createActivity("Aktivity1", 10, employee);
-		project.activityList.get(0).getTimeManager().addTime(employee, 6);
+		ArrayList<Employee> eList = new ArrayList<Employee>();
+		eList.add(employee);
+		project.activityList.get(0).addEmployee(eList);
+		project.activityList.get(0).getTimeManager().addTime(employee, 6.0);
 		File file = new File("Report for "+model.projectList.get(0).getName());
 		assertTrue(file.exists());
 	}
