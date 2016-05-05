@@ -27,6 +27,7 @@ public class Frame extends JFrame{
 	private boolean firstRun = true;
 	private GridBagConstraints gbc;
 	private Model model;
+	private ButtonListener bL;
 
 	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
@@ -44,6 +45,7 @@ public class Frame extends JFrame{
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 
+		
 		
 		//initializing the model
 		model = new Model();
@@ -74,45 +76,24 @@ public class Frame extends JFrame{
 			a++;
 		}
 
-		model.nonProjectActivityList.add(new NonProjectActivity());	
+		model.nonProjectActivityList.add(new NonProjectActivity("Ferie"));	
+		model.nonProjectActivityList.add(new NonProjectActivity("Sygdom"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Kursus"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Barsel"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Afspadsering"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Andet"));
 		
+		//making ButtonListener
+				bL = new ButtonListener(model, this);
+
 		
 		//making the panels to the frame
 		this.projectPanel = new ProjectPanel(this, model);
 		this.activityPanel = projectPanel.getActivityPanel();
 		this.buttonPanel = new ButtonPanel(this, model);
 
-
-
-
-		update(projectPanel, activityPanel, buttonPanel);
-
 		
-	}
-	
-	
-	public void showIt(){
-		this.setVisible(true);
-	}
 
-
-	public ProjectPanel getProjectPanel() {
-		// TODO Auto-generated method stub
-		return projectPanel;
-	}
-	
-	public void update(ProjectPanel projectPanel, ActivityPanel activityPanel, ButtonPanel buttonPanel){
-		if(firstRun){
-			firstRun = false;
-		} else{
-			System.out.println(firstRun);
-			this.remove(this.projectPanel);
-			this.remove(this.activityPanel);
-			this.remove(this.buttonPanel);
-			this.projectPanel = projectPanel;
-			this.activityPanel = activityPanel;
-			this.buttonPanel = buttonPanel;
-		}
 
 		projectPanel.geta();
 		
@@ -137,17 +118,33 @@ public class Frame extends JFrame{
         gbc.gridheight = 1;
 		this.add(buttonPanel, gbc);
 	}
+		
+
+		
+	
+	
+	
+	public void showIt(){
+		this.setVisible(true);
+	}
+
+
+	public ProjectPanel getProjectPanel() {
+		// TODO Auto-generated method stub
+		return projectPanel;
+	}
+	
+	public ButtonListener getButtonListener(){
+		return bL;
+	}
 	
 //	public ButtonPanel getButtonPanel(){
 //		return buttonPanel;
 //	}
 
 
-	public void updateActivityPanel(ActivityPanel activityPanel) {
+	public void update() {
 		// TODO Auto-generated method stub
-
-		this.activityPanel = activityPanel;
-
 		this.revalidate();
 	}
 

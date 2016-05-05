@@ -7,7 +7,9 @@ public class TimeManager {
 	private HashMap<Employee, Double> employeeTimeList = new HashMap<Employee, Double>();;
 
 	public TimeManager(List<Employee> employees) {
-		addEmployees(employees);
+		if(employees.size()>0){
+			addEmployees(employees);
+		}
 	}
 
 	// Adds the specified work to an employees completed workload.

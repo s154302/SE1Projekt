@@ -11,7 +11,7 @@ import code.Model;
 public class ButtonPanel extends JPanel {
 
 	public ButtonPanel(Frame f, Model model) {
-		ButtonListener bL = new ButtonListener(model);
+		ButtonListener bL =f.getButtonListener();
 		System.out.println("button");
 		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
@@ -21,23 +21,29 @@ public class ButtonPanel extends JPanel {
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		JButton cP = new JButton("Create Project");
+		JButton cP = new JButton("Edit Project");
 		cP.addActionListener(bL);
 		this.add(cP, gbc);
 
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		this.add(new JButton("Get Repport"), gbc);
+
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		this.add(new JButton("Button2"), gbc);
-
+		this.add(new JButton("Add Time"), gbc);
+		
 		gbc.gridx = 3;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		this.add(new JButton("Button3"), gbc);
+		this.add(new JButton("Absence"), gbc);
 
 	}
 

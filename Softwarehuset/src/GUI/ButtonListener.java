@@ -1,9 +1,12 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
+import javax.swing.JButton;
 
 import code.Employee;
 import code.Model;
@@ -13,9 +16,12 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 	private Model model;
 	private CreateProjectFrame cPF;
+	private Frame frame;
 
-	public ButtonListener(Model model) {
+	public ButtonListener(Model model, Frame f) {
 		this.model = model;
+		this.frame = f;
+		
 	}
 
 	@Override
@@ -26,18 +32,20 @@ public class ButtonListener implements ActionListener, ItemListener {
 		switch (actionCommand) {
 		case "Create Project":
 			this.cPF = new CreateProjectFrame(model, this);
+			System.out.println(cPF.getTitle());
 			break;
 
 		case "Confirm":
-			int sD = (Integer) this.cPF.getCreateProjectPanel().startDay.getSelectedIndex();
-			int sM = (Integer) this.cPF.getCreateProjectPanel().startMonth.getSelectedItem();
-			int sY = (Integer) this.cPF.getCreateProjectPanel().startYear.getSelectedItem();
 			
-			int eD = (Integer) this.cPF.getCreateProjectPanel().endDay.getSelectedItem();
-			int eM = (Integer) this.cPF.getCreateProjectPanel().endMonth.getSelectedItem();
-			int eY = (Integer) this.cPF.getCreateProjectPanel().endYear.getSelectedItem();
+			int sD = Integer.parseInt(this.cPF.getCreateProjectPanel().startDay.getSelectedItem().toString());
+			int sM = Integer.parseInt(this.cPF.getCreateProjectPanel().startMonth.getSelectedItem().toString());
+			int sY = Integer.parseInt(this.cPF.getCreateProjectPanel().startYear.getSelectedItem().toString());
 			
-			String pM = (String) this.cPF.getCreateProjectPanel().employees.getSelectedItem();
+			int eD = Integer.parseInt(this.cPF.getCreateProjectPanel().endDay.getSelectedItem().toString());
+			int eM = Integer.parseInt(this.cPF.getCreateProjectPanel().endMonth.getSelectedItem().toString());
+			int eY = Integer.parseInt(this.cPF.getCreateProjectPanel().endYear.getSelectedItem().toString());
+			
+			String pM = this.cPF.getCreateProjectPanel().employees.getSelectedItem().toString();
 			Employee projectManager = null;
 			
 			for (Employee employee : model.employeeList) {
@@ -51,17 +59,38 @@ public class ButtonListener implements ActionListener, ItemListener {
 			
 			try {
 				model.createProject(name, projectManager, sY, sM, sD, eY, eM, eD);
+				frame.getProjectPanel().updateList();
+				frame.update();
+				
 			} catch (OperationNotAllowedException e1) {
 				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
-			break;
-
-		case "Cancel":
 			this.cPF.setVisible(false);
 			this.cPF.dispose();
 			break;
 
+		case "Cancel":
+			
+			this.cPF.setVisible(false);
+			this.cPF.dispose();
+			break;
+			
+		case "Edit Activity":
+			
+			break;
+			
+		case "Get Repport":
+			
+			break;
+
+		case "Add Time":
+			break;
+			
+		case "Absence":
+			break;
+			
 		}
 	}
 

@@ -9,6 +9,7 @@ import code.Project;
 
 public class TableListener implements ListSelectionListener{
 	private Model model;
+	private Project p;
 	private Frame f;
 	private JTable table;
 
@@ -20,13 +21,14 @@ public class TableListener implements ListSelectionListener{
 	}
 	
 	public void valueChanged(ListSelectionEvent event) {
-        if (table.getSelectedRow() < model.projectList().size() && table.getSelectedRow()>-1) {
-            // print first column value from selected row
-            System.out.println(table.getValueAt(table.getSelectedRow(), 1).toString());
-            //activityPanel = new ActivityPanel(f, model, table.getValueAt(table.getSelectedRow(), 0);
-            //activityPanel = new ActivityPanel(f, model, model.projectList.get(table.getRowCount()-1));
-            f.updateActivityPanel(f.getProjectPanel().setActivityPanel(table.getValueAt(table.getSelectedRow(), 0).toString()));
+        if (table.getSelectedRow() < model.projectList().size() && table.getSelectedRow()>-1 && table.getValueAt(0,0).equals(model.projectList.get(0).getSerialNumber())) {
+
+            f.getProjectPanel().setActivityPanel(table.getValueAt(table.getSelectedRow(), 0).toString());
+            f.update();
             
+        } else if( table.getSelectedRow()>-1) {
+        	f.getProjectPanel().getActivityPanel().editActivity();
+        
         }
 
 }

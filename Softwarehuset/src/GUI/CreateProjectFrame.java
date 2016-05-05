@@ -12,12 +12,12 @@ public class CreateProjectFrame extends JFrame {
 
 	public CreateProjectFrame(Model model, ButtonListener bL) {
 
-		this.setSize(400, 250);
+		this.setSize(600, 300);
 		this.setLocation(100, 50);
 	//	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Create Project");
 
-		CreateProjectPanel cPP = new CreateProjectPanel(model, bL);
+		cPP = new CreateProjectPanel(model, bL);
 
 
 		this.add(cPP,BorderLayout.CENTER);

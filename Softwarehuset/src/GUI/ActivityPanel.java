@@ -19,10 +19,12 @@ public class ActivityPanel extends JPanel {
 	private boolean firstRun = true;
 	private Frame f;
 	private Model model;
+	private ButtonListener bL;
 	
-	public ActivityPanel(Frame f, Model model, Project project){ 
+	public ActivityPanel(Frame f, Model model, Project project, ButtonListener bL){ 
 		this.f = f;
 		this.model = model;
+		this.bL = bL;
 		
 		//filling columns-array for table
 		updateActivityList(project);
@@ -43,13 +45,23 @@ public class ActivityPanel extends JPanel {
 		 }
 		
 		table = new JTable(data, columnNames);
+		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
+		
+		table.getSelectionModel().addListSelectionListener(new TableListener(model, f, table));
+		
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;
-		f.updateActivityPanel(this);
+		f.update();
+	}
+
+	public void editActivity() {
+		// TODO Auto-generated method stub
+		ActivityFrame activityFrame = new ActivityFrame(model, bL);
+		
 	}
 }
 

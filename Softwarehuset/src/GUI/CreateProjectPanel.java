@@ -16,14 +16,15 @@ public class CreateProjectPanel extends JPanel {
 	private Model model;
 	public JComboBox<String> startDay, startMonth, startYear, endDay, endMonth, endYear, employees;
 	public JTextField name;
+	private ButtonListener bL;
 	
-	public CreateProjectPanel(Model model, ButtonListener bL) {
-		this.model = model;
-	}
+//	public CreateProjectPanel(Model model, ButtonListener bL) {
+//		this.model = model;
+//	}
 
-	public CreateProjectPanel(Model model) {
+	public CreateProjectPanel(Model model,ButtonListener bL) {
 		this.model = model;
-		ButtonListener bL = new ButtonListener(model);
+		this.bL = bL;
 		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();

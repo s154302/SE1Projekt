@@ -41,7 +41,7 @@ public class SampleDataSetup {
 			model.projectList.get(1).createActivity("Activity" + i, i * 3, model.employeeList.get(i));
 		}
 
-		model.nonProjectActivityList.add(new NonProjectActivity());
+		model.nonProjectActivityList.add(new NonProjectActivity(""));
 
 
 	}

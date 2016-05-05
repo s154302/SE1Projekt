@@ -101,7 +101,7 @@ public class Model {
 		return projectList;
 	}
 	
-	//Laver en .txt fil og printer en masse dejlig info
+	//Creates a .txt file which contains info about a given project
 	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
 		double totalProjectWorkload =0;
 		double completedProjectWorkload = 0;
@@ -135,12 +135,6 @@ public class Model {
 			write.println(activity.getName() + " Expected workload: " + activityExpectedWorkload 
 					+ ", Completed workload: " + activityCompletedWorkload + ", Remaining workload: " + activityRemainingWorkload);
 		}
-		
-		write.println();
-		
-//		for (Employee employee : project.employeeList){
-//			write.println(employee.getName()+ " :");
-//		}
 		write.close();
 	}
 	
