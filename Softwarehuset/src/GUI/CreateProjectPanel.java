@@ -14,19 +14,16 @@ import code.Model;
 public class CreateProjectPanel extends JPanel {
 
 	private Model model;
-<<<<<<< HEAD
 	public JComboBox<String> startDay, startMonth, startYear, endDay, endMonth, endYear, employees;
 	public JTextField name;
 	
 	public CreateProjectPanel(Model model, ButtonListener bL) {
 		this.model = model;
-=======
+	}
 
 	public CreateProjectPanel(Model model) {
 		this.model = model;
 		ButtonListener bL = new ButtonListener(model);
->>>>>>> Emilie
-		System.out.println("button");
 		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -43,11 +40,9 @@ public class CreateProjectPanel extends JPanel {
 		gbc.gridy = 1;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-<<<<<<< HEAD
+
 		this.name = new JTextField();
-=======
-		JTextField name = new JTextField();
->>>>>>> Emilie
+
 		this.add(name, gbc);
 
 		gbc.gridx = 2;
@@ -57,31 +52,24 @@ public class CreateProjectPanel extends JPanel {
 		JLabel startDate = new JLabel("Start Date:");
 		this.add(startDate, gbc);
 
-<<<<<<< HEAD
+
 		this.startDay = new JComboBox<String>();
-=======
-		JComboBox<String> startDay = new JComboBox<String>();
->>>>>>> Emilie
+
 		startDay.addItem("dd");
 		for (int i = 1; i <= 31; i++) {
 			startDay.addItem("" + i);
 		}
 
-<<<<<<< HEAD
 		this.startMonth = new JComboBox<String>();
-=======
-		JComboBox<String> startMonth = new JComboBox<String>();
->>>>>>> Emilie
+
 		startMonth.addItem("mm");
 		for (int i = 1; i <= 12; i++) {
 			startMonth.addItem("" + i);
 		}
 
-<<<<<<< HEAD
+
 		this.startYear = new JComboBox<String>();
-=======
-		JComboBox<String> startYear = new JComboBox<String>();
->>>>>>> Emilie
+
 		startYear.addItem("yyyy");
 		for (int i = 2016; i <= 2100; i++) {
 			startYear.addItem("" + i);
@@ -105,31 +93,25 @@ public class CreateProjectPanel extends JPanel {
 		gbc.gridheight = 1;
 		this.add(startYear, gbc);
 
-<<<<<<< HEAD
+
 		this.endDay = new JComboBox<String>();
-=======
-		JComboBox<String> endDay = new JComboBox<String>();
->>>>>>> Emilie
+
 		endDay.addItem("dd");
 		for (int i = 1; i <= 31; i++) {
 			endDay.addItem("" + i);
 		}
 
-<<<<<<< HEAD
+
 		this.endMonth = new JComboBox<String>();
-=======
-		JComboBox<String> endMonth = new JComboBox<String>();
->>>>>>> Emilie
+
 		endMonth.addItem("mm");
 		for (int i = 1; i <= 12; i++) {
 			endMonth.addItem("" + i);
 		}
 
-<<<<<<< HEAD
+
 		this.endYear = new JComboBox<String>();
-=======
-		JComboBox<String> endYear = new JComboBox<String>();
->>>>>>> Emilie
+
 		endYear.addItem("yyyy");
 		for (int i = 2016; i <= 2100; i++) {
 			endYear.addItem("" + i);
@@ -149,11 +131,9 @@ public class CreateProjectPanel extends JPanel {
 		JLabel endDate = new JLabel("End Date:");
 		this.add(endDate, gbc);
 
-<<<<<<< HEAD
+
 		this.employees = new JComboBox<String>();
-=======
-		JComboBox<String> employees = new JComboBox<String>();
->>>>>>> Emilie
+
 		employees.addItem(null);
 		for (int i = 0; i < this.model.employeeList.size(); i++) {
 			employees.addItem(this.model.employeeList.get(i).getName());

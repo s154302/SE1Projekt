@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package GUI;
 
 import java.io.FileNotFoundException;
@@ -11,14 +10,4 @@ public class Drive {
 	}
 
 }
-=======
-package GUI;
 
-public class Drive {
-	public static void main(String[] args){
-		Frame f = new Frame();
-		f.showIt();
-	}
-
-}
->>>>>>> Emilie
