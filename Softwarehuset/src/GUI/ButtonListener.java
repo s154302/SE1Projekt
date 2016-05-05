@@ -91,6 +91,16 @@ public class ButtonListener implements ActionListener, ItemListener {
 		case "Absence":
 			break;
 			
+		case "Create Activity":
+			break;
+		
+		case "Login":
+			frame.loggedInPanels();
+			//save the employee.
+			break;
+			
+		case "Employee List":
+			break;
 		}
 	}
 

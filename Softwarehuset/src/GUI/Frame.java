@@ -2,6 +2,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -28,6 +29,7 @@ public class Frame extends JFrame{
 	private GridBagConstraints gbc;
 	private Model model;
 	private ButtonListener bL;
+	private LoginPanel loginPanel;
 
 	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
@@ -46,8 +48,63 @@ public class Frame extends JFrame{
 		gbc.weighty = 1;
 
 		
-		
 		//initializing the model
+		initializingModel();
+		
+		//making ButtonListener
+		bL = new ButtonListener(model, this);
+
+		loginPanel = new LoginPanel(model,bL);
+		
+		// adding Login Panel
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(loginPanel, gbc);
+		
+	}
+
+	public void loggedInPanels() {
+		//removing Login panel
+		this.remove(loginPanel);
+		
+		//making the panels to the frame
+		this.projectPanel = new ProjectPanel(this, model);
+		this.activityPanel = projectPanel.getActivityPanel();
+		this.buttonPanel = new ButtonPanel(this, model);
+
+		
+		// adding project Panel
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(projectPanel, gbc);
+		
+		// adding activity panel
+        gbc.gridx = 2; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 5;
+		this.add(activityPanel, gbc);
+		
+		// adding button panel
+        gbc.gridx = 2;
+        gbc.gridy = 5;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 1;
+		this.add(buttonPanel, gbc);
+		
+		update();
+	}
+
+
+
+
+
+
+	public void initializingModel() {
 		model = new Model();
 		for (int i = 1; i <= 50; i++) {
 			model.createEmployee("Employee" + i);
@@ -82,41 +139,6 @@ public class Frame extends JFrame{
 		model.nonProjectActivityList.add(new NonProjectActivity("Barsel"));
 		model.nonProjectActivityList.add(new NonProjectActivity("Afspadsering"));
 		model.nonProjectActivityList.add(new NonProjectActivity("Andet"));
-		
-		//making ButtonListener
-				bL = new ButtonListener(model, this);
-
-		
-		//making the panels to the frame
-		this.projectPanel = new ProjectPanel(this, model);
-		this.activityPanel = projectPanel.getActivityPanel();
-		this.buttonPanel = new ButtonPanel(this, model);
-
-		
-
-
-		projectPanel.geta();
-		
-		// adding project Panel
-        gbc.gridx = 0; 
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 6;
-		this.add(projectPanel, gbc);
-		
-		// adding activity panel
-        gbc.gridx = 2; 
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
-        gbc.gridheight = 5;
-		this.add(activityPanel, gbc);
-		
-		// adding button panel
-        gbc.gridx = 2;
-        gbc.gridy = 5;
-        gbc.gridwidth = 4;
-        gbc.gridheight = 1;
-		this.add(buttonPanel, gbc);
 	}
 		
 
@@ -147,5 +169,6 @@ public class Frame extends JFrame{
 		// TODO Auto-generated method stub
 		this.revalidate();
 	}
+	
 
 }

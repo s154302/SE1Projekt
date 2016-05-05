@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.EventObject;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +26,11 @@ public class ActivityPanel extends JPanel {
 		this.f = f;
 		this.model = model;
 		this.bL = bL;
+		this.setLayout(new BorderLayout());
+		
+		JButton createActivity = new JButton("Create Activity");
+		createActivity.addActionListener(bL);
+		this.add(createActivity, "North");
 		
 		//filling columns-array for table
 		updateActivityList(project);
