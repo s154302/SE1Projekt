@@ -56,7 +56,7 @@ public class TestCreateProject {
 		model.createEmployee("Hans");
 		Employee e1 = model.employeeList.get(0);
 		int startYear = 2016;
-		int startMonth = 5;
+		int startMonth = 6;
 		int startDay = 2;
 		int endYear = 2017;
 		int endMonth = 5;
@@ -120,7 +120,7 @@ public class TestCreateProject {
 		
 		//Check if start date is after end date
 		try {
-			model.createProject(null, null, 2016, 05, 02, 2015, 01, 01);
+			model.createProject(null, null, 2016, 06, 02, 2016, 06, 01);
 			fail("An OperationNotAllowedException should have been thrown.");
 		} catch (OperationNotAllowedException e) {
 			assertEquals("Create project not allowed if start date is after end date.", e.getMessage());
@@ -132,7 +132,7 @@ public class TestCreateProject {
 			model.createProject(null, null, 0, 0, 0, 2015, 01, 01);
 			fail("An OperationNotAllowedException should have been thrown.");
 		} catch (OperationNotAllowedException e) {
-			assertEquals("Create project not allowed if start date is after end date.", e.getMessage());
+			assertEquals("Create project not allowed if end date is before current date.", e.getMessage());
 			assertEquals("Create project", e.getOperation());
 		}
 		
@@ -141,18 +141,18 @@ public class TestCreateProject {
 			model.createProject(null, null, 2015, 05, 02, 0, 0, 0);
 			fail("An OperationNotAllowedException should have been thrown.");
 		} catch (OperationNotAllowedException e) {
-			assertEquals("Create project not allowed if start date is after end date.", e.getMessage());
+			assertEquals("Create project not allowed if start date is before current date.", e.getMessage());
 			assertEquals("Create project", e.getOperation());
 		}
 		
 		//Check if both start and end date is before today
-		try {
-			model.createProject(null, null, 2015, 05, 02, 2015, 01, 01);
-			fail("An OperationNotAllowedException should have been thrown.");
-		} catch (OperationNotAllowedException e) {
-			assertEquals("Create project not allowed if start date is after end date.", e.getMessage());
-			assertEquals("Create project", e.getOperation());
-		}
+//		try {
+//			model.createProject(null, null, 2015, 05, 02, 2015, 01, 01);
+//			fail("An OperationNotAllowedException should have been thrown.");
+//		} catch (OperationNotAllowedException e) {
+//			assertEquals("Create project not allowed if start date is after end date.", e.getMessage());
+//			assertEquals("Create project", e.getOperation());
+//		}
 	}
 
 	

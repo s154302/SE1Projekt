@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.EventObject;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,47 +20,25 @@ public class ActivityPanel extends JPanel {
 	private boolean firstRun = true;
 	private Frame f;
 	private Model model;
+	private ButtonListener bL;
+	private TableListener tableListener;
 	
-	public ActivityPanel(Frame f, Model model, Project project){ 
+	public ActivityPanel(Frame f, Model model, ButtonListener bL){ 
 		this.f = f;
 		this.model = model;
-				
-//		this.setBackground(Color.RED);
-//		this.setLayout(new GridBagLayout());
-//		GridBagConstraints gbc = new GridBagConstraints();
-//        gbc.fill = GridBagConstraints.BOTH;
-//		gbc.weightx = 1;
-//		gbc.weighty = 3;
-//		
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        gbc.gridwidth = 2;
-//        gbc.gridheight = 1;
-//		this.add(new Label("Activity"), gbc);
-//		
-//        gbc.gridx = 0; 
-//        gbc.gridy = 1;
-//        gbc.gridwidth = 2;
-//        gbc.gridheight = 1;
-//        this.add(new Label("Activity2"), gbc);
-//        
-//        gbc.gridx = 0; 
-//        gbc.gridy = 2;
-//        gbc.gridwidth = 2;
-//        gbc.gridheight = 1;
-//        this.add(new Label("Activity4"), gbc);
-//		
+		this.bL = bL;
+		Project project = model.projectList().get(0);
+		this.setLayout(new BorderLayout());
+		
+		JButton createActivity = new JButton("Create Activity");
+		createActivity.addActionListener(bL);
+		this.add(createActivity, "North");
 		
 		//filling columns-array for table
 		updateActivityList(project);
 		
 		
 	}
-
-//	public boolean isCellEditable(EventObject anEvent) {
-//	    return false;
-//	  }
-//	
 	
 	public void updateActivityList(Project project){
 		if(!firstRun )
@@ -74,12 +53,25 @@ public class ActivityPanel extends JPanel {
 		 }
 		
 		table = new JTable(data, columnNames);
+		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
+		
+		tableListener = f.getProjectPanel().getTableListener();
+		tableListener.setTable(table);
+		table.getSelectionModel().addListSelectionListener(tableListener);
+		
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;
-		f.updateActivityPanel(this);
+		f.update();
+	}
+
+	public void editActivity() {
+		// TODO Auto-generated method stub
+		
+		
 	}
 }
+

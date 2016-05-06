@@ -1,12 +1,18 @@
 package code;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Model {
 	public ArrayList<Employee> employeeList;
 	public ArrayList<NonProjectActivity> nonProjectActivityList;
 	public ArrayList<Project> projectList;
+	private Employee currentEmployee;
 	
 	private int counter = 0;
 
@@ -19,6 +25,7 @@ public class Model {
 	// Creates a new employee and adds it to the employee list.
 	public void createEmployee(String name) {
 		this.employeeList.add(new Employee(name));
+		Collections.sort(this.employeeList);
 	}
 
 	// Creates a new project and adds it to the project list.
@@ -96,4 +103,72 @@ public class Model {
 	public ArrayList<Project> projectList() {
 		return projectList;
 	}
+	
+	public void setCurrentEmployee(Employee employee){
+		currentEmployee = employee;
+	}
+	
+	public Employee searchEmployee(String name){
+		
+		for (Employee employee : employeeList){
+			if (name.equals(employee.getName())){
+				return employee;
+			}
+		}
+		
+		return null;
+	}
+	
+	public Employee getCurrentEmployee (){
+		return currentEmployee;
+	}
+	
+	//Creates a .txt file which contains info about a given project
+	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
+		double totalProjectWorkload =0;
+		double completedProjectWorkload = 0;
+		double remainingProjectWorkload = 0;
+		//System.out.println(project.getName());
+		PrintWriter write = new PrintWriter("Report for " + project.getName(),"UTF-8");
+		write.println(project.getSerialNumber()+" "+project.getName() + "- Data extracted " + LocalTime.now());
+		
+		for (Activity activity : project.activityList){
+			totalProjectWorkload = totalProjectWorkload + activity.getExpectedWorkload();
+			
+			for(Employee employee : activity.employeeList){
+				completedProjectWorkload = completedProjectWorkload + activity.getTimeManager().getTime(employee);
+			}
+		}
+		remainingProjectWorkload = totalProjectWorkload - completedProjectWorkload;
+		write.println("Total Expected workload: " + totalProjectWorkload + ", Completed workload: " 
+				+ completedProjectWorkload + ", Remaining workload: " + remainingProjectWorkload);
+		write.println();
+		write.println("Activities");
+		
+		for (Activity activity : project.activityList){
+			double activityExpectedWorkload = activity.getExpectedWorkload();
+			double activityCompletedWorkload = 0;
+			double activityRemainingWorkload = 0;
+			
+			for (Employee employee : activity.employeeList){
+				activityCompletedWorkload = activityCompletedWorkload + activity.getTimeManager().getTime(employee);
+			}
+			activityRemainingWorkload = activityExpectedWorkload - activityCompletedWorkload;
+			write.println(activity.getName() + " Expected workload: " + activityExpectedWorkload 
+					+ ", Completed workload: " + activityCompletedWorkload + ", Remaining workload: " + activityRemainingWorkload);
+		}
+		write.close();
+	}
+
+	public Project searchProject(String string) {
+		// TODO Auto-generated method stub
+		for(int i =0; i<projectList.size();i++){
+			if(string.equals(projectList.get(i).getSerialNumber())){
+				return projectList.get(i);
+			}
+		}
+		System.out.println("ingen project");
+		return null;
+	}
+	
 }

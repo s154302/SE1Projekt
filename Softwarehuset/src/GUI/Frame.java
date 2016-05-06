@@ -1,9 +1,13 @@
+
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,12 +28,14 @@ public class Frame extends JFrame{
 	private boolean firstRun = true;
 	private GridBagConstraints gbc;
 	private Model model;
+	private ButtonListener bL;
+	private LoginPanel loginPanel;
 
-	public Frame(){
+	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
 		//constructing frame
 		this.setSize(1000,700);
-		this.setLocation(100,50);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Software Huset");
 		
@@ -43,6 +49,79 @@ public class Frame extends JFrame{
 
 		
 		//initializing the model
+		initializingModel();
+		
+		//making ButtonListener
+		bL = new ButtonListener(model, this);
+
+		loginPanel = new LoginPanel(model,bL);
+		
+		// adding Login Panel
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(loginPanel, gbc);
+		
+		
+	}
+	
+	public void returnToLoginPanel(){
+		this.remove(projectPanel);
+		this.remove(activityPanel);
+		this.remove(buttonPanel);
+		
+		loginPanel = new LoginPanel(model,bL);
+		
+		gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(loginPanel, gbc);
+		
+		update();
+	}
+
+	public void loggedInPanels() {
+		//removing Login panel
+		this.remove(loginPanel);
+		
+		//making the panels to the frame
+		this.projectPanel = new ProjectPanel(this, model);
+		this.activityPanel = projectPanel.getActivityPanel();
+		this.buttonPanel = new ButtonPanel(this, model);
+
+		
+		// adding project Panel
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(projectPanel, gbc);
+		
+		// adding activity panel
+        gbc.gridx = 2; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 5;
+		this.add(activityPanel, gbc);
+		
+		// adding button panel
+        gbc.gridx = 2;
+        gbc.gridy = 5;
+        gbc.gridwidth = 4;
+        gbc.gridheight = 1;
+		this.add(buttonPanel, gbc);
+		
+		update();
+	}
+
+
+
+
+
+
+	public void initializingModel() {
 		model = new Model();
 		for (int i = 1; i <= 50; i++) {
 			model.createEmployee("Employee" + i);
@@ -71,21 +150,17 @@ public class Frame extends JFrame{
 			a++;
 		}
 
-		model.nonProjectActivityList.add(new NonProjectActivity());	
-		
-		
-		//making the panels to the frame
-		this.projectPanel = new ProjectPanel(this, model);
-		this.activityPanel = projectPanel.getActivityPanel();
-		this.buttonPanel = new ButtonPanel(this, model);
-
-
-
-
-		update(projectPanel, activityPanel, buttonPanel);
-
-		
+		model.nonProjectActivityList.add(new NonProjectActivity("Ferie"));	
+		model.nonProjectActivityList.add(new NonProjectActivity("Sygdom"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Kursus"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Barsel"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Afspadsering"));
+		model.nonProjectActivityList.add(new NonProjectActivity("Andet"));
 	}
+		
+
+		
+	
 	
 	
 	public void showIt(){
@@ -98,54 +173,26 @@ public class Frame extends JFrame{
 		return projectPanel;
 	}
 	
-	public void update(ProjectPanel projectPanel, ActivityPanel activityPanel, ButtonPanel buttonPanel){
-		if(firstRun){
-			firstRun = false;
-		} else{
-			System.out.println(firstRun);
-			this.remove(this.projectPanel);
-			this.remove(this.activityPanel);
-			this.remove(this.buttonPanel);
-			this.projectPanel = projectPanel;
-			this.activityPanel = activityPanel;
-			this.buttonPanel = buttonPanel;
-		}
-
-		projectPanel.geta();
-		
-		// adding project Panel
-        gbc.gridx = 0; 
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 6;
-		this.add(projectPanel, gbc);
-		
-		// adding activity panel
-        gbc.gridx = 2; 
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
-        gbc.gridheight = 5;
-		this.add(activityPanel, gbc);
-		
-		// adding button panel
-        gbc.gridx = 2;
-        gbc.gridy = 5;
-        gbc.gridwidth = 4;
-        gbc.gridheight = 1;
-		this.add(buttonPanel, gbc);
+	public ActivityPanel getActivityPanel() {
+		// TODO Auto-generated method stub
+		return activityPanel;
 	}
 	
+	public ButtonListener getButtonListener(){
+		return bL;
+	}
+	public LoginPanel getLoginPanel(){
+		return loginPanel;
+	}
 //	public ButtonPanel getButtonPanel(){
 //		return buttonPanel;
 //	}
 
 
-	public void updateActivityPanel(ActivityPanel activityPanel) {
+	public void update() {
 		// TODO Auto-generated method stub
-
-		this.activityPanel = activityPanel;
-
 		this.revalidate();
 	}
+	
 
 }
