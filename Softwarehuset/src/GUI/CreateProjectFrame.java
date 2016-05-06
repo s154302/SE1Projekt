@@ -13,7 +13,7 @@ public class CreateProjectFrame extends JFrame {
 	public CreateProjectFrame(Model model, ButtonListener bL) {
 
 		this.setSize(600, 300);
-		this.setLocation(100, 50);
+		this.setLocationRelativeTo(null);
 	//	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Create Project");
 

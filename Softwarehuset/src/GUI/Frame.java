@@ -35,7 +35,7 @@ public class Frame extends JFrame{
 
 		//constructing frame
 		this.setSize(1000,700);
-		this.setLocation(100,50);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Software Huset");
 		
@@ -63,6 +63,23 @@ public class Frame extends JFrame{
         gbc.gridheight = 6;
 		this.add(loginPanel, gbc);
 		
+		
+	}
+	
+	public void returnToLoginPanel(){
+		this.remove(projectPanel);
+		this.remove(activityPanel);
+		this.remove(buttonPanel);
+		
+		loginPanel = new LoginPanel(model,bL);
+		
+		gbc.gridx = 0; 
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+		this.add(loginPanel, gbc);
+		
+		update();
 	}
 
 	public void loggedInPanels() {
@@ -156,10 +173,17 @@ public class Frame extends JFrame{
 		return projectPanel;
 	}
 	
+	public ActivityPanel getActivityPanel() {
+		// TODO Auto-generated method stub
+		return activityPanel;
+	}
+	
 	public ButtonListener getButtonListener(){
 		return bL;
 	}
-	
+	public LoginPanel getLoginPanel(){
+		return loginPanel;
+	}
 //	public ButtonPanel getButtonPanel(){
 //		return buttonPanel;
 //	}

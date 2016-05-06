@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import code.Model;
+import code.Project;
 
 public class CreateProjectPanel extends JPanel {
 
@@ -135,7 +136,7 @@ public class CreateProjectPanel extends JPanel {
 
 		this.employees = new JComboBox<String>();
 
-		employees.addItem(null);
+		employees.addItem("");
 		for (int i = 0; i < this.model.employeeList.size(); i++) {
 			employees.addItem(this.model.employeeList.get(i).getName());
 		}
@@ -185,5 +186,35 @@ public class CreateProjectPanel extends JPanel {
 		// gbc.gridwidth = 2;
 		// gbc.gridheight = 1;
 		// this.add(new JButton("Button3"), gbc);
+	}
+	
+	public void editProject(Project p) {
+		this.name.setText(p.getName());
+		for (int i = 0; i < model.employeeList.size(); i++) {
+			if (model.employeeList.get(i).equals(p.getProjectManager())) {
+				this.employees.setSelectedIndex(i+1);
+			}
+		}
+		if (p.getStartDate() != null) {
+			this.startDay.setSelectedIndex(p.getStartDate().getDayOfMonth());
+			this.startMonth.setSelectedIndex(p.getStartDate().getMonthValue());
+			for (int i = 0; i < this.startYear.getItemCount(); i++) {
+				if (!(this.startYear.getItemAt(i).equals("yyyy"))
+						&& (p.getStartDate().getYear() == Integer.parseInt(this.startYear.getItemAt(i)))) {
+					this.startYear.setSelectedIndex(i);
+				}
+			}
+		}
+
+		if (p.getEndDate() != null) {
+			this.endDay.setSelectedIndex(p.getEndDate().getDayOfMonth());
+			this.endMonth.setSelectedIndex(p.getEndDate().getMonthValue());
+			for (int i = 0; i < this.endYear.getItemCount(); i++) {
+				if (!(this.endYear.getItemAt(i).equals("yyyy"))
+						&& (p.getEndDate().getYear() == Integer.parseInt(this.endYear.getItemAt(i)))) {
+					this.endYear.setSelectedIndex(i);
+				}
+			}
+		}
 	}
 }

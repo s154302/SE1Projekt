@@ -9,12 +9,12 @@ import javax.swing.JTextField;
 
 import code.Model;
 
-public class ActivityEditPanel extends JPanel{
+public class EditActivityPanel extends JPanel{
 
 	private Model model;
 	private ButtonListener bL;
 
-	public ActivityEditPanel(Model model, ButtonListener bL) {
+	public EditActivityPanel(Model model, ButtonListener bL) {
 		// TODO Auto-generated constructor stub
 		
 		this.model = model;

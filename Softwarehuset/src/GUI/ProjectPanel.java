@@ -19,7 +19,9 @@ public class ProjectPanel extends JPanel {
 	private Model model;
 	private ButtonListener bL;
 	private boolean firstRun = true;
-	private Component tableContainer;
+
+	private TableListener tableListener;
+	private JScrollPane tableContainer;
 	
 	public ProjectPanel(Frame f, Model model){ 
 		this.f = f;
@@ -63,7 +65,7 @@ public class ProjectPanel extends JPanel {
 	public void updateList() {
 		if(!firstRun){
 			this.remove(tableContainer);
-			firstRun = false;
+			//firstRun = false;
 		}
 		
 		//making titles for a columns-array
@@ -74,21 +76,30 @@ public class ProjectPanel extends JPanel {
 		for(int i = 0;i<model.projectList().size();i++){
 			data[i][1] = model.projectList().get(i).getName();
 			data[i][0] = model.projectList().get(i).getSerialNumber();
-			data[i][2] = model.projectList().get(i).getProjectManager().getName();
+			if( model.projectList().get(i).getProjectManager() != null){
+				data[i][2] = model.projectList().get(i).getProjectManager().getName();
+			}
 
 		 }
 		
 		//adding table to panel
 		JTable table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
-		JScrollPane tableContainer = new JScrollPane(table);
+		tableContainer = new JScrollPane(table);
 		this.add(tableContainer, BorderLayout.CENTER);
 		
 		//selecting project
-		table.getSelectionModel().addListSelectionListener(new TableListener(model, f, table));
+		tableListener = new TableListener(model, f, table);
+		table.getSelectionModel().addListSelectionListener(tableListener);
+
 		
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
+		firstRun = false;
+	}
+	
+	public TableListener getTableListener(){
+		return tableListener;
 	}
 }
 

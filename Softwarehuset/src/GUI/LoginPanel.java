@@ -8,17 +8,17 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import code.Employee;
 import code.Model;
 
 public class LoginPanel extends JPanel{
 
 	private Model model;
 	private ButtonListener bL;
-
+	public JComboBox<String> employees;
 	public LoginPanel(Model model, ButtonListener bL) {
-		// TODO Auto-generated constructor stub
 		this.model = model;
-		JComboBox<String> employees = new JComboBox<String>();
+		employees = new JComboBox<String>();
 		this.bL = bL;
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -31,10 +31,7 @@ public class LoginPanel extends JPanel{
 		JLabel pName = new JLabel("Employee");
 		this.add(pName, gbc);
 
-		employees.addItem("Guest");
-		for (int i = 0; i < this.model.employeeList.size(); i++) {
-			employees.addItem(this.model.employeeList.get(i).getName());
-		}
+		updateEmployeeComboBox();
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -51,9 +48,31 @@ public class LoginPanel extends JPanel{
 		gbc.gridheight = 1;
 		this.add(login, gbc);
 		
+		JButton addEmployee = new JButton("Add employee");
+		addEmployee.addActionListener(bL);
 		
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		this.add(addEmployee, gbc);
+		
+		JButton removeEmployee = new JButton("Remove employee");
+		removeEmployee.addActionListener(bL);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		this.add(removeEmployee, gbc);
 	}
 
-
+	public void updateEmployeeComboBox(){
+		employees.removeAllItems();
+		employees.addItem("Guest");
+		for (Employee employee : this.model.employeeList){
+			employees.addItem(employee.getName());
+		}
+	}
 
 }

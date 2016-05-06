@@ -66,7 +66,7 @@ public class ActivityPanel extends JPanel {
 
 	public void editActivity() {
 		// TODO Auto-generated method stub
-		ActivityFrame activityFrame = new ActivityFrame(model, bL);
+		
 		
 	}
 }
