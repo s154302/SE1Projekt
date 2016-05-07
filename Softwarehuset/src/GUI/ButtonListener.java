@@ -92,7 +92,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		case "Edit Activity":
 			eAFOpen = true;
-
+			frame.getProjectPanel().getTableListener().getActivityFrame().editActivity();
 			break;
 
 		case "Get Project Report":

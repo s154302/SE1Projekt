@@ -4,23 +4,29 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import code.Activity;
 import code.Model;
 
 public class ActivityFrame extends JFrame{
 	private Model model;
 	private ButtonListener bL;
 	private Frame f;
-	private EditActivityPanel aP;
+	private EditActivityPanel eAP;
+	private Activity activity;
+	private ShowActivityPanel sAP;
 	
-	public ActivityFrame(Model model, Frame f){
+	public ActivityFrame(Model model, Frame f, Activity activity){
 		this.model = model;
 		this.bL = f.getButtonListener(); 
 		this.f = f;
 	this.setSize(400, 300);
 	this.setLocationRelativeTo(null);
-	this.setTitle(f.getProjectPanel().getTableListener().getActivity().getName());
+	this.activity = activity;
+	if(activity != null) {
+		this.setTitle(activity.getName());
+	}
 	
-	ShowActivityPanel sAP = new ShowActivityPanel(model, f);
+	sAP = new ShowActivityPanel(model, f);
 	this.add(sAP);
 
 
@@ -32,8 +38,15 @@ public void showIt() {
 }
 
 public void editActivity(){
-	aP = new EditActivityPanel(model, bL);
-	this.add(aP,BorderLayout.CENTER);
+	this.remove(sAP);
+	eAP = new EditActivityPanel(model, bL);
+	this.add(eAP,BorderLayout.CENTER);
+}
+
+public void showActivity(){
+	this.remove(eAP);
+	sAP = new ShowActivityPanel(model,f);
+	this.add(sAP,BorderLayout.CENTER);
 }
 
 

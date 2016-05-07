@@ -45,7 +45,7 @@ public class ShowActivityPanel extends JPanel {
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		edit = new JButton("Edit");
+		edit = new JButton("Edit Activity");
 		edit.addActionListener(bL);
 		this.add(edit, gbc);
 		

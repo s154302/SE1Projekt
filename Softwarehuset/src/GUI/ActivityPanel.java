@@ -1,10 +1,11 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.util.EventObject;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,28 +23,40 @@ public class ActivityPanel extends JPanel {
 	private Model model;
 	private ButtonListener bL;
 	private TableListener tableListener;
+	private ProjectPanel projectPanel;
+	private JLabel welcome;
 	
-	public ActivityPanel(Frame f, Model model, ButtonListener bL){ 
+	public ActivityPanel(Frame f, Model model,ProjectPanel projectPanel, ButtonListener bL){ 
 		this.f = f;
 		this.model = model;
 		this.bL = bL;
+		this.projectPanel = projectPanel;
 		Project project = model.projectList().get(0);
-		this.setLayout(new BorderLayout());
-		
-		JButton createActivity = new JButton("Create Activity");
-		createActivity.addActionListener(bL);
-		this.add(createActivity, "North");
-		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		//filling columns-array for table
-		updateActivityList(project);
+		//updateActivityList(project);
 		
+		if(model.getCurrentEmployee()!= null){
+			welcome = new JLabel("Welcome "+model.getCurrentEmployee().getName()+"!");
+		} else {
+			welcome = new JLabel("Welcome!");
+		}
+		this.add(welcome, gbc);
 		
 	}
 	
 	public void updateActivityList(Project project){
-		if(!firstRun )
+		if(!firstRun ) {
 			this.remove(tableContainer);
-		
+			
+		} else {
+			this.remove(welcome);
+			this.setLayout(new BorderLayout());
+			JButton createActivity = new JButton("Create Activity");
+			createActivity.addActionListener(bL);
+			this.add(createActivity, "North");
+		}
 		
 		data = new Object[project.activityList.size()][2];
 		
@@ -56,7 +69,7 @@ public class ActivityPanel extends JPanel {
 		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
 		
-		tableListener = f.getProjectPanel().getTableListener();
+		tableListener = projectPanel.getTableListener();
 		tableListener.setTable(table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 		
@@ -73,5 +86,6 @@ public class ActivityPanel extends JPanel {
 		
 		
 	}
+
 }
 

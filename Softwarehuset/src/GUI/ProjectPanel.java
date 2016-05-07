@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import code.Employee;
 import code.Model;
 import code.Project;
 
@@ -32,7 +33,7 @@ public class ProjectPanel extends JPanel {
 		
 		//Making activity panel:
 		updateList();
-		activityPanel = new ActivityPanel(f, model, bL);
+		activityPanel = new ActivityPanel(f, model, this, bL);
 
 
 		
@@ -50,14 +51,11 @@ public class ProjectPanel extends JPanel {
 		return activityPanel;
 	}
 
-	public void setActivityPanel(String string) {
+	public void setActivityPanel(Project p) {
 		// TODO Auto-generated method stub
-		
-		for(int i = 0; i<model.projectList().size();i++){
-			if(model.projectList().get(i).getSerialNumber().equals(string)){
-				activityPanel.updateActivityList(model.projectList().get(i));
-			}
-		}
+		if(p!=null)
+			activityPanel.updateActivityList(p);
+
 	}
 	
 	public String geta(){
@@ -91,7 +89,7 @@ public class ProjectPanel extends JPanel {
 		this.add(tableContainer, BorderLayout.CENTER);
 		
 		//selecting project
-		tableListener = new TableListener(model, f, table);
+		this.tableListener = new TableListener(model, f, table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 
 		
