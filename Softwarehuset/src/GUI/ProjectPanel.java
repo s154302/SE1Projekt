@@ -30,43 +30,12 @@ public class ProjectPanel extends JPanel {
 		this.model=model;
 		this.setLayout(new BorderLayout());
 		this.bL = f.getButtonListener();
-<<<<<<< HEAD
-		//Making activity panel:
-		activityPanel = new ActivityPanel(f, model, model.projectList().get(0), bL);
-
-		updateList();
-		
-		
-		//adding back to menu button
-//		ButtonListener buttonList = new ButtonListener(model,f);
-		JButton newProject = new JButton("Create Project");
-		newProject.addActionListener(bL);
-		this.add(newProject, BorderLayout.SOUTH);	
-		
-
-	}
-	
-	public ActivityPanel getActivityPanel(){
-		return activityPanel;
-	}
-
-	public void setActivityPanel(String string) {
-		// TODO Auto-generated method stub
-		
-		for(int i = 0; i<model.projectList().size();i++){
-			if(model.projectList().get(i).getSerialNumber().equals(string)){
-				activityPanel.updateActivityList(model.projectList().get(i));
-			}
-		}
-=======
 		
 		//Making activity panel:
 		updateList();
 		activityPanel = new ActivityPanel(f, model, this, bL);
 
 
-		
-		
 		//adding back to menu button
 //		ButtonListener buttonList = new ButtonListener(model,f);
 		JButton newProject = new JButton("Create Project");
@@ -94,7 +63,6 @@ public class ProjectPanel extends JPanel {
 	public void updateList() {
 		if(!firstRun){
 			this.remove(tableContainer);
-			//firstRun = false;
 		}
 		
 		//making titles for a columns-array
@@ -119,47 +87,6 @@ public class ProjectPanel extends JPanel {
 		
 		//selecting project
 		this.tableListener = new TableListener(model, f, table);
-		table.getSelectionModel().addListSelectionListener(tableListener);
-
-		
-		tableContainer.setOpaque(false);
-		tableContainer.getViewport().setOpaque(false);
-		firstRun = false;
->>>>>>> Emilie
-	}
-	
-	public TableListener getTableListener(){
-		return tableListener;
-	}
-
-	public void updateList() {
-		if(!firstRun){
-			this.remove(tableContainer);
-			//firstRun = false;
-		}
-		
-		//making titles for a columns-array
-		String[] columnNames = {"Projects", "Name", "Project Manager"};
-		
-		//filling columns-array for table
-		Object[][] data = new Object[model.projectList().size()][3];
-		for(int i = 0;i<model.projectList().size();i++){
-			data[i][1] = model.projectList().get(i).getName();
-			data[i][0] = model.projectList().get(i).getSerialNumber();
-			if( model.projectList().get(i).getProjectManager() != null){
-				data[i][2] = model.projectList().get(i).getProjectManager().getName();
-			}
-
-		 }
-		
-		//adding table to panel
-		JTable table = new JTable(data, columnNames);
-		table.setModel(new TableModel(data, columnNames));
-		tableContainer = new JScrollPane(table);
-		this.add(tableContainer, BorderLayout.CENTER);
-		
-		//selecting project
-		tableListener = new TableListener(model, f, table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 
 		
