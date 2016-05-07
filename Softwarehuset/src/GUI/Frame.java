@@ -128,7 +128,7 @@ public class Frame extends JFrame{
 			for (int i = 1; i <= 6; i++) {
 				try {
 					p.setProjectManager(model.employeeList.get(a));
-					p.createActivity(a+"Activity" + i, i * (a*a)%30, model.employeeList.get(a));
+					p.createActivity(a+"Activity" + i, 10, model.employeeList.get(a));
 				} catch (OperationNotAllowedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

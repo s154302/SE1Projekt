@@ -62,7 +62,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 				confirmedClicked();
 			} else if (cAFOpen) {
 				confirmedActivityClicked();
-				cAFOpen = false;
 			} else if (eAFOpen) {
 				eAFOpen = false;
 			}
@@ -119,25 +118,25 @@ public class ButtonListener implements ActionListener, ItemListener {
 				JOptionPane.showMessageDialog(frame, "You have to select a project");
 				break;
 			}
-			
-			if (model.getCurrentEmployee() == null ) {
+
+			if (model.getCurrentEmployee() == null) {
 				JOptionPane.showMessageDialog(frame, "You cannot make and activity when you are a guest.");
 				break;
 			}
-			
+
 			if (frame.getProjectPanel().getTableListener().getProject().getProjectManager() == null) {
 				JOptionPane.showMessageDialog(frame, "The project needs a project manager.");
 				break;
 			}
 
-			if (model.getCurrentEmployee().getName().equals(
-						frame.getProjectPanel().getTableListener().getProject().getProjectManager().getName())) {
+			if (model.getCurrentEmployee().getName()
+					.equals(frame.getProjectPanel().getTableListener().getProject().getProjectManager().getName())) {
 				cAF = new CreateActivityFrame(model, this, frame);
 				cAFOpen = true;
 			} else {
 				JOptionPane.showMessageDialog(frame, "You have to be project manager to create an activity.");
 			}
-			
+
 			break;
 
 		case "Login":
@@ -201,19 +200,19 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		case "Remove employee":
 			String removeName = JOptionPane.showInputDialog(frame, "Enter the name a employee");
-			
+
 			Employee removeEmployee = null;
 
-			if(removeName != null && removeName != " "){
+			if (removeName != null && removeName != " ") {
 				removeEmployee = model.searchEmployee(removeName);
 			}
-			
-			if (removeEmployee != null ) {
+
+			if (removeEmployee != null) {
 				model.removeEmployee(removeEmployee);
 				frame.getLoginPanel().updateEmployeeComboBox();
 				JOptionPane.showMessageDialog(frame, removeName + " has been removed from the employee list");
-			} else if(removeName != null){
-					JOptionPane.showMessageDialog(frame, removeName + " is not a valid employee");
+			} else if (removeName != null) {
+				JOptionPane.showMessageDialog(frame, removeName + " is not a valid employee");
 			}
 			break;
 
@@ -284,7 +283,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cPF.dispose();
 				this.ePFOpen = false;
 			} catch (OperationNotAllowedException e1) {
-				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
 				// e1.printStackTrace();
 				// e1.getMessage().toString();
@@ -292,31 +290,41 @@ public class ButtonListener implements ActionListener, ItemListener {
 		}
 	}
 
-
-
 	public void confirmedActivityClicked() {
 		if (cAFOpen) {
 			try {
 				CreateActivityPanel cAP = cAF.getCreateActivityPanel();
 				Project p = frame.getProjectPanel().getTableListener().getProject();
-				Activity a = p.createActivity(cAP.name.getText(), Integer.parseInt(cAP.expectedWorkTime.getText()),
-						model.getCurrentEmployee());
+
+				 int expWork;
+				
+				String name = cAP.name.getText();
+				String expWorkString = cAP.expectedWorkTime.getText();
+				Employee pM = model.getCurrentEmployee();
+				
+				if(expWorkString.equals("")) {
+					expWork = 0; 
+				} else {
+					expWork = Integer.parseInt(expWorkString);
+				}
+
+				Activity a = p.createActivity(name, expWork, pM);
 				a.addEmployee(cAP.getAddedEmployee());
+				
 				frame.getActivityPanel().updateActivityList(p);
 				frame.update();
+				
 				this.cAF.setVisible(false);
 				this.cAF.dispose();
 				this.cAFOpen = false;
 			} catch (OperationNotAllowedException e1) {
-				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(cAF, e1.getMessage().toString());
 				// e1.printStackTrace();
 				// e1.getMessage().toString();
-
+				this.cAFOpen = true;
 			}
-		}
-		else if (eAFOpen){
-			
+		} else if (eAFOpen) {
+
 		}
 	}
 }

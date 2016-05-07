@@ -9,12 +9,13 @@ import org.junit.Test;
 
 import code.Activity;
 import code.Employee;
+import code.OperationNotAllowedException;
 import code.TimeManager;
 
 public class TestTime {
 
 	@Test
-	public void testAddandGetTime() {
+	public void testAddandGetTime() throws Exception {
 		Employee A = new Employee("A");
 		Employee B = new Employee("B");
 		List<Employee> e = new ArrayList<>();

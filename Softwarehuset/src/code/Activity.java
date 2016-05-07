@@ -13,9 +13,18 @@ public class Activity implements Comparable<Activity> {
 
 	public List<Employee> employeeList;
 
-	public Activity(String name, int expectedWorkload, Employee projectManager) {
-		this.name = name;
-		this.expectedWorkload = expectedWorkload;
+	public Activity(String name, int expectedWorkload, Employee projectManager) throws OperationNotAllowedException {
+
+		if (name.equals("")) {
+			throw new OperationNotAllowedException("You must enter a name.");
+		} else {
+			this.name = name;
+		}
+		if (expectedWorkload == 0) {
+			throw new OperationNotAllowedException("You must enter an expected workload.");
+		} else {
+			this.expectedWorkload = expectedWorkload;
+		}
 		this.projectManager = projectManager;
 		this.employeeList = new ArrayList<Employee>();
 		this.timeManager = new TimeManager(employeeList);
@@ -34,10 +43,12 @@ public class Activity implements Comparable<Activity> {
 		Collections.sort(this.employeeList);
 
 	}
-	public void removeEmployee(Employee employee){
+
+	public void removeEmployee(Employee employee) {
 		employee.removeFromActivityList(this);
 		employeeList.remove(employeeList.indexOf(employee));
 	}
+
 	// Check whether the employee is the project manager.
 	public boolean isProjectManager(Employee employee) {
 		if (this.projectManager == employee) {
@@ -62,11 +73,12 @@ public class Activity implements Comparable<Activity> {
 	public TimeManager getTimeManager() {
 		return timeManager;
 	}
-	
-	public void setName(String name){
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	public void setExpectedWorkload(int expectedWorkload){
+
+	public void setExpectedWorkload(int expectedWorkload) {
 		this.expectedWorkload = expectedWorkload;
 	}
 
