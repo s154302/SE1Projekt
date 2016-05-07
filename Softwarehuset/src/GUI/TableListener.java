@@ -15,7 +15,6 @@ public class TableListener implements ListSelectionListener{
 	private Project project;
 	private Activity activity;
 	private ActivityFrame activityFrame;
-	private boolean tableActivitySelected;
 
 	public TableListener(Model model, Frame f){
 		this.model = model;
@@ -24,23 +23,24 @@ public class TableListener implements ListSelectionListener{
 		this.tableActivity = null;
 		project = null;
 		activity = null;
-		tableActivitySelected = false;
 	}
 	
 	public void valueChanged(ListSelectionEvent event) {
-    	if(tableActivitySelected) {
-    		if(tableActivity.getSelectedRow()>-1){
-    			activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
-    			activityFrame = new ActivityFrame(model, f, activity);
-    		}
-        } else if (tableProjectSelected()) {
+    	
+
+		if (tableProjectSelected()) {
         	project = model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
          f.getProjectPanel().setActivityPanel(project);
             f.update();
-        } else{
-        	System.out.println("tableListener");
-        }
-        	
+            System.out.println("P-tableListener");
+        } 
+		if(tableActivitySelected()) {
+    		activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
+    		activityFrame = new ActivityFrame(model, f, activity);
+    		f.update();
+            System.out.println("A-tableListener");
+    		}
+		
    }
 
 	private boolean tableProjectSelected() {
@@ -48,10 +48,18 @@ public class TableListener implements ListSelectionListener{
         		&& tableProject.getValueAt(0,0).equals(model.projectList.get(0).getSerialNumber());
 	}
 	
+    public boolean tableActivitySelected(){
+    	if(this.tableActivity!= null){
+    		if(project.activityList.get(0).getName().equals(tableActivity.getValueAt(0, 0).toString()) && tableActivity.getSelectedRow()>-1){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+	
     public Project getProject(){
    	 if (tableProjectSelected()) {
          project =   model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
-         tableActivitySelected = false;
          return project;
             }
    	 return null;
@@ -59,7 +67,6 @@ public class TableListener implements ListSelectionListener{
     
     public Activity getActivity(){
       	 if (tableActivity != null) {
-      		 tableActivitySelected = true;
       		 return activity;
       		 
          }
@@ -68,8 +75,9 @@ public class TableListener implements ListSelectionListener{
     
     public void setActivityTable(JTable table){
     	this.tableActivity=table;
-    	tableActivitySelected = true;
     }
+    
+
     
     public ActivityFrame getActivityFrame(){
     	return activityFrame;
