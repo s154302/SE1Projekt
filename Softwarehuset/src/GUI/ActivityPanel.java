@@ -47,7 +47,6 @@ public class ActivityPanel extends JPanel {
 	public void updateActivityList(Project project){
 		if(!firstRun ) {
 			this.remove(tableContainer);
-			
 		} else {
 			this.remove(welcome);
 			this.setLayout(new BorderLayout());
@@ -68,20 +67,14 @@ public class ActivityPanel extends JPanel {
 		tableContainer = new JScrollPane(table);
 		
 
-		//table.getSelectionModel().addListSelectionListener(new TableListener(model, f, table));
-
 		tableListener = projectPanel.getTableListener();
 		tableListener.setActivityTable(table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 		
-//		tableContainer.setOpaque(false);
-//		tableContainer.getViewport().setOpaque(false);
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;
 		f.update();
-
-		
 	}
 
 }

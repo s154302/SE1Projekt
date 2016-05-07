@@ -30,10 +30,9 @@ public class TableListener implements ListSelectionListener{
 
 		if (tableProjectSelected()) {
         	project = model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
-         f.getProjectPanel().setActivityPanel(project);
-            f.update();
-            System.out.println("P-tableListener");
+        	f.getProjectPanel().setActivityPanel(project);
         } 
+		
 		if(tableActivitySelected()) {
     		activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
     		activityFrame = new ActivityFrame(model, f, activity);
@@ -50,6 +49,7 @@ public class TableListener implements ListSelectionListener{
 	
     public boolean tableActivitySelected(){
     	if(this.tableActivity!= null){
+    		System.out.println("must be over -1: "+tableActivity.getSelectedRow());
     		if(project.activityList.get(0).getName().equals(tableActivity.getValueAt(0, 0).toString()) && tableActivity.getSelectedRow()>-1){
     			return true;
     		}
@@ -59,7 +59,6 @@ public class TableListener implements ListSelectionListener{
 	
     public Project getProject(){
    	 if (tableProjectSelected()) {
-         project =   model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
          return project;
             }
    	 return null;
@@ -68,20 +67,17 @@ public class TableListener implements ListSelectionListener{
     public Activity getActivity(){
       	 if (tableActivity != null) {
       		 return activity;
-      		 
          }
       	 return null;
     }
     
-    public void setActivityTable(JTable table){
-    	this.tableActivity=table;
-    }
-    
-
-    
     public ActivityFrame getActivityFrame(){
     	return activityFrame;
     	
+    }
+    
+    public void setActivityTable(JTable table){
+    	this.tableActivity=table;
     }
 
 	public void setProjectTable(JTable table) {
