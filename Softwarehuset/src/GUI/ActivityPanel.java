@@ -1,10 +1,14 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.util.EventObject;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
+<<<<<<< HEAD
+=======
+import javax.swing.JLabel;
+>>>>>>> Emilie
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,6 +25,7 @@ public class ActivityPanel extends JPanel {
 	private Frame f;
 	private Model model;
 	private ButtonListener bL;
+<<<<<<< HEAD
 	
 	public ActivityPanel(Frame f, Model model, Project project, ButtonListener bL){ 
 		this.f = f;
@@ -32,16 +37,43 @@ public class ActivityPanel extends JPanel {
 		createActivity.addActionListener(bL);
 		this.add(createActivity, "North");
 		
+=======
+	private TableListener tableListener;
+	private ProjectPanel projectPanel;
+	private JLabel welcome;
+	
+	public ActivityPanel(Frame f, Model model,ProjectPanel projectPanel, ButtonListener bL){ 
+		this.f = f;
+		this.model = model;
+		this.bL = bL;
+		this.projectPanel = projectPanel;
+		Project project = model.projectList().get(0);
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+>>>>>>> Emilie
 		//filling columns-array for table
-		updateActivityList(project);
+		//updateActivityList(project);
 		
+		if(model.getCurrentEmployee()!= null){
+			welcome = new JLabel("Welcome "+model.getCurrentEmployee().getName()+"!");
+		} else {
+			welcome = new JLabel("Welcome!");
+		}
+		this.add(welcome, gbc);
 		
 	}
 	
 	public void updateActivityList(Project project){
-		if(!firstRun )
+		if(!firstRun ) {
 			this.remove(tableContainer);
-		
+			
+		} else {
+			this.remove(welcome);
+			this.setLayout(new BorderLayout());
+			JButton createActivity = new JButton("Create Activity");
+			createActivity.addActionListener(bL);
+			this.add(createActivity, "North");
+		}
 		
 		data = new Object[project.activityList.size()][2];
 		
@@ -54,7 +86,13 @@ public class ActivityPanel extends JPanel {
 		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
 		
+<<<<<<< HEAD
 		table.getSelectionModel().addListSelectionListener(new TableListener(model, f, table));
+=======
+		tableListener = projectPanel.getTableListener();
+		tableListener.setTable(table);
+		table.getSelectionModel().addListSelectionListener(tableListener);
+>>>>>>> Emilie
 		
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
@@ -62,6 +100,15 @@ public class ActivityPanel extends JPanel {
 
 		firstRun = false;
 		f.update();
+<<<<<<< HEAD
+	}
+
+	public void editActivity() {
+		// TODO Auto-generated method stub
+		
+		
+=======
+>>>>>>> Emilie
 	}
 
 	public void editActivity() {
@@ -69,5 +116,6 @@ public class ActivityPanel extends JPanel {
 		
 		
 	}
+
 }
 
