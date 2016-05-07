@@ -17,19 +17,16 @@ import code.Project;
 
 public class ButtonListener implements ActionListener, ItemListener {
 	private boolean cPFOpen, cAFOpen, ePFOpen, eAFOpen;
-
 	private Model model;
 	private CreateProjectFrame cPF;
 	private Frame frame;
 	private CreateActivityFrame cAF;
 	private Employee e1;
-
 	private String employee;
 
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
-
 	}
 
 	@Override
@@ -61,7 +58,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 			if (cPFOpen) {
 				confirmedClicked();
-
 			} else if (ePFOpen) {
 				confirmedClicked();
 			} else if (cAFOpen) {

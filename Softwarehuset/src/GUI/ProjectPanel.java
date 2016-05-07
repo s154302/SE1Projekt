@@ -23,21 +23,22 @@ public class ProjectPanel extends JPanel {
 
 	private TableListener tableListener;
 	private JScrollPane tableContainer;
+	private JTable table;
 	
-	public ProjectPanel(Frame f, Model model){ 
+	public ProjectPanel(Frame f, Model model, TableListener tableListener){ 
 		this.f = f;
 		System.out.println("project");
 		this.model=model;
 		this.setLayout(new BorderLayout());
 		this.bL = f.getButtonListener();
+		this.tableListener = tableListener;
 		
 		//Making activity panel:
 		updateList();
+		
 		activityPanel = new ActivityPanel(f, model, this, bL);
 
-
 		//adding back to menu button
-//		ButtonListener buttonList = new ButtonListener(model,f);
 		JButton newProject = new JButton("Create Project");
 		newProject.addActionListener(bL);
 		this.add(newProject, BorderLayout.SOUTH);	
@@ -54,10 +55,6 @@ public class ProjectPanel extends JPanel {
 		if(p!=null)
 			activityPanel.updateActivityList(p);
 
-	}
-	
-	public String geta(){
-		return model.projectList().get(0).getSerialNumber();
 	}
 
 	public void updateList() {
@@ -80,18 +77,17 @@ public class ProjectPanel extends JPanel {
 		 }
 		
 		//adding table to panel
-		JTable table = new JTable(data, columnNames);
+		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
-		this.add(tableContainer, BorderLayout.CENTER);
-		
-		//selecting project
-		this.tableListener = new TableListener(model, f, table);
-		table.getSelectionModel().addListSelectionListener(tableListener);
-
-		
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
+
+		//selecting project
+		tableListener.setProjectTable(table);
+		table.getSelectionModel().addListSelectionListener(tableListener);
+		this.add(tableContainer, BorderLayout.CENTER);
+		
 		firstRun = false;
 	}
 	

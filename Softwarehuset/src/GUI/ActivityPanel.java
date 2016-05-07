@@ -32,7 +32,6 @@ public class ActivityPanel extends JPanel {
 		this.model = model;
 		this.bL = bL;
 		this.projectPanel = projectPanel;
-		Project project = model.projectList().get(0);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -72,11 +71,11 @@ public class ActivityPanel extends JPanel {
 		//table.getSelectionModel().addListSelectionListener(new TableListener(model, f, table));
 
 		tableListener = projectPanel.getTableListener();
-		tableListener.setTable(table);
+		tableListener.setActivityTable(table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 		
-		tableContainer.setOpaque(false);
-		tableContainer.getViewport().setOpaque(false);
+//		tableContainer.setOpaque(false);
+//		tableContainer.getViewport().setOpaque(false);
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;

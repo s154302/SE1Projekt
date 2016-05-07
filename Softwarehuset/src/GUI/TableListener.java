@@ -17,10 +17,10 @@ public class TableListener implements ListSelectionListener{
 	private ActivityFrame activityFrame;
 	private boolean tableActivitySelected;
 
-	public TableListener(Model model, Frame f, JTable table){
+	public TableListener(Model model, Frame f){
 		this.model = model;
 		this.f = f;
-		this.tableProject = table;
+		this.tableProject = null;
 		this.tableActivity = null;
 		project = null;
 		activity = null;
@@ -37,7 +37,6 @@ public class TableListener implements ListSelectionListener{
         	project = model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
          f.getProjectPanel().setActivityPanel(project);
             f.update();
-            tableActivitySelected = false;
         } else{
         	System.out.println("tableListener");
         }
@@ -67,7 +66,7 @@ public class TableListener implements ListSelectionListener{
       	 return null;
     }
     
-    public void setTable(JTable table){
+    public void setActivityTable(JTable table){
     	this.tableActivity=table;
     	tableActivitySelected = true;
     }
@@ -76,5 +75,10 @@ public class TableListener implements ListSelectionListener{
     	return activityFrame;
     	
     }
+
+	public void setProjectTable(JTable table) {
+		// TODO Auto-generated method stub
+		this.tableProject = table;
+	}
 
 }
