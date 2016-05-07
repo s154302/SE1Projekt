@@ -64,17 +64,19 @@ public class ActivityPanel extends JPanel {
 		
 		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
-		tableContainer = new JScrollPane(table);
-		
-
 		tableListener = projectPanel.getTableListener();
 		tableListener.setActivityTable(table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
+		tableContainer = new JScrollPane(table);
 		
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;
 		f.update();
+	}
+	
+	public JTable getTable() {
+		return this.table;
 	}
 
 }

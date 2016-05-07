@@ -29,17 +29,16 @@ public class TableListener implements ListSelectionListener{
     	
 
 		if (tableProjectSelected()) {
-        	project = model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
-        	f.getProjectPanel().setActivityPanel(project);
-        } 
-		
-		if(tableActivitySelected()) {
-    		activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
-    		activityFrame = new ActivityFrame(model, f, activity);
-    		f.update();
-            System.out.println("A-tableListener");
-    		}
-		
+			project = model.searchProject(tableProject.getValueAt(tableProject.getSelectedRow(), 0).toString());
+			f.getProjectPanel().setActivityPanel(project);
+		}
+
+		if (tableActivitySelected()) {
+			activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
+			activityFrame = new ActivityFrame(model, f, activity);
+			f.update();
+			System.out.println("A-tableListener");
+		}
    }
 
 	private boolean tableProjectSelected() {
@@ -81,7 +80,6 @@ public class TableListener implements ListSelectionListener{
     }
 
 	public void setProjectTable(JTable table) {
-		// TODO Auto-generated method stub
 		this.tableProject = table;
 	}
 

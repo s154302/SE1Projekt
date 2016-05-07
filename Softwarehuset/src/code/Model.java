@@ -161,7 +161,6 @@ public class Model {
 	}
 
 	public Project searchProject(String string) {
-		// TODO Auto-generated method stub
 		for(int i =0; i<projectList.size();i++){
 			if(string.equals(projectList.get(i).getSerialNumber())){
 				return projectList.get(i);

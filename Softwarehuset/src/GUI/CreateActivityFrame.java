@@ -11,34 +11,31 @@ public class CreateActivityFrame extends JFrame {
 	private CreateActivityPanel cAP;
 	private Frame f;
 
-	public CreateActivityFrame(Model model, ButtonListener bL, Frame f){
-	this.setSize(600, 350);
-	this.f = f;
-	this.setLocationRelativeTo(null);
-//	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	this.setTitle("Create Activity");
+	public CreateActivityFrame(Model model, ButtonListener bL, Frame f) {
+		this.setSize(600, 350);
+		this.f = f;
+		this.setLocationRelativeTo(null);
+		// this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Create Activity");
 
-	cAP = new CreateActivityPanel(model, bL, f);
+		cAP = new CreateActivityPanel(model, bL, f);
 
+		this.add(cAP, BorderLayout.CENTER);
+		showIt();
+	}
 
-	this.add(cAP,BorderLayout.CENTER);
-	showIt();
-}
+	public void showIt() {
+		this.setVisible(true);
+	}
 
-public void showIt() {
-	this.setVisible(true);
-}
+	public CreateActivityPanel getCreateActivityPanel() {
+		return cAP;
+	}
 
-public CreateActivityPanel getCreateActivityPanel() {
-	// TODO Auto-generated method stub
-	return cAP;
-}
+	public void setSelectedEmployees() {
+		cAP.setEmployeesToActivity();
+		this.revalidate();
 
-public void setSelectedEmployees() {
-	// TODO Auto-generated method stub
-	cAP.setEmployeesToActivity();
-	this.revalidate();
-	
-}
+	}
 
 }

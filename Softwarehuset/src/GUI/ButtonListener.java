@@ -265,7 +265,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cPF.dispose();
 				this.cPFOpen = false;
 			} catch (OperationNotAllowedException e1) {
-				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
 				// e1.printStackTrace();
 				// e1.getMessage().toString();
