@@ -90,5 +90,38 @@ public class TestCreateActivity {
 			p.activityList.get(i).addEmployee(eList);
 		}
 	}
+	@Test
+	public void expectedWorkloadZero() throws OperationNotAllowedException{
+		Employee e1 = new Employee("Alexander");
+		ArrayList<Employee> eList = new ArrayList<Employee>();
+		eList.add(e1);
+		Project p = new Project("testProject", e1, 2017, 12, 12, 2017, 12, 13);
+		try{
+			p.createActivity("testActivity", 0, e1);
+			fail("An OperationNotAllowedException should have been thrown.");
+		}
+		catch (OperationNotAllowedException e){
+			assertEquals("You must enter an expected workload.", e.getMessage());
+		}
+		
+		
+	}
+	@Test
+	public void noActivityName() throws OperationNotAllowedException{
+		Employee e1 = new Employee("Alexander");
+		ArrayList<Employee> eList = new ArrayList<Employee>();
+		eList.add(e1);
+		Project p = new Project("testProject", e1, 2017, 12, 12, 2017, 12, 13);
+		try{
+			p.createActivity("", 1, e1);
+			fail("An OperationNotAllowedException should have been thrown.");
+		}
+		catch (OperationNotAllowedException e){
+			assertEquals("You must enter a name.", e.getMessage());
+			assertEquals(null, e.getOperation());
+		}
+		
+		
+	}
 
 }

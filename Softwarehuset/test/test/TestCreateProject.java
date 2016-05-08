@@ -160,7 +160,7 @@ public class TestCreateProject {
 	@Test
 	public void testRemoveEmployee(){
 		for(int i =0; i<10; i++){
-			model.createEmployee(null);
+			model.createEmployee(""+i);
 		}
 		
 		assertEquals(10,model.employeeList.size());

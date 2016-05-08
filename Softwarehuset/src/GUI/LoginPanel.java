@@ -1,3 +1,4 @@
+
 package GUI;
 
 import java.awt.GridBagConstraints;
@@ -16,6 +17,8 @@ public class LoginPanel extends JPanel{
 	private Model model;
 	private ButtonListener bL;
 	public JComboBox<String> employees;
+	
+	
 	public LoginPanel(Model model, ButtonListener bL) {
 		this.model = model;
 		employees = new JComboBox<String>();

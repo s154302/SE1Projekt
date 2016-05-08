@@ -1,20 +1,12 @@
-
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
-
-import code.Employee;
 import code.Model;
 import code.NonProjectActivity;
 import code.OperationNotAllowedException;
@@ -25,11 +17,11 @@ public class Frame extends JFrame{
 	private ProjectPanel projectPanel;
 	private ActivityPanel activityPanel;
 	private ButtonPanel buttonPanel;
-	private boolean firstRun = true;
 	private GridBagConstraints gbc;
 	private Model model;
 	private ButtonListener bL;
 	private LoginPanel loginPanel;
+	private TableListener tableListener;
 
 	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
@@ -53,6 +45,7 @@ public class Frame extends JFrame{
 		
 		//making ButtonListener
 		bL = new ButtonListener(model, this);
+		tableListener = null;
 
 		loginPanel = new LoginPanel(model,bL);
 		
@@ -62,7 +55,6 @@ public class Frame extends JFrame{
         gbc.gridwidth = 2;
         gbc.gridheight = 6;
 		this.add(loginPanel, gbc);
-		
 		
 	}
 	
@@ -87,10 +79,10 @@ public class Frame extends JFrame{
 		this.remove(loginPanel);
 		
 		//making the panels to the frame
-		this.projectPanel = new ProjectPanel(this, model);
+		tableListener = new TableListener(model, this);
+		this.projectPanel = new ProjectPanel(this, model, tableListener);
 		this.activityPanel = projectPanel.getActivityPanel();
 		this.buttonPanel = new ButtonPanel(this, model);
-
 		
 		// adding project Panel
         gbc.gridx = 0; 
@@ -116,11 +108,6 @@ public class Frame extends JFrame{
 		update();
 	}
 
-
-
-
-
-
 	public void initializingModel() {
 		model = new Model();
 		for (int i = 1; i <= 50; i++) {
@@ -141,7 +128,7 @@ public class Frame extends JFrame{
 			for (int i = 1; i <= 6; i++) {
 				try {
 					p.setProjectManager(model.employeeList.get(a));
-					p.createActivity(a+"Activity" + i, i * (a*a)%30, model.employeeList.get(a));
+					p.createActivity(a+"Activity" + i, 10, model.employeeList.get(a));
 				} catch (OperationNotAllowedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -158,11 +145,6 @@ public class Frame extends JFrame{
 		model.nonProjectActivityList.add(new NonProjectActivity("Andet"));
 	}
 		
-
-		
-	
-	
-	
 	public void showIt(){
 		this.setVisible(true);
 	}
@@ -184,10 +166,13 @@ public class Frame extends JFrame{
 	public LoginPanel getLoginPanel(){
 		return loginPanel;
 	}
+	
+	public TableListener getTableListener(){
+		return tableListener;
+	}
 //	public ButtonPanel getButtonPanel(){
 //		return buttonPanel;
 //	}
-
 
 	public void update() {
 		// TODO Auto-generated method stub
@@ -196,3 +181,4 @@ public class Frame extends JFrame{
 	
 
 }
+

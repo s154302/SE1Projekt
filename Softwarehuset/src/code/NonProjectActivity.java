@@ -14,7 +14,7 @@ public class NonProjectActivity {
 	public NonProjectActivity(String name) {
 		employeeList = new ArrayList<Employee>();
 		this.name = name;
-		timeManager = new TimeManager(employeeList);
+		timeManager = new TimeManager();
 	}
 
 	// Adds an employee to the activity's employee list and sorts it.

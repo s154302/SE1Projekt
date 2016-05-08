@@ -91,9 +91,9 @@ public class Model {
 	}
 
 	// Deletes a project.
-	public void removeProject(Project project) {
-		this.projectList.remove(project);
-	}
+//	public void removeProject(Project project) {
+//		this.projectList.remove(project);
+//	}
 
 	// Deletes an employee.
 	public void removeEmployee(Employee employee) {
@@ -112,6 +112,7 @@ public class Model {
 		
 		for (Employee employee : employeeList){
 			if (name.equals(employee.getName())){
+				
 				return employee;
 			}
 		}
@@ -125,13 +126,13 @@ public class Model {
 	
 	//Creates a .txt file which contains info about a given project
 	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
-		double totalProjectWorkload =0;
-		double completedProjectWorkload = 0;
-		double remainingProjectWorkload = 0;
+
 		//System.out.println(project.getName());
 		PrintWriter write = new PrintWriter("Report for " + project.getName(),"UTF-8");
 		write.println(project.getSerialNumber()+" "+project.getName() + "- Data extracted " + LocalTime.now());
-		
+		double totalProjectWorkload =0;
+		double completedProjectWorkload = 0;
+		double remainingProjectWorkload = 0;
 		for (Activity activity : project.activityList){
 			totalProjectWorkload = totalProjectWorkload + activity.getExpectedWorkload();
 			
@@ -159,9 +160,33 @@ public class Model {
 		}
 		write.close();
 	}
+	public void deleteProject(Project p){
+		double completedWork =0;
+		for (Activity activity : p.activityList){
+		
+			for(Employee employee : activity.employeeList){
+				completedWork = completedWork + activity.getTimeManager().getTime(employee);
+			}
+		
+			
+		}
+		if(completedWork == 0.0 ){
+
+			for (Activity activity : p.activityList){
+				
+				for(Employee employee : activity.employeeList){
+					employee.activityList.remove(activity);
+				}
+			
+				p.activityList.remove(activity);
+			}
+			
+		projectList.remove(p);
+		}
+		
+	}
 
 	public Project searchProject(String string) {
-		// TODO Auto-generated method stub
 		for(int i =0; i<projectList.size();i++){
 			if(string.equals(projectList.get(i).getSerialNumber())){
 				return projectList.get(i);

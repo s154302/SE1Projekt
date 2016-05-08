@@ -15,41 +15,38 @@ import code.Project;
 
 public class ActivityPanel extends JPanel {
 	private Object[][] data;
-	private String[] columnNames = {"Activities", "Expected Workload"};
+	private String[] columnNames = { "Activities", "Expected Workload" };
 	private JTable table;
 	private JScrollPane tableContainer;
 	private boolean firstRun = true;
 	private Frame f;
 	private Model model;
 	private ButtonListener bL;
+
 	private TableListener tableListener;
 	private ProjectPanel projectPanel;
 	private JLabel welcome;
-	
-	public ActivityPanel(Frame f, Model model,ProjectPanel projectPanel, ButtonListener bL){ 
+
+	public ActivityPanel(Frame f, Model model, ProjectPanel projectPanel, ButtonListener bL) {
 		this.f = f;
 		this.model = model;
 		this.bL = bL;
 		this.projectPanel = projectPanel;
-		Project project = model.projectList().get(0);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		//filling columns-array for table
-		//updateActivityList(project);
-		
-		if(model.getCurrentEmployee()!= null){
-			welcome = new JLabel("Welcome "+model.getCurrentEmployee().getName()+"!");
+
+		if (model.getCurrentEmployee() != null) {
+			welcome = new JLabel("Welcome " + model.getCurrentEmployee().getName() + "!");
 		} else {
 			welcome = new JLabel("Welcome!");
 		}
 		this.add(welcome, gbc);
-		
+		tableListener = new TableListener(model, f);
 	}
-	
-	public void updateActivityList(Project project){
-		if(!firstRun ) {
+
+	public void updateActivityList(Project project) {
+		if (!firstRun) {
 			this.remove(tableContainer);
-			
 		} else {
 			this.remove(welcome);
 			this.setLayout(new BorderLayout());
@@ -57,35 +54,37 @@ public class ActivityPanel extends JPanel {
 			createActivity.addActionListener(bL);
 			this.add(createActivity, "North");
 		}
-		
+
 		data = new Object[project.activityList.size()][2];
-		
-		for(int i = 0;i<project.activityList.size();i++){
+
+		for (int i = 0; i < project.activityList.size(); i++) {
 			data[i][0] = project.activityList.get(i).getName();
 			data[i][1] = project.activityList.get(i).getExpectedWorkload();
-		 }
-		
+		}
+
 		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
-		tableContainer = new JScrollPane(table);
-		
-		tableListener = projectPanel.getTableListener();
-		tableListener.setTable(table);
+
+		// tableListener = projectPanel.getTableListener();
+		tableListener = new TableListener(model, f);
+		tableListener.setProjectTable(projectPanel.getProjectTable());
+		tableListener.setActivityTable(table);
+
+		table.setRowSelectionAllowed(true);
 		table.getSelectionModel().addListSelectionListener(tableListener);
-		
-		tableContainer.setOpaque(false);
-		tableContainer.getViewport().setOpaque(false);
+		tableContainer = new JScrollPane(table);
+
 		this.add(tableContainer, BorderLayout.CENTER);
 
 		firstRun = false;
 		f.update();
 	}
 
-	public void editActivity() {
-		// TODO Auto-generated method stub
-		
-		
+	public JTable getTable() {
+		return this.table;
 	}
-
+	
+	public TableListener getTableListener (){
+		return tableListener;
+	}
 }
-

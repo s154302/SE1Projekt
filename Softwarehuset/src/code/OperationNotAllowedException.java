@@ -12,9 +12,9 @@ public class OperationNotAllowedException extends Exception {
 		} else if(this.getMessage().contains("Create project")) {
 			return "Create project";
 		}
-		else if(this.getMessage().contains("")) {
-			return "";
-		}
+//		else if(this.getMessage().contains("")) {
+//			return "";
+//		}
 		return null;
 	}
 	
