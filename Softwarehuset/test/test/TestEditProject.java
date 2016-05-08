@@ -54,7 +54,7 @@ public class TestEditProject {
 		model.projectList.get(5).activityList.get(0).addEmployee(eList);
 		model.projectList.get(5).activityList.get(1).addEmployee(eList);
 		assertEquals(10, model.projectList.size());
-		
+		model.setCurrentEmployee(e1);
 		model.deleteProject(model.projectList().get(5));
 		
 		assertEquals(9, model.projectList.size());
@@ -80,13 +80,13 @@ public class TestEditProject {
 		
 		//test if u can delete the activity without time
 		assertEquals(2, model.projectList.get(0).activityList.size());
-		model.projectList.get(0).deleteActivity(model.projectList.get(0).activityList.get(1));
+		model.deleteActivity(model.projectList.get(0), model.projectList.get(0).activityList.get(1));
 		assertEquals(1, model.projectList.get(0).activityList.size());
 		
 		
 		//test if u can delete started activity
 		assertEquals(1, model.projectList.get(0).activityList.size());
-		model.projectList.get(0).deleteActivity(model.projectList.get(0).activityList.get(0));
+		model.deleteActivity(model.projectList.get(0), model.projectList.get(0).activityList.get(0));
 		assertEquals(1, model.projectList.get(0).activityList.size());
 		
 	}

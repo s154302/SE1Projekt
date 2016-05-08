@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JFrame;
+
+import code.Activity;
 import code.Model;
 import code.NonProjectActivity;
 import code.OperationNotAllowedException;
@@ -22,11 +24,14 @@ public class Frame extends JFrame{
 	private ButtonListener bL;
 	private LoginPanel loginPanel;
 	private TableListener tableListener;
+	private Activity a;
+	private Project p;
+	private ActivityFrame aF;
 
 	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
 		//constructing frame
-		this.setSize(1000,700);
+		this.setSize(250,200);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Software Huset");
@@ -77,6 +82,9 @@ public class Frame extends JFrame{
 	public void loggedInPanels() {
 		//removing Login panel
 		this.remove(loginPanel);
+		
+		this.setSize(1000,700);
+		this.setLocationRelativeTo(null);
 		
 		//making the panels to the frame
 		tableListener = new TableListener(model, this);
@@ -173,12 +181,35 @@ public class Frame extends JFrame{
 //	public ButtonPanel getButtonPanel(){
 //		return buttonPanel;
 //	}
+	
+	public void setActivity(Activity a) {
+		this.a = a;
+	}
+	
+	public Activity getActivity() {
+		return this.a;
+	}
 
 	public void update() {
 		// TODO Auto-generated method stub
 		this.revalidate();
 	}
+
+	public ActivityFrame getActivityFrame() {
+		return aF;
+	}
+
+	public void setActivityFrame(ActivityFrame aF) {
+		this.aF = aF;
+	}
 	
+	public void setProject(Project p) {
+		this.p = p;
+	}
+	
+	public Project getProject() {
+		return p;
+	}
 
 }
 

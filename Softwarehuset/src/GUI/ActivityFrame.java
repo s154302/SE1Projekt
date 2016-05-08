@@ -43,10 +43,11 @@ public class ActivityFrame extends JFrame {
 
 	public void editActivity() {
 		this.remove(sAP);
-		eAP = new EditActivityPanel(model, bL);
+		eAP = new EditActivityPanel(model, bL, activity);
 		this.add(eAP, BorderLayout.CENTER);
 		this.toFront();
-		System.out.println("Emilie er dårlig til at kode");
+		revalidate();
+		
 		
 	}
 
@@ -60,4 +61,8 @@ public class ActivityFrame extends JFrame {
 		return this.sAP;
 	}
 
+	public EditActivityPanel getEditActivityPanel() {
+		return eAP;
+	}
+	
 }

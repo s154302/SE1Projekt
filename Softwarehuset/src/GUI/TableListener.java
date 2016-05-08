@@ -34,9 +34,11 @@ public class TableListener implements ListSelectionListener {
 		}
 		if (tableActivitySelected()) {
 			activity = project.searchActivity(tableActivity.getValueAt(tableActivity.getSelectedRow(), 0).toString());
+			f.setActivity(activity);
 			activityFrame = new ActivityFrame(model, f, activity);
-			f.update();
-			System.out.println("A-tableListener");
+			f.setActivityFrame(activityFrame);
+			f.setProject(project);
+			f.getActivityFrame().toFront();
 		}
 
 	}

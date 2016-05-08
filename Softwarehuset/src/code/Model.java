@@ -12,6 +12,7 @@ public class Model {
 	public ArrayList<Employee> employeeList;
 	public ArrayList<NonProjectActivity> nonProjectActivityList;
 	public ArrayList<Project> projectList;
+	//the employee logged in to the system
 	private Employee currentEmployee;
 	
 	private int counter = 0;
@@ -160,28 +161,53 @@ public class Model {
 		}
 		write.close();
 	}
-	public void deleteProject(Project p){
-		double completedWork =0;
-		for (Activity activity : p.activityList){
-		
-			for(Employee employee : activity.employeeList){
-				completedWork = completedWork + activity.getTimeManager().getTime(employee);
+	public void deleteActivity(Project p, Activity a) throws OperationNotAllowedException{
+		if(p.isProjectManager(currentEmployee)){
+			double completedWork =0;
+			for(Employee employee : a.employeeList){
+				completedWork = completedWork + a.getTimeManager().getTime(employee);
 			}
-		
-			
-		}
-		if(completedWork == 0.0 ){
-
-			for (Activity activity : p.activityList){
+			if(completedWork == 0){
 				
+				for(Employee employee : a.employeeList){
+					employee.activityList.remove(a);
+				}
+				p.activityList.remove(a);
+			}
+		}
+		else{
+			throw new OperationNotAllowedException("Activities can only be deleted by the project manager.");
+		}
+			
+		
+	}
+	public void deleteProject(Project p) throws OperationNotAllowedException{
+		if(p.isProjectManager(currentEmployee)){
+			double completedWork =0;
+			for (Activity activity : p.activityList){
+			
 				for(Employee employee : activity.employeeList){
-					employee.activityList.remove(activity);
+					completedWork = completedWork + activity.getTimeManager().getTime(employee);
 				}
 			
-				p.activityList.remove(activity);
+				
 			}
-			
-		projectList.remove(p);
+			if(completedWork == 0.0 ){
+	
+				for (Activity activity : p.activityList){
+					
+					for(Employee employee : activity.employeeList){
+						employee.activityList.remove(activity);
+					}
+				
+					//p.activityList.remove(activity);
+				}
+				
+			projectList.remove(p);
+			}
+		}
+		else{
+			throw new OperationNotAllowedException("Only the manager for this project can delete it");
 		}
 		
 	}

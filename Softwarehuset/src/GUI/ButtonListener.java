@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -8,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 import code.Activity;
 import code.Employee;
@@ -25,7 +25,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 	private Employee e1;
 	private String employee;
 	private ActivityFrame aF;
-	
+
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
@@ -74,7 +74,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 			} else if (cAFOpen) {
 				confirmedActivityClicked();
 			} else if (eAFOpen) {
-				eAFOpen = false;
+				confirmedActivityClicked();
 			}
 			break;
 
@@ -92,13 +92,20 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cPF.dispose();
 				ePFOpen = false;
 			} else if (eAFOpen) {
+				frame.getActivityFrame().setVisible(false);
+				frame.getActivityFrame().dispose();
 				eAFOpen = false;
 			}
 			break;
 
 		case "Edit Activity":
 			eAFOpen = true;
-			frame.getProjectPanel().getTableListener().getActivityFrame().editActivity();
+			if (model.getCurrentEmployee().equals(frame.getProject().getProjectManager())) {
+				frame.getActivityFrame().editActivity();
+			} else {
+				JOptionPane.showMessageDialog(frame.getActivityFrame(),
+						"You must be the project manager in order to edit the activity.");
+			}
 			break;
 
 		case "Get Project Report":
@@ -166,37 +173,76 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "+":
-			employee = this.cAF.getCreateActivityPanel().employees.getSelectedItem().toString();
-			if (employee != "") {
-				e1 = model.searchEmployee(employee);
+			if (cAFOpen) {
+				employee = this.cAF.getCreateActivityPanel().employees.getSelectedItem().toString();
+				if (employee != "") {
+					e1 = model.searchEmployee(employee);
+				} else {
+					JOptionPane.showMessageDialog(cAF, "Please select an employee");
+					break;
+				}
+				try {
+					cAF.getCreateActivityPanel().addEmployee(e1);
+					cAF.setSelectedEmployees();
+					employee = null;
+				} catch (Exception e1) {
+					System.out.println("buttonlistener Error: +");
+				}
 			} else {
-				JOptionPane.showMessageDialog(cAF, "Please select an employee");
-				break;
+				EditActivityPanel editFrame = frame.getActivityFrame().getEditActivityPanel();
+				employee = editFrame.employees.getSelectedItem().toString();
+				if (employee != "") {
+					e1 = model.searchEmployee(employee);
+				} else {
+					JOptionPane.showMessageDialog(editFrame, "Please select an employee");
+					break;
+				}
+				try {
+					editFrame.addEmployee(e1);
+					editFrame.setEmployeesToActivity();
+					employee = null;
+				} catch (Exception e1) {
+					System.out.println("buttonlistener Error: +");
+				}
 			}
-			try {
-				cAF.getCreateActivityPanel().addEmployee(e1);
-				cAF.setSelectedEmployees();
-				employee = null;
-			} catch (Exception e1) {
-				System.out.println("buttonlistener Error: +");
-			}
+
 
 			break;
 
 		case "-":
-			employee = this.cAF.getCreateActivityPanel().employeesAddedBox.getSelectedItem().toString();
-			if (employee != "Added Employees") {
-				e1 = model.searchEmployee(employee);
-			} else {
-				JOptionPane.showMessageDialog(cAF, "Please select an employee");
-				break;
+			if(cAFOpen){
+				employee = this.cAF.getCreateActivityPanel().employeesAddedBox.getSelectedItem().toString();
+				if (employee != "Added Employees") {
+					e1 = model.searchEmployee(employee);
+				} else {
+					JOptionPane.showMessageDialog(cAF, "Please select an employee");
+					break;
+				}
+				try {
+					cAF.getCreateActivityPanel().removeAddEmployee(e1);
+					cAF.setSelectedEmployees();
+					employee = null;
+				} catch (Exception e1) {
+					System.out.println("buttonlistener Error: -");
+				}
 			}
-			try {
-				cAF.getCreateActivityPanel().removeAddEmployee(e1);
-				cAF.setSelectedEmployees();
-				employee = null;
-			} catch (Exception e1) {
-				System.out.println("buttonlistener Error: -");
+			else{
+				EditActivityPanel editFrame = frame.getActivityFrame().getEditActivityPanel();
+				employee = editFrame.employees.getSelectedItem().toString();
+				if (employee != "Added Employees") {
+					e1 = model.searchEmployee(employee);
+				} else {
+					JOptionPane.showMessageDialog(editFrame, "Please select an employee");
+					break;
+				}
+				try {
+					editFrame.removeAddEmployee(e1);
+					editFrame.setEmployeesToActivity();
+					employee = null;
+				} catch (Exception e1) {
+					System.out.println("buttonlistener Error: -");
+				}
+				
 			}
 			break;
 
@@ -228,19 +274,32 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Delete Activity":
-			JTable t = this.frame.getProjectPanel().getActivityPanel().getTable();
-			Activity a = frame.getActivityPanel().getTableListener().getActivity();
-			Project p = frame.getTableListener().getProject();
-			p.deleteActivity(a);
-			frame.getActivityPanel().updateActivityList(p);
-			frame.update();
+			try {
+				Activity a = frame.getActivity();
+				Project p = frame.getTableListener().getProject();
+				model.deleteActivity(p, a);
+				frame.getActivityPanel().updateActivityList(p);
+				frame.update();
+				frame.getActivityFrame().dispose();
+			} catch (OperationNotAllowedException e1) {
+				JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
+			}
 			break;
 
 		case "Delete project":
-			model.deleteProject(frame.getProjectPanel().getTableListener().getProject());
-			frame.getProjectPanel().updateList();
-			frame.update();
-			this.cPF.dispose();
+			try {
+				try {
+					model.deleteProject(frame.getProjectPanel().getTableListener().getProject());
+					frame.getProjectPanel().updateList();
+					frame.update();
+					this.cPF.dispose();
+				} catch (OperationNotAllowedException e1) {
+					JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
+				}
+			} catch (HeadlessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		}
 	}
@@ -349,7 +408,13 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cAFOpen = true;
 			}
 		} else if (eAFOpen) {
-
+			EditActivityPanel eAF = frame.getActivityFrame().getEditActivityPanel();
+			eAF.getActivity().setName(eAF.getName());
+			eAF.getActivity().setExpectedWorkload((eAF.getExpectedWorkload()));
+			frame.getActivityPanel().updateActivityList(frame.getProject());
+			frame.update();
+			frame.getActivityFrame().setVisible(false);
+			frame.getActivityFrame().dispose();
 		}
 	}
 }

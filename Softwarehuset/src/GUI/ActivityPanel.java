@@ -70,8 +70,8 @@ public class ActivityPanel extends JPanel {
 		tableListener.setProjectTable(projectPanel.getProjectTable());
 		tableListener.setActivityTable(table);
 
-		table.setRowSelectionAllowed(true);
 		table.getSelectionModel().addListSelectionListener(tableListener);
+		table.setRowSelectionAllowed(true);
 		tableContainer = new JScrollPane(table);
 
 		this.add(tableContainer, BorderLayout.CENTER);
