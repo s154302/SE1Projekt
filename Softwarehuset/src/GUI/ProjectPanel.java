@@ -94,5 +94,9 @@ public class ProjectPanel extends JPanel {
 	public TableListener getTableListener(){
 		return tableListener;
 	}
+	
+	public JTable getProjectTable(){
+		return table;
+	}
 }
 

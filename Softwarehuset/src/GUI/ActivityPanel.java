@@ -64,8 +64,12 @@ public class ActivityPanel extends JPanel {
 		
 		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
-		tableListener = projectPanel.getTableListener();
+		
+		//tableListener = projectPanel.getTableListener();
+		tableListener = new TableListener(model, f);
+		tableListener.setProjectTable(projectPanel.getProjectTable());
 		tableListener.setActivityTable(table);
+		
 		table.getSelectionModel().addListSelectionListener(tableListener);
 		tableContainer = new JScrollPane(table);
 		
