@@ -23,7 +23,8 @@ public class ButtonListener implements ActionListener, ItemListener {
 	private CreateActivityFrame cAF;
 	private Employee e1;
 	private String employee;
-
+	private ActivityFrame aF;
+	
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
@@ -42,16 +43,18 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Edit Project":
-			//makes sure a project is selected
+			// makes sure a project is selected
 			if (frame.getProjectPanel().getTableListener().getProject() == null) {
 				JOptionPane.showMessageDialog(frame, "You have to select a project");
-			} 
-			//Only the project manager can edit a project unless there is no project manager.
-			else if(!frame.getProjectPanel().getTableListener().getProject().isProjectManager(model.getCurrentEmployee()) && frame.getProjectPanel().getTableListener().getProject().getProjectManager() != null ){
-				
-			JOptionPane.showMessageDialog(frame, "You have to be project manager");
 			}
-			else {
+			// Only the project manager can edit a project unless there is no
+			// project manager.
+			else if (!frame.getProjectPanel().getTableListener().getProject()
+					.isProjectManager(model.getCurrentEmployee())
+					&& frame.getProjectPanel().getTableListener().getProject().getProjectManager() != null) {
+
+				JOptionPane.showMessageDialog(frame, "You have to be project manager");
+			} else {
 				ePFOpen = true;
 				this.cPF = new CreateProjectFrame(model, this);
 				cPF.setTitle("Edit Project");
@@ -224,7 +227,20 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Delete Activity":
-			
+			System.out.println(this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivity());
+			Activity a = this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivityFrame().getShowActivityPanel().getActivity();
+			System.out.println(this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivityFrame());
+			Project p = frame.getTableListener().getProject();
+			p.deleteActivity(a);
+			frame.getActivityPanel().updateActivityList(p);
+			frame.update();
+			break;
+
+		case "Delete project":
+			model.deleteProject(frame.getProjectPanel().getTableListener().getProject());
+			frame.getProjectPanel().updateList();
+			frame.update();
+			this.cPF.dispose();
 			break;
 		}
 	}
@@ -305,24 +321,24 @@ public class ButtonListener implements ActionListener, ItemListener {
 				CreateActivityPanel cAP = cAF.getCreateActivityPanel();
 				Project p = frame.getProjectPanel().getTableListener().getProject();
 
-				 int expWork;
-				
+				int expWork;
+
 				String name = cAP.name.getText();
 				String expWorkString = cAP.expectedWorkTime.getText();
 				Employee pM = model.getCurrentEmployee();
-				
-				if(expWorkString.equals("")) {
-					expWork = 0; 
+
+				if (expWorkString.equals("")) {
+					expWork = 0;
 				} else {
 					expWork = Integer.parseInt(expWorkString);
 				}
 
 				Activity a = p.createActivity(name, expWork, pM);
 				a.addEmployee(cAP.getAddedEmployee());
-				
+
 				frame.getActivityPanel().updateActivityList(p);
 				frame.update();
-				
+
 				this.cAF.setVisible(false);
 				this.cAF.dispose();
 				this.cAFOpen = false;

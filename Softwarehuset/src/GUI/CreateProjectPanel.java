@@ -18,6 +18,7 @@ public class CreateProjectPanel extends JPanel {
 	public JComboBox<String> startDay, startMonth, startYear, endDay, endMonth, endYear, employees;
 	public JTextField name;
 	private ButtonListener bL;
+	private GridBagConstraints gbc;
 	
 //	public CreateProjectPanel(Model model, ButtonListener bL) {
 //		this.model = model;
@@ -28,7 +29,7 @@ public class CreateProjectPanel extends JPanel {
 		this.bL = bL;
 		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 
 		gbc.gridx = 0;
@@ -190,6 +191,15 @@ public class CreateProjectPanel extends JPanel {
 	
 	public void editProject(Project p) {
 		this.name.setText(p.getName());
+		
+		gbc.gridx = 2;
+		gbc.gridy = 4;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JButton delete = new JButton("Delete project");
+		delete.addActionListener(bL);
+		this.add(delete, gbc);
+		
 		for (int i = 0; i < model.employeeList.size(); i++) {
 			if (model.employeeList.get(i).equals(p.getProjectManager())) {
 				this.employees.setSelectedIndex(i+1);

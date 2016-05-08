@@ -55,5 +55,9 @@ public class ActivityFrame extends JFrame {
 		sAP = new ShowActivityPanel(model, f, activity);
 		this.add(sAP, BorderLayout.CENTER);
 	}
+	
+	public ShowActivityPanel getShowActivityPanel() {
+		return this.sAP;
+	}
 
 }

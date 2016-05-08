@@ -91,9 +91,9 @@ public class Model {
 	}
 
 	// Deletes a project.
-	public void removeProject(Project project) {
-		this.projectList.remove(project);
-	}
+//	public void removeProject(Project project) {
+//		this.projectList.remove(project);
+//	}
 
 	// Deletes an employee.
 	public void removeEmployee(Employee employee) {
@@ -169,17 +169,18 @@ public class Model {
 		
 			
 		}
-		if(completedWork == 0){
+		if(completedWork == 0.0 ){
+
 			for (Activity activity : p.activityList){
 				
 				for(Employee employee : activity.employeeList){
-					activity.removeEmployee(employee);
+					employee.activityList.remove(activity);
 				}
 			
 				p.activityList.remove(activity);
 			}
 			
-		
+		projectList.remove(p);
 		}
 		
 	}

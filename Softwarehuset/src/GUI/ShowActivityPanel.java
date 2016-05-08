@@ -16,9 +16,11 @@ public class ShowActivityPanel extends JPanel {
 	private Model model;
 	private ButtonListener bL;
 	private JButton edit, delete;
+	private Activity a;
 
 	public ShowActivityPanel(Model model, Frame f, Activity a) {
 		
+		this.a = a;
 		this.model = model;
 		this.bL = f.getButtonListener();
 		this.setLayout(new GridBagLayout());
@@ -74,6 +76,10 @@ public class ShowActivityPanel extends JPanel {
 		delete = new JButton("Delete Activity");
 		delete.addActionListener(bL);
 		this.add(delete, gbc);
+	}
+	
+	public Activity getActivity() {
+		return this.a;
 	}
 
 }

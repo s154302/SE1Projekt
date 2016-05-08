@@ -24,79 +24,76 @@ public class ProjectPanel extends JPanel {
 	private TableListener tableListener;
 	private JScrollPane tableContainer;
 	private JTable table;
-	
-	public ProjectPanel(Frame f, Model model, TableListener tableListener){ 
+
+	public ProjectPanel(Frame f, Model model, TableListener tableListener) {
 		this.f = f;
 		System.out.println("project");
-		this.model=model;
+		this.model = model;
 		this.setLayout(new BorderLayout());
 		this.bL = f.getButtonListener();
 		this.tableListener = tableListener;
-		
-		//Making activity panel:
+
+		// Making activity panel:
 		updateList();
-		
+
 		activityPanel = new ActivityPanel(f, model, this, bL);
 
-		//adding back to menu button
+		// adding back to menu button
 		JButton newProject = new JButton("Create Project");
 		newProject.addActionListener(bL);
-		this.add(newProject, BorderLayout.SOUTH);	
-		
+		this.add(newProject, BorderLayout.SOUTH);
 
 	}
-	
-	public ActivityPanel getActivityPanel(){
+
+	public ActivityPanel getActivityPanel() {
 		return activityPanel;
 	}
 
 	public void setActivityPanel(Project p) {
-		// TODO Auto-generated method stub
-		if(p!=null)
+		if (p != null) {
 			activityPanel.updateActivityList(p);
-
+		}
 	}
 
 	public void updateList() {
-		if(!firstRun){
+		if (!firstRun) {
 			this.remove(tableContainer);
 		}
-		
-		//making titles for a columns-array
-		String[] columnNames = {"Projects", "Name", "Project Manager"};
-		
-		//filling columns-array for table
+
+		// making titles for a columns-array
+		String[] columnNames = { "Projects", "Name", "Project Manager" };
+
+		// filling columns-array for table
 		Object[][] data = new Object[model.projectList().size()][3];
-		for(int i = 0;i<model.projectList().size();i++){
+		for (int i = 0; i < model.projectList().size(); i++) {
 			data[i][1] = model.projectList().get(i).getName();
 			data[i][0] = model.projectList().get(i).getSerialNumber();
-			if( model.projectList().get(i).getProjectManager() != null){
+			if (model.projectList().get(i).getProjectManager() != null) {
 				data[i][2] = model.projectList().get(i).getProjectManager().getName();
 			}
 
-		 }
-		
-		//adding table to panel
+		}
+
+		// adding table to panel
 		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
 		tableContainer = new JScrollPane(table);
 		tableContainer.setOpaque(false);
 		tableContainer.getViewport().setOpaque(false);
 
-		//selecting project
+		// selecting project
 		tableListener.setProjectTable(table);
 		table.getSelectionModel().addListSelectionListener(tableListener);
 		this.add(tableContainer, BorderLayout.CENTER);
-		
+
 		firstRun = false;
 	}
-	
-	public TableListener getTableListener(){
+
+	public TableListener getTableListener() {
 		return tableListener;
 	}
-	
-	public JTable getProjectTable(){
+
+	public JTable getProjectTable() {
 		return table;
 	}
 }
-

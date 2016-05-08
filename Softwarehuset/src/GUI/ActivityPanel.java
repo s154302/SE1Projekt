@@ -83,5 +83,8 @@ public class ActivityPanel extends JPanel {
 	public JTable getTable() {
 		return this.table;
 	}
-
+	
+	public TableListener getTableListener (){
+		return tableListener;
+	}
 }

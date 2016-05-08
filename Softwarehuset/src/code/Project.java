@@ -123,10 +123,10 @@ public class Project {
 		for(Employee employee : a.employeeList){
 			completedWork = completedWork + a.getTimeManager().getTime(employee);
 		}
-		
 		if(completedWork == 0){
+			
 			for(Employee employee : a.employeeList){
-				a.removeEmployee(employee);
+				employee.activityList.remove(a);
 			}
 			activityList.remove(a);
 		}

@@ -47,6 +47,7 @@ public class Activity implements Comparable<Activity> {
 	public void removeEmployee(Employee employee) {
 		employee.removeFromActivityList(this);
 		employeeList.remove(employeeList.indexOf(employee));
+		
 	}
 
 	// Check whether the employee is the project manager.
