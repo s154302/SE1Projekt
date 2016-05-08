@@ -25,12 +25,9 @@ public class ButtonListener implements ActionListener, ItemListener {
 	private Employee e1;
 	private String employee;
 	private ActivityFrame aF;
-<<<<<<< HEAD
 
-=======
 	private AbsenceFrame abF;
 	
->>>>>>> Emilie
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
