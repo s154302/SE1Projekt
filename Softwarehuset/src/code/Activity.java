@@ -27,7 +27,7 @@ public class Activity implements Comparable<Activity> {
 		}
 		this.projectManager = projectManager;
 		this.employeeList = new ArrayList<Employee>();
-		this.timeManager = new TimeManager(employeeList);
+		this.timeManager = new TimeManager();
 	}
 
 	// Add an employee to the activity and sort the employeeList. Also assigns

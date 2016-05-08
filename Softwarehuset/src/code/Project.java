@@ -118,6 +118,28 @@ public class Project {
 
 		}
 	}
+	public void deleteActivity(Activity a){
+		double completedWork =0;
+		for(Employee employee : a.employeeList){
+			completedWork = completedWork + a.getTimeManager().getTime(employee);
+		}
+		
+		if(completedWork == 0){
+			for(Employee employee : a.employeeList){
+				a.removeEmployee(employee);
+			}
+			activityList.remove(a);
+		}
+			
+		
+	}
+	// Check whether the employee is the project manager.
+	public boolean isProjectManager(Employee employee) {
+		if (this.projectManager == employee) {
+			return true;
+		}
+		return false;
+	}
 
 	public Activity searchActivity(String string) {
 		// TODO Auto-generated method stub

@@ -18,9 +18,9 @@ public class TestTime {
 	public void testAddandGetTime() throws Exception {
 		Employee A = new Employee("A");
 		Employee B = new Employee("B");
-		List<Employee> e = new ArrayList<>();
+		List<Employee> e = new ArrayList<Employee>();
 		e.add(A);
-		Activity a = new Activity("a", 0, B);
+		Activity a = new Activity("a", 1, B);
 		a.addEmployee(e);
 		
 		TimeManager t = a.getTimeManager();

@@ -42,9 +42,16 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Edit Project":
+			//makes sure a project is selected
 			if (frame.getProjectPanel().getTableListener().getProject() == null) {
 				JOptionPane.showMessageDialog(frame, "You have to select a project");
-			} else {
+			} 
+			//Only the project manager can edit a project unless there is no project manager.
+			else if(!frame.getProjectPanel().getTableListener().getProject().isProjectManager(model.getCurrentEmployee()) && frame.getProjectPanel().getTableListener().getProject().getProjectManager() != null ){
+				
+			JOptionPane.showMessageDialog(frame, "You have to be project manager");
+			}
+			else {
 				ePFOpen = true;
 				this.cPF = new CreateProjectFrame(model, this);
 				cPF.setTitle("Edit Project");
@@ -216,6 +223,9 @@ public class ButtonListener implements ActionListener, ItemListener {
 			}
 			break;
 
+		case "Delete Activity":
+			
+			break;
 		}
 	}
 

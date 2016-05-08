@@ -125,13 +125,13 @@ public class Model {
 	
 	//Creates a .txt file which contains info about a given project
 	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
-		double totalProjectWorkload =0;
-		double completedProjectWorkload = 0;
-		double remainingProjectWorkload = 0;
+
 		//System.out.println(project.getName());
 		PrintWriter write = new PrintWriter("Report for " + project.getName(),"UTF-8");
 		write.println(project.getSerialNumber()+" "+project.getName() + "- Data extracted " + LocalTime.now());
-		
+		double totalProjectWorkload =0;
+		double completedProjectWorkload = 0;
+		double remainingProjectWorkload = 0;
 		for (Activity activity : project.activityList){
 			totalProjectWorkload = totalProjectWorkload + activity.getExpectedWorkload();
 			
@@ -158,6 +158,30 @@ public class Model {
 					+ ", Completed workload: " + activityCompletedWorkload + ", Remaining workload: " + activityRemainingWorkload);
 		}
 		write.close();
+	}
+	public void deleteProject(Project p){
+		double completedWork =0;
+		for (Activity activity : p.activityList){
+		
+			for(Employee employee : activity.employeeList){
+				completedWork = completedWork + activity.getTimeManager().getTime(employee);
+			}
+		
+			
+		}
+		if(completedWork == 0){
+			for (Activity activity : p.activityList){
+				
+				for(Employee employee : activity.employeeList){
+					activity.removeEmployee(employee);
+				}
+			
+				p.activityList.remove(activity);
+			}
+			
+		
+		}
+		
 	}
 
 	public Project searchProject(String string) {
