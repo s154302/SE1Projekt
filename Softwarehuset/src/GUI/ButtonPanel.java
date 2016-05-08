@@ -61,14 +61,22 @@ public class ButtonPanel extends JPanel {
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		this.add(new JButton("Add Time"), gbc);
+		JButton addTime = new JButton("Add Time");
+		addTime.addActionListener(bL);
+		this.add(addTime, gbc);
 		
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
+<<<<<<< HEAD
 		this.add(new JButton("Absence"), gbc);
 
+=======
+		JButton absence = new JButton("Absence");
+		absence.addActionListener(bL);
+		this.add(absence, gbc);
+>>>>>>> Emilie
 	}
 
 }

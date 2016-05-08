@@ -25,7 +25,12 @@ public class ButtonListener implements ActionListener, ItemListener {
 	private Employee e1;
 	private String employee;
 	private ActivityFrame aF;
+<<<<<<< HEAD
 
+=======
+	private AbsenceFrame abF;
+	
+>>>>>>> Emilie
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
@@ -130,6 +135,8 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Absence":
+			System.out.println("absence");
+			abF = new AbsenceFrame(model,this);
 			break;
 
 		case "Create Activity":
@@ -300,6 +307,13 @@ public class ButtonListener implements ActionListener, ItemListener {
 				e1.printStackTrace();
 			}
 			break;
+			
+		case "Add Absence Time":
+			abF.addTime();
+			break;
+			
+		case "Confirm Absence":
+			abF.saveTime();
 		}
 	}
 

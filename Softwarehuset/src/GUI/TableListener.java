@@ -1,3 +1,4 @@
+
 package GUI;
 
 import javax.swing.JTable;
@@ -74,7 +75,6 @@ public class TableListener implements ListSelectionListener {
 
 	public ActivityFrame getActivityFrame() {
 		return activityFrame;
-
 	}
 
 	public void setActivityTable(JTable table) {

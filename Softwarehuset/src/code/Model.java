@@ -21,6 +21,15 @@ public class Model {
 		this.projectList = new ArrayList<Project>();
 		this.nonProjectActivityList = new ArrayList<NonProjectActivity>();
 		this.employeeList = new ArrayList<Employee>();
+		
+
+		this.nonProjectActivityList.add(new NonProjectActivity("Courses"));
+		this.nonProjectActivityList.add(new NonProjectActivity("Sick"));
+		this.nonProjectActivityList.add(new NonProjectActivity("Vacation"));
+		this.nonProjectActivityList.add(new NonProjectActivity("Other"));
+		
+		
+		
 	}
 
 	// Creates a new employee and adds it to the employee list.
