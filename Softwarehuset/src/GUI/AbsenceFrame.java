@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 
 import javax.swing.JFrame;
 
@@ -10,14 +11,19 @@ public class AbsenceFrame extends JFrame {
 	
 	
 	private AbsencePanel aP;
+	private AbsenceTimePanel aTP;
+	private Model model;
+	private ButtonListener bL;
 
 	public AbsenceFrame(Model model, ButtonListener bL) {
+		this.model= model;
+		this.bL = bL;
 
-		this.setSize(600, 300);
+		this.setSize(900, 500);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Absence");
 
-		aP = new AbsencePanel(model, bL);
+		aP = new AbsencePanel(model, bL, this);
 
 
 		this.add(aP,BorderLayout.CENTER);
@@ -32,5 +38,26 @@ public class AbsenceFrame extends JFrame {
 	public AbsencePanel getAbsencePanel() {
 		return aP;
 	}
+	
+	public void update(){
+		this.revalidate();
+	}
+
+	public void addTime() {
+		this.remove(aP);
+		aTP = new AbsenceTimePanel(model, bL, this);
+		this.add(aTP,BorderLayout.CENTER);
+		this.update();
+	}
+	
+	public void saveTime() {
+		this.remove(aTP);
+		aP.updateList();
+		this.add(aP,BorderLayout.CENTER);	
+		this.update();
+	}
+
+
+
 
 }
