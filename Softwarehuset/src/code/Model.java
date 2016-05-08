@@ -138,7 +138,7 @@ public class Model {
 	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
 
 		//System.out.println(project.getName());
-		PrintWriter write = new PrintWriter("Report for " + project.getName(),"UTF-8");
+		PrintWriter write = new PrintWriter("Report for " + project.getName() + " " + project.getSerialNumber().toString(),"UTF-8");
 		write.println(project.getSerialNumber()+" "+project.getName() + "- Data extracted " + LocalTime.now());
 		double totalProjectWorkload =0;
 		double completedProjectWorkload = 0;
