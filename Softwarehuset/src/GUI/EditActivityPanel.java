@@ -114,6 +114,7 @@ public class EditActivityPanel extends JPanel {
 			tempEmployees.remove(a.employeeList.get(i));
 			employees.removeItem(model.employeeList.get(i).getName());
 		}
+
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		gbc.gridwidth = 2;
@@ -215,8 +216,6 @@ public class EditActivityPanel extends JPanel {
 			System.out.println("Create ActivityPanel");
 		}
 	}
-	
-	
 
 	public String getName() {
 		return this.name.getText();

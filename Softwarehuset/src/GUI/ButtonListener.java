@@ -390,7 +390,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 				CreateActivityPanel cAP = cAF.getCreateActivityPanel();
 				Project p = frame.getProjectPanel().getTableListener().getProject();
 
-				int expWork;
+				int expWork = 0;
 
 				String name = cAP.name.getText();
 				String expWorkString = cAP.expectedWorkTime.getText();
@@ -399,7 +399,15 @@ public class ButtonListener implements ActionListener, ItemListener {
 				if (expWorkString.equals("")) {
 					expWork = 0;
 				} else {
-					expWork = Integer.parseInt(expWorkString);
+					
+					try {
+						expWork = Integer.parseInt(expWorkString);
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(cAF, "Expected work has to be a integer.");
+					} catch(NullPointerException e) {
+						JOptionPane.showMessageDialog(cAF, "Expected work has to be a integer.");
+				    }
+					
 				}
 
 				Activity a = p.createActivity(name, expWork, pM);

@@ -15,7 +15,7 @@ public class ShowActivityPanel extends JPanel {
 	
 	private Model model;
 	private ButtonListener bL;
-	private JButton edit, delete;
+	private JButton edit, delete, addTime;
 	private Activity a;
 
 	public ShowActivityPanel(Model model, Frame f, Activity a) {
@@ -61,6 +61,15 @@ public class ShowActivityPanel extends JPanel {
 		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+
+		addTime = new JButton("Add Time");
+		addTime.addActionListener(bL);
+		this.add(addTime, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 
@@ -69,7 +78,7 @@ public class ShowActivityPanel extends JPanel {
 		this.add(edit, gbc);
 		
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 

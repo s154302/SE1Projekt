@@ -56,14 +56,6 @@ public class ButtonPanel extends JPanel {
 		JButton getReport = new JButton("Get Project Report");
 		getReport.addActionListener(bL);
 		this.add(getReport, gbc);
-
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
-		JButton addTime = new JButton("Add Time");
-		addTime.addActionListener(bL);
-		this.add(addTime, gbc);
 		
 		gbc.gridx = 3;
 		gbc.gridy = 0;
