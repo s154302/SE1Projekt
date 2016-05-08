@@ -39,6 +39,10 @@ public class AbsenceFrame extends JFrame {
 		return aP;
 	}
 	
+	public AbsenceTimePanel getAbsenceTimePanel() {
+		return aTP;
+	}
+	
 	public void update(){
 		this.revalidate();
 	}

@@ -24,6 +24,7 @@ public class AbsencePanel extends JPanel{
 	private String[] columnNames = {"Employees", "Courses", "Sickness","Vacation", "Other"};
 
 	private AbsenceFrame aF;
+	private JButton addTime;
 
 	public AbsencePanel(Model model, ButtonListener bL, AbsenceFrame aF){
 		this.model = model;
@@ -34,7 +35,7 @@ public class AbsencePanel extends JPanel{
 		
 		updateList();
 		
-		JButton addTime = new JButton("Add Absence Time");
+		addTime = new JButton("Add Absence Time");
 		addTime.addActionListener(bL);
 		this.add(addTime, "South");
 
@@ -46,10 +47,10 @@ public class AbsencePanel extends JPanel{
 		}
 
 		data = new Object[model.employeeList.size()][model.nonProjectActivityList
-				.size()];
+				.size()+1];
 
 		// setting names
-		for (int i = 0; i < model.employeeList.size(); i++) {
+		for (int i = 0; i < model.employeeList.size(); i++) { 
 			data[i][0] = model.employeeList.get(i).getName();
 		}
 		
@@ -58,7 +59,7 @@ public class AbsencePanel extends JPanel{
 			for (int j = 0; j < model.nonProjectActivityList.get(i).getEmployeeList().size(); j++) {
 				data[j][i + 1] = ""+model.nonProjectActivityList.get(i).getTimeManager().getTime(model.nonProjectActivityList.get(i).getEmployeeList().get(j));
 			}
-		}
+		} 
 
 		table = new JTable(data, columnNames);
 		table.setModel(new TableModel(data, columnNames));
@@ -68,7 +69,6 @@ public class AbsencePanel extends JPanel{
 
 		this.add(tableContainer, BorderLayout.CENTER);
 
-		firstRun = false;
 		aF.update();
 	}
 

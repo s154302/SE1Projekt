@@ -27,6 +27,7 @@ public class CreateActivityPanel extends JPanel{
 	private boolean firstRun = true;
 	private ArrayList<Employee> addedEmployees, tempEmployees;
 	private JButton removeEmp;
+	private JTextArea messageText;
 	
 	public CreateActivityPanel(Model model, ButtonListener bL, Frame f) {
 		// TODO Auto-generated constructor stub
@@ -113,7 +114,7 @@ public class CreateActivityPanel extends JPanel{
 		gbc.gridy = 7;
 		gbc.gridwidth = 4;
 		gbc.gridheight = 1;
-		JTextArea messageText = new JTextArea(5,20);
+		messageText = new JTextArea(5,20);
 		messageText.setWrapStyleWord(true);
 		messageText.setLineWrap(true);
 		JScrollPane j = new JScrollPane(messageText);
@@ -213,4 +214,10 @@ public class CreateActivityPanel extends JPanel{
 		}
 
 	}
+	
+	public String getMessageText(){
+		return messageText.getText();
+	}
+	
+	
 }

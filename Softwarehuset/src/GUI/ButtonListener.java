@@ -27,7 +27,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 	private ActivityFrame aF;
 
 	private AbsenceFrame abF;
-	
+
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
@@ -117,8 +117,10 @@ public class ButtonListener implements ActionListener, ItemListener {
 					JOptionPane.showMessageDialog(frame, "You have to select a project");
 				} else {
 					model.reportProject(frame.getProjectPanel().getTableListener().getProject());
-					JOptionPane.showMessageDialog(this.frame, "You report is created for project: "
-							+ frame.getProjectPanel().getTableListener().getProject().getName());
+					JOptionPane.showMessageDialog(this.frame,
+							"You report is created for project: " + frame.getProjectPanel().getTableListener()
+									.getProject().getName() + " "
+							+ frame.getProjectPanel().getTableListener().getProject().getSerialNumber().toString());
 				}
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
@@ -129,11 +131,14 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Add Time":
+			String time = frame.getActivityFrame().getShowActivityPanel().getAddedTime();
+			double dTime = Double.parseDouble(time);
+			frame.getActivity().getTimeManager().addTime(model.getCurrentEmployee(), dTime);
 			break;
 
 		case "Absence":
 			System.out.println("absence");
-			abF = new AbsenceFrame(model,this);
+			abF = new AbsenceFrame(model, this);
 			break;
 
 		case "Create Activity":
@@ -300,17 +305,27 @@ public class ButtonListener implements ActionListener, ItemListener {
 					JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
 				}
 			} catch (HeadlessException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			break;
-			
+
 		case "Add Absence Time":
 			abF.addTime();
 			break;
-			
+
 		case "Confirm Absence":
+
+			//saving added absence
+			model.nonProjectActivityList.get(0).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getCourseTime());
+			System.out.println("time added? -> "+model.nonProjectActivityList.get(0).getTimeManager().getTime(model.getCurrentEmployee()));
+			model.nonProjectActivityList.get(1).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getSickTime());
+			model.nonProjectActivityList.get(2).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getVaTime());
+			model.nonProjectActivityList.get(3).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getOtherTime());
+			
+			//back to overview panel
 			abF.saveTime();
+
+			break;
 		}
 	}
 
@@ -399,19 +414,19 @@ public class ButtonListener implements ActionListener, ItemListener {
 				if (expWorkString.equals("")) {
 					expWork = 0;
 				} else {
-					
+
 					try {
 						expWork = Integer.parseInt(expWorkString);
 					} catch (NumberFormatException e) {
 						JOptionPane.showMessageDialog(cAF, "Expected work has to be a integer.");
-					} catch(NullPointerException e) {
+					} catch (NullPointerException e) {
 						JOptionPane.showMessageDialog(cAF, "Expected work has to be a integer.");
-				    }
-					
+					}
 				}
 
 				Activity a = p.createActivity(name, expWork, pM);
 				a.addEmployee(cAP.getAddedEmployee());
+				a.setMessage(cAF.getCreateActivityPanel().getMessageText());
 
 				frame.getActivityPanel().updateActivityList(p);
 				frame.update();
@@ -426,9 +441,10 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cAFOpen = true;
 			}
 		} else if (eAFOpen) {
-			EditActivityPanel eAF = frame.getActivityFrame().getEditActivityPanel();
-			eAF.getActivity().setName(eAF.getName());
-			eAF.getActivity().setExpectedWorkload((eAF.getExpectedWorkload()));
+			EditActivityPanel eAP = frame.getActivityFrame().getEditActivityPanel();
+			eAP.getActivity().setName(eAP.getName());
+			eAP.getActivity().setExpectedWorkload((eAP.getExpectedWorkload()));
+			eAP.getActivity().setMessage(eAP.getMessage());
 			frame.getActivityPanel().updateActivityList(frame.getProject());
 			frame.update();
 			frame.getActivityFrame().setVisible(false);

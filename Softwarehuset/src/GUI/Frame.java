@@ -67,6 +67,8 @@ public class Frame extends JFrame{
 		this.remove(projectPanel);
 		this.remove(activityPanel);
 		this.remove(buttonPanel);
+		this.setSize(250,200);
+		this.setLocationRelativeTo(null);
 		
 		loginPanel = new LoginPanel(model,bL);
 		

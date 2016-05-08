@@ -41,7 +41,7 @@ public class ProjectPanel extends JPanel {
 		// adding back to menu button
 		JButton newProject = new JButton("Create Project");
 		newProject.addActionListener(bL);
-		this.add(newProject, BorderLayout.SOUTH);
+		this.add(newProject, BorderLayout.NORTH);
 
 	}
 

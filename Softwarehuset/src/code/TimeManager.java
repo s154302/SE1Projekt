@@ -11,8 +11,13 @@ public class TimeManager {
 
 	// Adds the specified work to an employees completed workload.
 	public void addTime(Employee employee, double hours) {
-		Double time = this.employeeTimeList.get(employee);
-		this.employeeTimeList.put(employee, time + hours);
+		if (employeeTimeList.containsKey(employee) && employee != null) {
+			Double time = this.employeeTimeList.get(employee);
+			this.employeeTimeList.put(employee, time + hours);
+		} else if (employee != null) {
+			this.employeeTimeList.put(employee, 0.0);
+			addTime(employee, hours);
+		}
 	}
 
 	// Return the amount of hours an employee has worked.
@@ -26,7 +31,7 @@ public class TimeManager {
 			this.employeeTimeList.put(e, 0.0);
 		}
 	}
-	
+
 	public boolean containsKey(Employee e) {
 		return this.employeeTimeList.containsKey(e);
 	}

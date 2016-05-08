@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import code.Activity;
@@ -27,6 +28,7 @@ public class EditActivityPanel extends JPanel {
 	private Activity a;
 	private JButton removeEmp;
 	private GridBagConstraints gbc;
+	private JTextArea messageArea;
 
 	public EditActivityPanel(Model model, ButtonListener bL, Activity a) {
 		// TODO Auto-generated constructor stub
@@ -70,9 +72,18 @@ public class EditActivityPanel extends JPanel {
 		this.expWorkload = new JTextField("" + a.getExpectedWorkload());
 
 		this.add(expWorkload, gbc);
-
+		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
+		gbc.gridwidth = 4;
+		gbc.gridheight = 2;
+		String messageText = a.getMessageText();
+		this.messageArea = new JTextArea(messageText);
+		messageArea.setLineWrap(true);
+		this.add(messageArea, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = GridBagConstraints.PAGE_END;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JButton confirm = new JButton("Confirm");
@@ -81,7 +92,7 @@ public class EditActivityPanel extends JPanel {
 		this.add(confirm, gbc);
 
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = GridBagConstraints.PAGE_END;;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JButton cancel = new JButton("Cancel");
@@ -90,7 +101,7 @@ public class EditActivityPanel extends JPanel {
 		this.add(cancel, gbc);
 
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JLabel e = new JLabel("Employees");
@@ -116,27 +127,27 @@ public class EditActivityPanel extends JPanel {
 		}
 
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		this.add(employees, gbc);
 
 		gbc.gridx = 2;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		JButton addEmployee = new JButton("+");
 		addEmployee.addActionListener(bL);
 		this.add(addEmployee, gbc);
 		gbc.gridx = 0;
-		gbc.gridy = 5;
+		gbc.gridy = 6;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		this.add(employeesAddedBox, gbc);
 
 		// Label for added employees
 		gbc.gridx = 2;
-		gbc.gridy = 5;
+		gbc.gridy = 6;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		removeEmp = new JButton("-");
@@ -159,7 +170,7 @@ public class EditActivityPanel extends JPanel {
 		}
 		employees.setSelectedItem(0);
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		this.add(employees, gbc);
@@ -174,7 +185,7 @@ public class EditActivityPanel extends JPanel {
 			}
 
 			gbc.gridx = 0;
-			gbc.gridy = 5;
+			gbc.gridy = 6;
 			gbc.gridwidth = 2;
 			gbc.gridheight = 1;
 			this.add(employeesAddedBox, gbc);
@@ -182,7 +193,7 @@ public class EditActivityPanel extends JPanel {
 			// Label for added employees
 			if (firstRun) {
 				gbc.gridx = 2;
-				gbc.gridy = 5;
+				gbc.gridy = 6;
 				gbc.gridwidth = 1;
 				gbc.gridheight = 1;
 				removeEmp = new JButton("-");
@@ -227,5 +238,9 @@ public class EditActivityPanel extends JPanel {
 
 	public Activity getActivity() {
 		return this.a;
+	}
+	
+	public String getMessage() {
+		return this.messageArea.getText();
 	}
 }

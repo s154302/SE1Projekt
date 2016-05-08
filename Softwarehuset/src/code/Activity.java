@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Activity implements Comparable<Activity> {
 
-	private String name;
+	private String name, message;
 	private int expectedWorkload;
 	private TimeManager timeManager;
 	private Employee projectManager;
@@ -15,6 +15,7 @@ public class Activity implements Comparable<Activity> {
 
 	public Activity(String name, int expectedWorkload, Employee projectManager) throws OperationNotAllowedException {
 
+		message = "";
 		if (name.equals("")) {
 			throw new OperationNotAllowedException("You must enter a name.");
 		} else {
@@ -78,9 +79,18 @@ public class Activity implements Comparable<Activity> {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void setMessage(String string){
+		this.message = string;
+	}
 
 	public void setExpectedWorkload(int expectedWorkload) {
 		this.expectedWorkload = expectedWorkload;
+	}
+
+	public String getMessageText() {
+		// TODO Auto-generated method stub
+		return message;
 	}
 
 }
