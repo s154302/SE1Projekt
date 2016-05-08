@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import code.Activity;
 import code.Employee;
@@ -201,7 +202,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		case "Add employee":
 			String addName = JOptionPane.showInputDialog(frame, "Enter name of new employee");
-			if (addName != null && addName != " ") {
+			if (addName != null) {
 				model.createEmployee(addName);
 				frame.getLoginPanel().updateEmployeeComboBox();
 				JOptionPane.showMessageDialog(frame, addName + " has been added to the employee list");
@@ -213,7 +214,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 			Employee removeEmployee = null;
 
-			if (removeName != null && removeName != " ") {
+			if (removeName != null && removeName != " " && removeName == "") {
 				removeEmployee = model.searchEmployee(removeName);
 			}
 
@@ -227,9 +228,8 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Delete Activity":
-			System.out.println(this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivity());
-			Activity a = this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivityFrame().getShowActivityPanel().getActivity();
-			System.out.println(this.frame.getProjectPanel().getActivityPanel().getTableListener().getActivityFrame());
+			JTable t = this.frame.getProjectPanel().getActivityPanel().getTable();
+			Activity a = frame.getActivityPanel().getTableListener().getActivity();
 			Project p = frame.getTableListener().getProject();
 			p.deleteActivity(a);
 			frame.getActivityPanel().updateActivityList(p);

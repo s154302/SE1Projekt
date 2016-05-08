@@ -41,7 +41,7 @@ public class ActivityPanel extends JPanel {
 			welcome = new JLabel("Welcome!");
 		}
 		this.add(welcome, gbc);
-
+		tableListener = new TableListener(model, f);
 	}
 
 	public void updateActivityList(Project project) {

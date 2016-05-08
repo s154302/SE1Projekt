@@ -43,9 +43,16 @@ public class TestEditProject {
 	//Test for removing project
 	@Test
 	public void testRemoveProject() throws OperationNotAllowedException {
+		Employee e1 = new Employee("Mathias");
 		for(int i =0; i<10; i++){
-			model.createProject(null, null, 0, 0, 0, 0, 0, 0);
+			model.createProject(null, e1, 0, 0, 0, 0, 0, 0);
 		}
+		model.projectList.get(5).createActivity("testActivity1", 5, e1);
+		model.projectList.get(5).createActivity("testActivity2", 5, e1);
+		ArrayList<Employee> eList = new ArrayList<Employee>();
+		eList.add(e1);
+		model.projectList.get(5).activityList.get(0).addEmployee(eList);
+		model.projectList.get(5).activityList.get(1).addEmployee(eList);
 		assertEquals(10, model.projectList.size());
 		
 		model.deleteProject(model.projectList().get(5));

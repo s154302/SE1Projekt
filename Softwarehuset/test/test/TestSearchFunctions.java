@@ -37,5 +37,14 @@ public class TestSearchFunctions {
 		assertNotEquals(model.searchProject(p2.getSerialNumber()),p);
 		assertEquals(model.searchProject("sjasdv"),null);
 	}
-
+	@Test
+	public void testSearchEmployee(){
+		Model model = new Model();
+		model.createEmployee("Mathias");
+		model.createEmployee("Simon");
+		Employee e1 = model.employeeList.get(0);
+		assertEquals(model.searchEmployee("Mathias"), e1);
+		assertNotEquals(model.searchEmployee("Simon"),e1);
+		assertEquals(model.searchEmployee("Alexander"),null);
+	}
 }
