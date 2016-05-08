@@ -50,7 +50,6 @@ public class TableListener implements ListSelectionListener {
 
 	public boolean tableActivitySelected() {
 		if (this.tableActivity != null) {
-			System.out.println("must be over -1: " + tableActivity.getSelectedRow());
 			if (project.activityList.get(0).getName().equals(tableActivity.getValueAt(0, 0).toString())
 					&& tableActivity.getSelectedRow() > -1) {
 				return true;

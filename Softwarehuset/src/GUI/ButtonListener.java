@@ -100,11 +100,12 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		case "Edit Activity":
 			eAFOpen = true;
-			if (model.getCurrentEmployee().equals(frame.getProject().getProjectManager())) {
-				frame.getActivityFrame().editActivity();
-			} else {
+			if (model.getCurrentEmployee() == null
+					|| !(model.getCurrentEmployee().equals(frame.getProject().getProjectManager()))) {
 				JOptionPane.showMessageDialog(frame.getActivityFrame(),
 						"You must be the project manager in order to edit the activity.");
+			} else {
+				frame.getActivityFrame().editActivity();
 			}
 			break;
 
@@ -206,11 +207,10 @@ public class ButtonListener implements ActionListener, ItemListener {
 				}
 			}
 
-
 			break;
 
 		case "-":
-			if(cAFOpen){
+			if (cAFOpen) {
 				employee = this.cAF.getCreateActivityPanel().employeesAddedBox.getSelectedItem().toString();
 				if (employee != "Added Employees") {
 					e1 = model.searchEmployee(employee);
@@ -225,8 +225,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 				} catch (Exception e1) {
 					System.out.println("buttonlistener Error: -");
 				}
-			}
-			else{
+			} else {
 				EditActivityPanel editFrame = frame.getActivityFrame().getEditActivityPanel();
 				employee = editFrame.employees.getSelectedItem().toString();
 				if (employee != "Added Employees") {
@@ -242,7 +241,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 				} catch (Exception e1) {
 					System.out.println("buttonlistener Error: -");
 				}
-				
+
 			}
 			break;
 

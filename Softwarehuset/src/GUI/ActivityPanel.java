@@ -71,6 +71,7 @@ public class ActivityPanel extends JPanel {
 		tableListener.setActivityTable(table);
 
 		table.getSelectionModel().addListSelectionListener(tableListener);
+		table.setFocusable(false);
 		table.setRowSelectionAllowed(true);
 		tableContainer = new JScrollPane(table);
 
