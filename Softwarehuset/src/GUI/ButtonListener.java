@@ -122,6 +122,8 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Absence":
+			System.out.println("absence");
+			AbsenceFrame aF = new AbsenceFrame(model,this);
 			break;
 
 		case "Create Activity":
