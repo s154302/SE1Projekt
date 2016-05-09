@@ -94,8 +94,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cPF.dispose();
 				ePFOpen = false;
 			} else if (eAFOpen) {
-				frame.getActivityFrame().setVisible(false);
-				frame.getActivityFrame().dispose();
+				frame.getActivityFrame().showActivity();
 				eAFOpen = false;
 			}
 			break;
@@ -134,6 +133,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 			String time = frame.getActivityFrame().getShowActivityPanel().getAddedTime();
 			double dTime = Double.parseDouble(time);
 			frame.getActivity().getTimeManager().addTime(model.getCurrentEmployee(), dTime);
+			frame.getActivityFrame().getShowActivityPanel().getAddTime().setText("");
 			break;
 
 		case "Absence":
@@ -326,7 +326,16 @@ public class ButtonListener implements ActionListener, ItemListener {
 			abF.saveTime();
 
 			break;
+			
+		case "Employees":
+			frame.getActivityFrame().EmployeePanel();
+			break;
+			
+		case "Back":
+			frame.getActivityFrame().showActivity();
+			break;
 		}
+		
 	}
 
 	@Override
@@ -447,8 +456,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 			eAP.getActivity().setMessage(eAP.getMessage());
 			frame.getActivityPanel().updateActivityList(frame.getProject());
 			frame.update();
-			frame.getActivityFrame().setVisible(false);
-			frame.getActivityFrame().dispose();
+			frame.getActivityFrame().showActivity();
 		}
 	}
 }

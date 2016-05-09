@@ -1,12 +1,23 @@
 package code;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class TimeManager {
-	private HashMap<Employee, Double> employeeTimeList = new HashMap<Employee, Double>();;
+	private HashMap<Employee, Double> employeeTimeList = new HashMap<Employee, Double>();
+	private Activity a;
+	private NonProjectActivity nA;
+	private List<Employee> employees;
 
-	public TimeManager() {
+	public TimeManager(Activity a) {
+		this.a = a;
+		employees = new ArrayList<Employee>();
+	}
+	
+	public TimeManager(NonProjectActivity nA) {
+		this.nA = nA;
+		employees = new ArrayList<Employee>();
 	}
 
 	// Adds the specified work to an employees completed workload.
@@ -16,6 +27,12 @@ public class TimeManager {
 			this.employeeTimeList.put(employee, time + hours);
 		} else if (employee != null) {
 			this.employeeTimeList.put(employee, 0.0);
+			employees.add(employee);
+			if(a != null) {
+				a.addEmployee(employees);
+			} else if(nA != null) {
+				nA.addEmployee(employees);
+			}
 			addTime(employee, hours);
 		}
 	}

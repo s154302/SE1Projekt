@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,18 +20,23 @@ public class CreateProjectPanel extends JPanel {
 	public JTextField name;
 	private ButtonListener bL;
 	private GridBagConstraints gbc;
+	private JButton delete;
 	
 //	public CreateProjectPanel(Model model, ButtonListener bL) {
 //		this.model = model;
 //	}
-
+ 
 	public CreateProjectPanel(Model model,ButtonListener bL) {
 		this.model = model;
 		this.bL = bL;
 		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -168,19 +174,29 @@ public class CreateProjectPanel extends JPanel {
 
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JButton confirm = new JButton("Confirm");
 		confirm.addActionListener(bL);
 		this.add(confirm, gbc);
 
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 		gbc.gridy = 4;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(bL);
 		this.add(cancel, gbc);
+		
+		gbc.gridx = 4;
+		gbc.gridy = 4;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		delete = new JButton("Delete project");
+		delete.addActionListener(bL);
+		delete.setEnabled(false);
+		this.add(delete, gbc);
+		
 
 		// gbc.gridx = 0;
 		// gbc.gridy = 1;
@@ -190,15 +206,10 @@ public class CreateProjectPanel extends JPanel {
 	}
 	
 	public void editProject(Project p) {
+		delete.setEnabled(true);
 		this.name.setText(p.getName());
 		
-		gbc.gridx = 2;
-		gbc.gridy = 4;
-		gbc.gridwidth = 2;
-		gbc.gridheight = 1;
-		JButton delete = new JButton("Delete project");
-		delete.addActionListener(bL);
-		this.add(delete, gbc);
+		
 		
 		for (int i = 0; i < model.employeeList.size(); i++) {
 			if (model.employeeList.get(i).equals(p.getProjectManager())) {

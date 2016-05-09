@@ -1,15 +1,15 @@
 package GUI;
 
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -40,6 +40,13 @@ public class EditActivityPanel extends JPanel {
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+	//	gbc.ipady = 20;
+		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 2;
@@ -75,17 +82,26 @@ public class EditActivityPanel extends JPanel {
 		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JLabel message = new JLabel("Description:");
+		this.add(message,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
 		gbc.gridwidth = 4;
 		gbc.gridheight = 2;
+		gbc.ipady = 50;
 		String messageText = a.getMessageText();
 		this.messageArea = new JTextArea(messageText);
 		messageArea.setLineWrap(true);
-		this.add(messageArea, gbc);
+		this.add(new JScrollPane(messageArea), gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = GridBagConstraints.PAGE_END;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
+		gbc.ipady = 0;
 		JButton confirm = new JButton("Confirm");
 		confirm.addActionListener(bL);
 
@@ -93,7 +109,7 @@ public class EditActivityPanel extends JPanel {
 
 		gbc.gridx = 2;
 		gbc.gridy = GridBagConstraints.PAGE_END;;
-		gbc.gridwidth = 2;
+		gbc.gridwidth =  GridBagConstraints.REMAINDER;
 		gbc.gridheight = 1;
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(bL);

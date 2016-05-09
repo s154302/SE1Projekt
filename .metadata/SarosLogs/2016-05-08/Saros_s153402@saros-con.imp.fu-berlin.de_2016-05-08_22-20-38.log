@@ -23,3 +23,298 @@ DEBUG 2016-05-08 22:20:38,529 (XMPPConnectionService.java:398) s153402@saros-con
 DEBUG 2016-05-08 22:20:38,530 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
 DEBUG 2016-05-08 22:20:38,534 (SkypeManager.java:289) Refreshing Skype username cache...
 WARN  2016-05-08 22:20:48,031 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/69.172.201.153:3478 at local address /192.168.0.112:0
+DEBUG 2016-05-08 22:44:57,403 (DiscoveryManager.java:382) Inserted DiscoveryInfo into Cache for: s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:45:13,814 (VersionManager.java:90) received version request from s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:45:13,816 (VersionManager.java:160) send version response to s153762@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-05-08 22:45:13,879 (InvitationHandler.java:115) received invitation from s153762@saros-con.imp.fu-berlin.de/Saros [invitation id: -7163287147336193096, session id: 1976064954, version: 14.10.31]
+DEBUG 2016-05-08 22:45:15,249 (IncomingSessionNegotiation.java:103) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-05-08 22:45:15,250 (IncomingSessionNegotiation.java:188) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-05-08 22:45:15,251 (IncomingSessionNegotiation.java:219) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-05-08 22:45:15,251 (IncomingSessionNegotiation.java:232) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-05-08 22:45:15,465 (IncomingSessionNegotiation.java:252) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-05-08 22:45:15,465 (IncomingSessionNegotiation.java:265) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-05-08 22:45:15,465 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_1976064954 pw -316664715
+INFO  2016-05-08 22:45:15,501 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-05-08 22:45:15,510 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-05-08 22:45:15,514 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-05-08 22:45:15,515 (DataTransferManager.java:409) establishing connection to s153762@saros-con.imp.fu-berlin.de/Saros from s153402@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-05-08 22:45:15,515 (ByteStreamTransport.java:45) establishing bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:45:15,516 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to s153762@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.0.112, fe80:0:0:0:70c2:92e4:a811:a37b%eth1]]...
+DEBUG 2016-05-08 22:45:16,026 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@217d5d4b]
+DEBUG 2016-05-08 22:45:16,027 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from s153762@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.0.112, fe80:0:0:0:70c2:92e4:a811:a37b%eth1]]
+ERROR 2016-05-08 22:45:28,056 (ByteStreamTransport.java:105) could not establish bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-05-08 22:45:29,156 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to s153762@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-05-08 22:45:29,161 (Socks5Transport.java:567) [SOCKS5Transport] waiting for s153762@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+WARN  2016-05-08 22:45:59,162 (DataTransferManager.java:415) failed to connect to s153762@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-05-08 22:45:59,167 (DataTransferManager.java:409) establishing connection to s153762@saros-con.imp.fu-berlin.de/Saros from s153402@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-05-08 22:45:59,167 (ByteStreamTransport.java:45) establishing bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:45:59,285 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] s153762@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:s153762@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-05-08 22:45:59,286 (IncomingSessionNegotiation.java:304) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-05-08 22:45:59,286 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] s153762@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+INFO  2016-05-08 22:45:59,289 (StatisticManager.java:163) Session count: 1
+INFO  2016-05-08 22:45:59,290 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-05-08 22:45:59,290 (MultiUserChatService.java:100) Joining MUC...
+DEBUG 2016-05-08 22:45:59,291 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-05-08 22:45:59,292 (XStreamExtensionProvider.java:149) Registering new converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-05-08 22:45:59,292 (XStreamExtensionProvider.java:194) Registering new converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-05-08 22:45:59,301 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+DEBUG 2016-05-08 22:45:59,303 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-05-08 22:45:59,304 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+WARN  2016-05-08 22:45:59,330 (SubscriptionHandler.java:148) received error presence package from saros_1976064954@conference.saros-con.imp.fu-berlin.de/s153402@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-05-08 22:45:59,353 (ColorUtils.java:21) set foregroundcolor RGB {141, 206, 231}
+DEBUG 2016-05-08 22:45:59,358 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_1976064954 Password -316664715
+DEBUG 2016-05-08 22:45:59,359 (IncomingSessionNegotiation.java:318) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+DEBUG 2016-05-08 22:45:59,360 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-05-08 22:45:59,361 (MultiUserChatStateManager.java:101) Incoming Message from saros_1976064954@conference.saros-con.imp.fu-berlin.de/s153762@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-05-08 22:45:59,361 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-05-08 22:45:59,386 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-05-08 22:45:59,387 (MultiUserChatStateManager.java:101) Incoming Message from saros_1976064954@conference.saros-con.imp.fu-berlin.de/s153402@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-05-08 22:45:59,387 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-05-08 22:45:59,548 (IncomingSessionNegotiation.java:331) ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-05-08 22:45:59,732 (UserInformationHandler.java:293) received user list from s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:45:59,732 (UserInformationHandler.java:317) updating permissions for user: s153762@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-05-08 22:45:59,732 (UserInformationHandler.java:317) updating permissions for user: s153402@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-05-08 22:45:59,733 (UserInformationHandler.java:347) sending user list received confirmation to s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:00,127 (CancelableProcess.java:353) process ISN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-05-08 22:46:00,299 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:00,383 (ChangeColorManager.java:238) received color id change fo user : s153762@saros-con.imp.fu-berlin.de/Saros [0]
+DEBUG 2016-05-08 22:46:00,410 (ChangeColorManager.java:634) updating color id set: [s153762@saros-con.imp.fu-berlin.de, s153402@saros-con.imp.fu-berlin.de]
+DEBUG 2016-05-08 22:46:00,469 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:00,505 (ChangeColorManager.java:238) received color id change fo user : s153402@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-05-08 22:46:00,506 (ChangeColorManager.java:634) updating color id set: [s153762@saros-con.imp.fu-berlin.de, s153402@saros-con.imp.fu-berlin.de]
+DEBUG 2016-05-08 22:46:00,602 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@217d5d4b]
+DEBUG 2016-05-08 22:46:00,603 (Socks5Transport.java:368) [SOCKS5Transport] receiving request from s153762@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.0.112, fe80:0:0:0:70c2:92e4:a811:a37b%eth1]]
+DEBUG 2016-05-08 22:46:00,604 (Socks5Transport.java:624) [SOCKS5Transport] Start to establish new response connection
+WARN  2016-05-08 22:46:12,631 (Socks5Transport.java:411) [SOCKS5Transport] Couldn't accept request but still trying to establish a response connection: Could not establish socket with any provided host
+DEBUG 2016-05-08 22:46:14,059 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-05-08 22:46:14,059 (MultiUserChatStateManager.java:101) Incoming Message from saros_1976064954@conference.saros-con.imp.fu-berlin.de/s153402@saros-con.imp.fu-berlin.de/Saros with state: composing
+DEBUG 2016-05-08 22:46:14,060 (MultiUserChat.java:79) stateChanged fired with state: composing
+ERROR 2016-05-08 22:46:14,166 (Socks5Transport.java:440) An error occurred while establishing a response connection 
+item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishResponseSession(Socks5Transport.java:631)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:108)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:1)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-05-08 22:46:14,171 (ByteStreamTransport.java:105) could not establish bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros
+java.io.IOException: [SOCKS5Transport] Neither connection could be established. 
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptNewRequest(Socks5Transport.java:446)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:474)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-05-08 22:46:14,625 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-05-08 22:46:14,626 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-05-08 22:46:14,626 (MultiUserChatStateManager.java:101) Incoming Message from saros_1976064954@conference.saros-con.imp.fu-berlin.de/s153402@saros-con.imp.fu-berlin.de/Saros with state: inactive
+DEBUG 2016-05-08 22:46:14,626 (MultiUserChat.java:79) stateChanged fired with state: inactive
+DEBUG 2016-05-08 22:46:23,534 (EditorManager.java:1639) user s153762@saros-con.imp.fu-berlin.de/Saros has no editor open
+DEBUG 2016-05-08 22:46:42,919 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to s153762@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@2c81e56f]
+DEBUG 2016-05-08 22:46:42,920 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=default] s153762@saros-con.imp.fu-berlin.de/Saros, inc=true, pool id=default:in:s153762@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-05-08 22:46:42,920 (BinaryChannelConnection.java:103) [mode=IBB, id=default] s153762@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-05-08 22:46:43,116 (SXEIncomingSynchronizationProcess.java:65) SXE(3021) invitation from s153762@saros-con.imp.fu-berlin.de/Saros received
+DEBUG 2016-05-08 22:46:43,116 (SXEController.java:537) Whiteboard state changed from INIT to CONNECTING
+DEBUG 2016-05-08 22:46:43,117 (SXEIncomingSynchronizationProcess.java:87) SXE(3021) queue incoming records from now
+DEBUG 2016-05-08 22:46:43,117 (SarosSXETransmitter.java:151) SXE send accept-state to s153762@saros-con.imp.fu-berlin.de/Saros waiting for [state]
+DEBUG 2016-05-08 22:46:43,580 (SXEIncomingSynchronizationProcess.java:99) SXE(3021) state received
+DEBUG 2016-05-08 22:46:43,581 (SXEController.java:137) SXE (3021): receive state and start session at invitee side
+DEBUG 2016-05-08 22:46:43,582 (DocumentRecord.java:93) Added Node: attr(146271916097219996) name=svg
+INFO  2016-05-08 22:46:44,462 (InvitationHandler.java:179) received project negotiation from s153762@saros-con.imp.fu-berlin.de/Saros with session id: 1976064954 and negotiation id: 698459556068184935
+INFO  2016-05-08 22:46:44,507 (ProjectNegotiationObservable.java:51) This is ProjectNegotiation number 1 in this session. There are 0 process(es) in this session
+DEBUG 2016-05-08 22:46:47,955 (EditorAPI.java:259) editor part needs to be restored: Drive.java
+DEBUG 2016-05-08 22:46:48,067 (EditorAPI.java:259) editor part needs to be restored: OperationNotAllowedException.java
+DEBUG 2016-05-08 22:46:48,123 (EditorAPI.java:259) editor part needs to be restored: Activity.java
+DEBUG 2016-05-08 22:46:48,186 (EditorAPI.java:259) editor part needs to be restored: TestTime.java
+DEBUG 2016-05-08 22:46:48,239 (EditorAPI.java:259) editor part needs to be restored: Frame.java
+DEBUG 2016-05-08 22:46:48,774 (IncomingProjectNegotiation.java:388) compute required files for project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@36ca5991 - P/Softwarehuset2 with ID: 1499184498
+DEBUG 2016-05-08 22:46:48,838 (IncomingProjectNegotiation.java:612) IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : computing file list difference
+DEBUG 2016-05-08 22:46:49,703 (IncomingProjectNegotiation.java:583) IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : 41 file(s) must be synchronized
+DEBUG 2016-05-08 22:46:50,020 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:50,025 (EditorManager.java:1697) locking all editors
+DEBUG 2016-05-08 22:46:50,027 (ActivitySequencer.java:496) send (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:50,420 (SarosProjectMapper.java:179) added project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@36ca5991 - P/Softwarehuset2 with ID 1499184498 [completely shared:false]
+DEBUG 2016-05-08 22:46:50,665 (IncomingProjectNegotiation.java:865) waiting for incoming archive stream request
+DEBUG 2016-05-08 22:46:51,048 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:51,049 (EditorManager.java:1697) unlocking all editors
+DEBUG 2016-05-08 22:46:51,049 (ActivitySequencer.java:496) send (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:51,265 (IncomingProjectNegotiation.java:882) IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : receiving archive
+INFO  2016-05-08 22:46:52,370 (SarosSession.java:482) user s153762@saros-con.imp.fu-berlin.de/Saros now has Projects and can process IResourceActivities
+DEBUG 2016-05-08 22:46:52,371 (ActivitySequencer.java:496) send (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:52,530 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:52,693 (ActivitySequencer.java:546) rcvd (011) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:53,139 (IncomingProjectNegotiation.java:906) IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : stored archive in file C:\Users\ALEXAN~1\AppData\Local\Temp\saros_archive_14627404112662704031825847689958.tmp, size: 32.7 kB
+DEBUG 2016-05-08 22:46:53,140 (IncomingProjectNegotiation.java:672) IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] : unpacking archive file...
+DEBUG 2016-05-08 22:46:53,449 (ActivitySequencer.java:546) rcvd (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:53,554 (IncomingProjectNegotiation.java:691) unpacked archive in 0 s
+DEBUG 2016-05-08 22:46:53,555 (SarosProjectMapper.java:165) upgraded partially shared project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@36ca5991 - P/Softwarehuset2 with ID 1499184498 to a completely shared project
+DEBUG 2016-05-08 22:46:53,556 (EditorManager.java:392) OperationNotAllowedException.java
+DEBUG 2016-05-08 22:46:53,557 (EditorManager.java:392) TestTime.java
+DEBUG 2016-05-08 22:46:53,557 (EditorManager.java:392) Drive.java
+DEBUG 2016-05-08 22:46:53,557 (EditorManager.java:392) Frame.java
+DEBUG 2016-05-08 22:46:53,558 (EditorManager.java:392) Activity.java
+DEBUG 2016-05-08 22:46:53,558 (EditorManager.java:392) ActivityPanel.java
+DEBUG 2016-05-08 22:46:53,558 (EditorManager.java:392) ButtonListener.java
+DEBUG 2016-05-08 22:46:53,558 (EditorManager.java:392) TableListener.java
+DEBUG 2016-05-08 22:46:53,568 (SharedProjectDecorator.java:99) updating project decoration for all shared projects
+DEBUG 2016-05-08 22:46:53,570 (ActivitySequencer.java:496) send (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:53,570 (ActivitySequencer.java:546) rcvd (008) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:46:53,578 (CancelableProcess.java:353) process IPN [remote side: s153762@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-05-08 22:46:53,788 (ProjectDeltaVisitor.java:298) Resource .project changed
+DEBUG 2016-05-08 22:46:53,841 (ActivitySequencer.java:496) send (001) s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:47:03,041 (SarosSessionManager.java:330) terminating all running negotiation processes
+WARN  2016-05-08 22:47:03,042 (SWTUtils.java:144) could not execute runnable de.fu_berlin.inf.dpp.ui.actions.RemoveUserAction$2$2@54179438, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTAsync(SWTUtils.java:145)
+	at de.fu_berlin.inf.dpp.ui.actions.RemoveUserAction$2.sessionEnding(RemoveUserAction.java:64)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.sessionEnding(SarosSessionManager.java:701)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:335)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:303)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-05-08 22:47:03,048 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-05-08 22:47:03,048 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-05-08 22:47:03,049 (FeedbackManager.java:104) Session lasted 1 min 3 s
+DEBUG 2016-05-08 22:47:03,050 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-05-08 22:47:03,051 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-05-08 22:47:03,065 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.4
+  data_transfer.IBB.number_of_events=29
+  data_transfer.IBB.total_size_kb=6
+  data_transfer.IBB.total_time_ms=15616
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=0
+  gesture.count=0
+  java.version=1.8.0_91
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.11.1.v20150903-1804
+  random.user.id=2016-05-08_22-47-03_77853178
+  role.1.duration=1.06
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=1.06
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=1
+  session.id=1976064954
+  session.local.start=2016-05-08T20:47:03Z
+  session.shared.project.complete.count=1
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=1.06
+  session.time=1.06
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-05-08 22:47:03,066 (StatisticManager.java:243) User does not allow to submit session statistics
+WARN  2016-05-08 22:47:03,067 (SWTUtils.java:193) could not execute runnable de.fu_berlin.inf.dpp.editor.EditorManager$3$1@1d989c70, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTSync(SWTUtils.java:194)
+	at de.fu_berlin.inf.dpp.editor.EditorManager$3.execute(EditorManager.java:262)
+	at de.fu_berlin.inf.dpp.editor.EditorManager$3.unblock(EditorManager.java:253)
+	at de.fu_berlin.inf.dpp.synchronize.StopManager.lockSession(StopManager.java:408)
+	at de.fu_berlin.inf.dpp.synchronize.StopManager.stop(StopManager.java:579)
+	at sun.reflect.GeneratedMethodAccessor60.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.picocontainer.lifecycle.StartableLifecycleStrategy.doLifecycleMethod(StartableLifecycleStrategy.java:101)
+	at org.picocontainer.lifecycle.StartableLifecycleStrategy.stopComponent(StartableLifecycleStrategy.java:113)
+	at org.picocontainer.lifecycle.StartableLifecycleStrategy.stop(StartableLifecycleStrategy.java:126)
+	at org.picocontainer.injectors.AbstractInjectionFactory$LifecycleAdapter.stop(AbstractInjectionFactory.java:88)
+	at org.picocontainer.behaviors.AbstractBehavior.stop(AbstractBehavior.java:179)
+	at org.picocontainer.behaviors.Stored$RealComponentLifecycle.stop(Stored.java:141)
+	at org.picocontainer.behaviors.Stored.stop(Stored.java:118)
+	at org.picocontainer.DefaultPicoContainer.stopAdapters(DefaultPicoContainer.java:1036)
+	at org.picocontainer.DefaultPicoContainer.stop(DefaultPicoContainer.java:791)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:639)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:303)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-05-08 22:47:03,560 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] s153762@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-05-08 22:47:03,561 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:s153762@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:47:03,561 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-05-08 22:47:03,562 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+WARN  2016-05-08 22:47:03,562 (SWTUtils.java:193) could not execute runnable de.fu_berlin.inf.dpp.editor.EditorManager$5$2@7940a6ce, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTSync(SWTUtils.java:194)
+	at de.fu_berlin.inf.dpp.editor.EditorManager$5.sessionEnded(EditorManager.java:358)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.sessionEnded(SarosSessionManager.java:711)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:347)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:303)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-05-08 22:47:03,573 (SWTUtils.java:144) could not execute runnable de.fu_berlin.inf.dpp.ui.views.SarosView$11@13ae2043, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTAsync(SWTUtils.java:145)
+	at de.fu_berlin.inf.dpp.ui.views.SarosView.clearNotifications(SarosView.java:695)
+	at de.fu_berlin.inf.dpp.ui.eventhandler.HostLeftAloneInSessionHandler$1.sessionEnded(HostLeftAloneInSessionHandler.java:46)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.sessionEnded(SarosSessionManager.java:711)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:347)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:303)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-05-08 22:47:03,582 (DocumentRecord.java:93) Added Node: attr(146274042358261399) name=svg
+INFO  2016-05-08 22:47:03,582 (SarosSessionManager.java:351) session stopped
+DEBUG 2016-05-08 22:47:03,583 (XMPPConnectionService.java:398) s153402@saros-con.imp.fu-berlin.de/Saros new connection state == DISCONNECTING
+DEBUG 2016-05-08 22:47:03,670 (BinaryChannelConnection.java:112) [mode=IBB, id=default] s153762@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-05-08 22:47:03,671 (ConnectionPool.java:52) closed connection [id=default:in:s153762@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=default] s153762@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-05-08 22:47:03,823 (XMPPConnectionService.java:398)  new connection state == NOT_CONNECTED
+DEBUG 2016-05-08 22:47:03,824 (UPnPServiceImpl.java:295) deleting existing port mappings

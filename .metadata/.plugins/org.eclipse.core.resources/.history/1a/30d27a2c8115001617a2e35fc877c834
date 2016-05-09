@@ -1,0 +1,255 @@
+package GUI;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import code.Activity;
+import code.Employee;
+import code.Model;
+
+public class EditActivityPanel extends JPanel {
+
+	private Model model;
+	private ButtonListener bL;
+	private JTextField name, expWorkload;
+	public JComboBox<String> employees, employeesAddedBox;
+	private ArrayList<Employee> addedEmployees, tempEmployees;
+	private boolean firstRun;
+	private Activity a;
+	private JButton removeEmp;
+	private GridBagConstraints gbc;
+	private JTextArea messageArea;
+
+	public EditActivityPanel(Model model, ButtonListener bL, Activity a) {
+		// TODO Auto-generated constructor stub
+		this.a = a;
+		this.model = model;
+		this.bL = bL;
+		// this.setBackground(Color.GREEN);
+		this.setLayout(new GridBagLayout());
+		gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+	//	gbc.ipady = 20;
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JLabel pName = new JLabel("Activity Name:");
+		this.add(pName, gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+
+		this.name = new JTextField(a.getName());
+		this.add(name, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JLabel expWorkloadLabel = new JLabel("Expected Workload:");
+		this.add(expWorkloadLabel, gbc);
+
+		this.add(expWorkloadLabel, gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+
+		this.expWorkload = new JTextField("" + a.getExpectedWorkload());
+
+		this.add(expWorkload, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 4;
+		gbc.gridheight = 2;
+		gbc.ipady = 40;
+		String messageText = a.getMessageText();
+		this.messageArea = new JTextArea(messageText);
+		messageArea.setLineWrap(true);
+		this.add(new JScrollPane(messageArea), gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = GridBagConstraints.PAGE_END;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		gbc.ipady = 0;
+		JButton confirm = new JButton("Confirm");
+		confirm.addActionListener(bL);
+
+		this.add(confirm, gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = GridBagConstraints.PAGE_END;;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(bL);
+
+		this.add(cancel, gbc);
+
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		JLabel e = new JLabel("Employees");
+		this.add(e, gbc);
+
+		tempEmployees = new ArrayList<Employee>();
+		addedEmployees = new ArrayList<Employee>();
+		this.employees = new JComboBox<String>();
+		employeesAddedBox = new JComboBox<String>();
+
+		for (int i = 0; i < model.employeeList.size(); i++) {
+			tempEmployees.add(model.employeeList.get(i));
+			employees.addItem(model.employeeList.get(i).getName());
+		}
+
+		// filling the addedEmployeeBox
+		employeesAddedBox.addItem("Added employees");
+		for (int i = 0; i < a.employeeList.size(); i++) {
+			employeesAddedBox.addItem(a.employeeList.get(i).getName());
+			addedEmployees.add(a.employeeList.get(i));
+			tempEmployees.remove(a.employeeList.get(i));
+			employees.removeItem(model.employeeList.get(i).getName());
+		}
+
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		this.add(employees, gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = 5;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		JButton addEmployee = new JButton("+");
+		addEmployee.addActionListener(bL);
+		this.add(addEmployee, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 6;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		this.add(employeesAddedBox, gbc);
+
+		// Label for added employees
+		gbc.gridx = 2;
+		gbc.gridy = 6;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		removeEmp = new JButton("-");
+		removeEmp.addActionListener(bL);
+		this.add(removeEmp, gbc);
+
+	}
+
+	public void setEmployeesToActivity() {
+		if (!firstRun) {
+			this.remove(employeesAddedBox);
+		}
+		this.remove(employees);
+
+		// updating the employeeList
+		employees.removeAllItems();
+		employees.addItem("");
+		for (int i = 0; i < tempEmployees.size(); i++) {
+			employees.addItem(tempEmployees.get(i).getName());
+		}
+		employees.setSelectedItem(0);
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.gridwidth = 2;
+		gbc.gridheight = 1;
+		this.add(employees, gbc);
+
+		// Creating added EmployeeList
+		if (addedEmployees.size() > 0) {
+			employeesAddedBox.removeAllItems();
+
+			employeesAddedBox.addItem("Added Employees");
+			for (int i = 0; i < addedEmployees.size(); i++) {
+				employeesAddedBox.addItem(addedEmployees.get(i).getName());
+			}
+
+			gbc.gridx = 0;
+			gbc.gridy = 6;
+			gbc.gridwidth = 2;
+			gbc.gridheight = 1;
+			this.add(employeesAddedBox, gbc);
+
+			// Label for added employees
+			if (firstRun) {
+				gbc.gridx = 2;
+				gbc.gridy = 6;
+				gbc.gridwidth = 1;
+				gbc.gridheight = 1;
+				removeEmp = new JButton("-");
+				removeEmp.addActionListener(bL);
+				this.add(removeEmp, gbc);
+				firstRun = false;
+			}
+		} else {
+			firstRun = true;
+			this.remove(removeEmp);
+			this.remove(employeesAddedBox);
+		}
+	}
+
+	public void addEmployee(Employee e1) {
+		addedEmployees.add(e1);
+		tempEmployees.remove(e1);
+		revalidate();
+	}
+
+	public ArrayList<Employee> getAddedEmployee() {
+		return addedEmployees;
+	}
+
+	public void removeAddEmployee(Employee e1) {
+		if (addedEmployees.size() > 0) {
+			tempEmployees.add(e1);
+			addedEmployees.remove(e1);
+			revalidate();
+		} else {
+			System.out.println("Create ActivityPanel");
+		}
+	}
+
+	public String getName() {
+		return this.name.getText();
+	}
+
+	public int getExpectedWorkload() {
+		return Integer.parseInt(this.expWorkload.getText());
+	}
+
+	public Activity getActivity() {
+		return this.a;
+	}
+	
+	public String getMessage() {
+		return this.messageArea.getText();
+	}
+}

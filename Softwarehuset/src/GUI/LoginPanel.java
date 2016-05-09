@@ -3,10 +3,11 @@ package GUI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import code.Employee;
@@ -26,19 +27,29 @@ public class LoginPanel extends JPanel{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
+		
+		DefaultListCellRenderer renderer = new DefaultListCellRenderer();
+		renderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
+		
+		employees.setRenderer(renderer);
 
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = GridBagConstraints.LINE_END;
 		gbc.gridheight = 1;
-		JLabel pName = new JLabel("Employee");
-		this.add(pName, gbc);
+//		JLabel pName = new JLabel("Employee");
+//		this.add(pName, gbc);
 
 		updateEmployeeComboBox();
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		gbc.gridwidth = 2;
+	//	gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		this.add(employees, gbc);
 		

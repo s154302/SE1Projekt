@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -36,7 +37,11 @@ public class CreateActivityPanel extends JPanel{
 		this.f = f;
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
+		gbc.insets = new Insets(5, 5, 5, 5);
+		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
 		
 		this.addedEmployees = new ArrayList<Employee>();
 		this.tempEmployees = new ArrayList<Employee>();
@@ -53,7 +58,7 @@ public class CreateActivityPanel extends JPanel{
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 3;
 		gbc.gridheight = 1;
 		this.name = new JTextField();
 		this.add(name, gbc);
@@ -66,7 +71,7 @@ public class CreateActivityPanel extends JPanel{
 		JLabel eName = new JLabel("Expected Work Time:");
 		this.add(eName, gbc);
 
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
@@ -134,7 +139,7 @@ public class CreateActivityPanel extends JPanel{
 
 		gbc.gridx = 1;
 		gbc.gridy = 8;
-		gbc.gridwidth = 1;
+		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(bL);

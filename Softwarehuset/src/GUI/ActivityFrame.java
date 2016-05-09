@@ -13,6 +13,7 @@ public class ActivityFrame extends JFrame {
 	private ButtonListener bL;
 
 	private EditActivityPanel eAP;
+	private EmployeesPanel eP;
 	private Activity activity;
 	private ShowActivityPanel sAP;
 
@@ -21,7 +22,7 @@ public class ActivityFrame extends JFrame {
 		this.model = model;
 		this.bL = f.getButtonListener();
 		this.f = f;
-		this.setSize(400, 300);
+		this.setSize(300, 400);
 		this.setLocationRelativeTo(null);
 
 		this.activity = activity;
@@ -47,16 +48,21 @@ public class ActivityFrame extends JFrame {
 		this.add(eAP, BorderLayout.CENTER);
 		this.toFront();
 		revalidate();
-		
-		
+
 	}
 
 	public void showActivity() {
-		this.remove(eAP);
+		if (eAP != null) {
+			this.remove(eAP);
+		}
+		if (eP != null) {
+			this.remove(eP);
+		}
 		sAP = new ShowActivityPanel(model, f, activity);
 		this.add(sAP, BorderLayout.CENTER);
+		revalidate();
 	}
-	
+
 	public ShowActivityPanel getShowActivityPanel() {
 		return this.sAP;
 	}
@@ -64,5 +70,12 @@ public class ActivityFrame extends JFrame {
 	public EditActivityPanel getEditActivityPanel() {
 		return eAP;
 	}
-	
+
+	public void EmployeePanel() {
+		this.remove(sAP);
+		eP = new EmployeesPanel(activity, bL);
+		this.add(eP, BorderLayout.CENTER);
+		revalidate();
+	}
+
 }
