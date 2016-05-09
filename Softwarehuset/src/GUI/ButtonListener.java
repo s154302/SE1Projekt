@@ -255,20 +255,26 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Add employee":
-			String addName = JOptionPane.showInputDialog(frame, "Enter name of new employee");
+			String addName = JOptionPane.showInputDialog(frame, "Enter the initials of new employee");
+			
 			if (addName != null) {
-				model.createEmployee(addName);
-				frame.getLoginPanel().updateEmployeeComboBox();
-				JOptionPane.showMessageDialog(frame, addName + " has been added to the employee list");
+				
+				if(addName.length() == 4){
+					model.createEmployee(addName);
+					frame.getLoginPanel().updateEmployeeComboBox();
+					JOptionPane.showMessageDialog(frame, addName + " has been added to the employee list");
+				}else {
+					JOptionPane.showMessageDialog(frame, "You have to enter 4 initials");
+				}
 			}
 			break;
 
 		case "Remove employee":
-			String removeName = JOptionPane.showInputDialog(frame, "Enter the name a employee");
+			String removeName = JOptionPane.showInputDialog(frame, "Enter the initials of a employee");
 
 			Employee removeEmployee = null;
 
-			if (removeName != null && removeName != " " && removeName == "") {
+			if (removeName != null && removeName != "    " && removeName.length() == 4) {
 				removeEmployee = model.searchEmployee(removeName);
 			}
 

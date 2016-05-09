@@ -30,7 +30,7 @@ public class TestCreateProjectRaport {
 		project.activityList.get(0).addEmployee(eList);
 		project.activityList.get(0).getTimeManager().addTime(employee, 6.0);
 		model.reportProject(project);
-		File file = new File("Report for "+model.projectList.get(0).getName());
+		File file = new File("Report for "+model.projectList.get(0).getName() + " "+ model.projectList().get(0).getSerialNumber());
 		assertTrue(file.exists());
 		file.delete();
 	}

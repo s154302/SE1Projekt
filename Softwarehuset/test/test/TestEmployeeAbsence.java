@@ -17,15 +17,15 @@ public class TestEmployeeAbsence {
 
 	@Test
 	public void test() {
-		model.nonProjectActivityList.add(new NonProjectActivity("Ferie"));
-		assertEquals(1, model.nonProjectActivityList.size());
+
+		
+		assertEquals(4, model.nonProjectActivityList.size());
 		
 		NonProjectActivity nonProjectActivity = model.nonProjectActivityList.get(0);
-		assertEquals("Ferie",nonProjectActivity.getName());
+		assertEquals("Courses",nonProjectActivity.getName());
 		
 		model.createEmployee("Alexander");
 		Employee employee = model.employeeList.get(0);
-		System.out.println(employee.getName());
 		List<Employee> elist = new ArrayList<Employee>();
 		elist.add(employee);
 		

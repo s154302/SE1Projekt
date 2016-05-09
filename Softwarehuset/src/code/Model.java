@@ -21,14 +21,11 @@ public class Model {
 		this.projectList = new ArrayList<Project>();
 		this.nonProjectActivityList = new ArrayList<NonProjectActivity>();
 		this.employeeList = new ArrayList<Employee>();
-		
 
 		this.nonProjectActivityList.add(new NonProjectActivity("Courses"));
-		this.nonProjectActivityList.add(new NonProjectActivity("Sick"));
-		this.nonProjectActivityList.add(new NonProjectActivity("Vacation"));
-		this.nonProjectActivityList.add(new NonProjectActivity("Other"));
-		
-		
+		this.nonProjectActivityList.add( new NonProjectActivity("Sick"));
+		this.nonProjectActivityList.add( new NonProjectActivity("Vacation"));
+		this.nonProjectActivityList.add( new NonProjectActivity("Other"));
 		
 	}
 
@@ -95,15 +92,6 @@ public class Model {
 		return counterString;
 	}
 
-	// Creates a new Non-project activity and adds it to its list.
-	public void createNonProjectActivity() {
-		// Create a NonProjectActivity.
-	}
-
-	// Deletes a project.
-//	public void removeProject(Project project) {
-//		this.projectList.remove(project);
-//	}
 
 	// Deletes an employee.
 	public void removeEmployee(Employee employee) {
@@ -138,7 +126,7 @@ public class Model {
 	public void reportProject(Project project) throws FileNotFoundException, UnsupportedEncodingException {
 
 		//System.out.println(project.getName());
-		PrintWriter write = new PrintWriter("Report for " + project.getName(),"UTF-8");
+		PrintWriter write = new PrintWriter("Report for " + project.getName() + " " + project.getSerialNumber().toString(),"UTF-8");
 		write.println(project.getSerialNumber()+" "+project.getName() + "- Data extracted " + LocalTime.now());
 		double totalProjectWorkload =0;
 		double completedProjectWorkload = 0;
