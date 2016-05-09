@@ -16,7 +16,7 @@ public class TestCreateActivity {
 	
 	// Tests the createActivity method while using a project manager account.
 	@Test
-	public void testCreateActivity() throws OperationNotAllowedException {
+	public void testCreateActivity() throws Exception {
 		
 		Employee e = new Employee("Alexander");
 		Employee e2 = new Employee ("Simon");

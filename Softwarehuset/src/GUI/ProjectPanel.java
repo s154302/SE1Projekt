@@ -25,14 +25,15 @@ public class ProjectPanel extends JPanel {
 	private JScrollPane tableContainer;
 	private JTable table;
 
+	//a panel for an overview of the projects
 	public ProjectPanel(Frame f, Model model, TableListener tableListener) {
 		this.f = f;
-		System.out.println("project");
 		this.model = model;
 		this.setLayout(new BorderLayout());
 		this.bL = f.getButtonListener();
 		this.tableListener = tableListener;
 
+		
 		// Making activity panel:
 		updateList();
 

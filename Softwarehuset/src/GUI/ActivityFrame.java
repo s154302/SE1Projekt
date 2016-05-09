@@ -17,6 +17,7 @@ public class ActivityFrame extends JFrame {
 	private Activity activity;
 	private ShowActivityPanel sAP;
 
+	//frame for showing the activity
 	public ActivityFrame(Model model, Frame f, Activity activity) {
 
 		this.model = model;

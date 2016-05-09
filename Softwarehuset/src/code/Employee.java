@@ -5,10 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Employee implements Comparable<Employee> {
+	
 	private String name;
-
 	public List<Activity> activityList;
 
+	//Constructor
 	public Employee(String name) {
 		this.name = name;
 		this.activityList = new ArrayList<Activity>();
@@ -39,6 +40,7 @@ public class Employee implements Comparable<Employee> {
 		return this.name.compareTo(employee.getName());
 	}
 
+	//Getters
 	public String getName() {
 		return this.name;
 	}

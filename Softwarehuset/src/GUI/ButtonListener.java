@@ -7,6 +7,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -28,6 +32,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 	private AbsenceFrame abF;
 
+	//class for when a button is pressed
 	public ButtonListener(Model model, Frame f) {
 		this.model = model;
 		this.frame = f;
@@ -74,9 +79,17 @@ public class ButtonListener implements ActionListener, ItemListener {
 			} else if (ePFOpen) {
 				confirmedClicked();
 			} else if (cAFOpen) {
+				try{
 				confirmedActivityClicked();
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
 			} else if (eAFOpen) {
+				try {
 				confirmedActivityClicked();
+				} catch(Exception e2) {
+					JOptionPane.showMessageDialog(frame.getActivityFrame().getEditActivityPanel(), "You can't remove employees with time in the project");
+				}
 			}
 			break;
 
@@ -116,9 +129,8 @@ public class ButtonListener implements ActionListener, ItemListener {
 					JOptionPane.showMessageDialog(frame, "You have to select a project");
 				} else {
 					model.reportProject(frame.getProjectPanel().getTableListener().getProject());
-					JOptionPane.showMessageDialog(this.frame,
-							"You report is created for project: " + frame.getProjectPanel().getTableListener()
-									.getProject().getName() + " "
+					JOptionPane.showMessageDialog(this.frame, "You report is created for project: "
+							+ frame.getProjectPanel().getTableListener().getProject().getName() + " "
 							+ frame.getProjectPanel().getTableListener().getProject().getSerialNumber().toString());
 				}
 			} catch (FileNotFoundException e1) {
@@ -132,8 +144,12 @@ public class ButtonListener implements ActionListener, ItemListener {
 		case "Add Time":
 			String time = frame.getActivityFrame().getShowActivityPanel().getAddedTime();
 			double dTime = Double.parseDouble(time);
+			try {
 			frame.getActivity().getTimeManager().addTime(model.getCurrentEmployee(), dTime);
 			frame.getActivityFrame().getShowActivityPanel().getAddTime().setText("");
+			} catch(OperationNotAllowedException e1) {
+				JOptionPane.showMessageDialog(frame.getActivityFrame().getShowActivityPanel(), e1.getMessage());
+			}
 			break;
 
 		case "Absence":
@@ -236,7 +252,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 				}
 			} else {
 				EditActivityPanel editFrame = frame.getActivityFrame().getEditActivityPanel();
-				employee = editFrame.employees.getSelectedItem().toString();
+				employee = editFrame.employeesAddedBox.getSelectedItem().toString();
 				if (employee != "Added Employees") {
 					e1 = model.searchEmployee(employee);
 				} else {
@@ -249,6 +265,7 @@ public class ButtonListener implements ActionListener, ItemListener {
 					employee = null;
 				} catch (Exception e1) {
 					System.out.println("buttonlistener Error: -");
+					e1.printStackTrace();
 				}
 
 			}
@@ -256,14 +273,14 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		case "Add employee":
 			String addName = JOptionPane.showInputDialog(frame, "Enter the initials of new employee");
-			
+
 			if (addName != null) {
-				
-				if(addName.length() == 4){
+
+				if (addName.length() == 4) {
 					model.createEmployee(addName);
 					frame.getLoginPanel().updateEmployeeComboBox();
 					JOptionPane.showMessageDialog(frame, addName + " has been added to the employee list");
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(frame, "You have to enter 4 initials");
 				}
 			}
@@ -320,28 +337,34 @@ public class ButtonListener implements ActionListener, ItemListener {
 			break;
 
 		case "Confirm Absence":
+			try {
+			// saving added absence
+			model.nonProjectActivityList.get(0).getTimeManager().addTime(model.getCurrentEmployee(),
+					abF.getAbsenceTimePanel().getCourseTime());
+			model.nonProjectActivityList.get(1).getTimeManager().addTime(model.getCurrentEmployee(),
+					abF.getAbsenceTimePanel().getSickTime());
+			model.nonProjectActivityList.get(2).getTimeManager().addTime(model.getCurrentEmployee(),
+					abF.getAbsenceTimePanel().getVaTime());
+			model.nonProjectActivityList.get(3).getTimeManager().addTime(model.getCurrentEmployee(),
+					abF.getAbsenceTimePanel().getOtherTime());
+			} catch(OperationNotAllowedException e1) {
+				JOptionPane.showMessageDialog(abF.getAbsenceTimePanel(), e1.getMessage());
+			}
 
-			//saving added absence
-			model.nonProjectActivityList.get(0).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getCourseTime());
-			System.out.println("time added? -> "+model.nonProjectActivityList.get(0).getTimeManager().getTime(model.getCurrentEmployee()));
-			model.nonProjectActivityList.get(1).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getSickTime());
-			model.nonProjectActivityList.get(2).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getVaTime());
-			model.nonProjectActivityList.get(3).getTimeManager().addTime(model.getCurrentEmployee(), abF.getAbsenceTimePanel().getOtherTime());
-			
-			//back to overview panel
+			// back to overview panel
 			abF.saveTime();
 
 			break;
-			
+
 		case "Employees":
 			frame.getActivityFrame().EmployeePanel();
 			break;
-			
+
 		case "Back":
 			frame.getActivityFrame().showActivity();
 			break;
 		}
-		
+
 	}
 
 	@Override
@@ -372,8 +395,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 
 		pM = this.cPF.getCreateProjectPanel().employees.getSelectedItem().toString();
 
-		// String pM =
-		// this.cPF.getCreateProjectPanel().employees.getSelectedItem().toString();
 		Employee projectManager = null;
 		if (pM != "") {
 			projectManager = model.searchEmployee(pM);
@@ -391,8 +412,6 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cPFOpen = false;
 			} catch (OperationNotAllowedException e1) {
 				JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
-				// e1.printStackTrace();
-				// e1.getMessage().toString();
 			}
 		} else if (ePFOpen) {
 			try {
@@ -408,13 +427,11 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.ePFOpen = false;
 			} catch (OperationNotAllowedException e1) {
 				JOptionPane.showMessageDialog(cPF, e1.getMessage().toString());
-				// e1.printStackTrace();
-				// e1.getMessage().toString();
 			}
 		}
 	}
 
-	public void confirmedActivityClicked() {
+	public void confirmedActivityClicked() throws Exception {
 		if (cAFOpen) {
 			try {
 				CreateActivityPanel cAP = cAF.getCreateActivityPanel();
@@ -451,18 +468,32 @@ public class ButtonListener implements ActionListener, ItemListener {
 				this.cAFOpen = false;
 			} catch (OperationNotAllowedException e1) {
 				JOptionPane.showMessageDialog(cAF, e1.getMessage().toString());
-				// e1.printStackTrace();
-				// e1.getMessage().toString();
 				this.cAFOpen = true;
 			}
 		} else if (eAFOpen) {
 			EditActivityPanel eAP = frame.getActivityFrame().getEditActivityPanel();
-			eAP.getActivity().setName(eAP.getName());
-			eAP.getActivity().setExpectedWorkload((eAP.getExpectedWorkload()));
-			eAP.getActivity().setMessage(eAP.getMessage());
+			Activity a = eAP.getActivity();
+			HashMap<Employee, Character> changeList = eAP.getChangeList();
+			List<Employee> addedEmployees = new ArrayList<>();
+			eAP.getChangeList().keySet();
+					for (Employee e : changeList.keySet()) {
+						if(changeList.get(e) == '+'){
+							addedEmployees.add(e);
+						}
+						else {
+							a.removeEmployee(e);
+						}
+					}
+					a.addEmployee(addedEmployees);
+
+
+			a.setName(eAP.getName());
+			a.setExpectedWorkload((eAP.getExpectedWorkload()));
+			a.setMessage(eAP.getMessage());
 			frame.getActivityPanel().updateActivityList(frame.getProject());
 			frame.update();
 			frame.getActivityFrame().showActivity();
+			eAFOpen = false;
 		}
 	}
 }

@@ -6,26 +6,34 @@ import java.util.List;
 
 public class Activity implements Comparable<Activity> {
 
+	// setting fields
 	private String name, message;
 	private int expectedWorkload;
 	private TimeManager timeManager;
 	private Employee projectManager;
-
 	public List<Employee> employeeList;
 
+	//Constructor
 	public Activity(String name, int expectedWorkload, Employee projectManager) throws OperationNotAllowedException {
-
+		
+		//setting message
 		message = "";
+		
+		//making sure the activity has a name
 		if (name.equals("")) {
 			throw new OperationNotAllowedException("You must enter a name.");
 		} else {
 			this.name = name;
 		}
+		
+		//making sure an expected workload has been given
 		if (expectedWorkload == 0) {
 			throw new OperationNotAllowedException("You must enter an expected workload.");
 		} else {
 			this.expectedWorkload = expectedWorkload;
 		}
+		
+		//setting the project manager, employee list and making a time manager
 		this.projectManager = projectManager;
 		this.employeeList = new ArrayList<Employee>();
 		this.timeManager = new TimeManager(this);
@@ -34,6 +42,8 @@ public class Activity implements Comparable<Activity> {
 	// Add an employee to the activity and sort the employeeList. Also assigns
 	// the employee to the time manager.
 	public void addEmployee(List<Employee> employees) {
+		
+		//adding an employee if it is available
 		for (Employee e : employees) {
 			if (e.isAvailable()) {
 				this.employeeList.add(e);
@@ -45,15 +55,21 @@ public class Activity implements Comparable<Activity> {
 
 	}
 
-	public void removeEmployee(Employee employee) {
-		employee.removeFromActivityList(this);
-		employeeList.remove(employeeList.indexOf(employee));
-		
+	//Removes an employee if it has not registered any time
+	public void removeEmployee(Employee employee) throws Exception {
+		if (this.timeManager.getTime(employee) == 0) {
+			employee.removeFromActivityList(this);
+			employeeList.remove(employeeList.indexOf(employee));
+		} else {
+			throw new OperationNotAllowedException("Cannot remove an employee with completed hours.");
+		}
+
 	}
 
 	// Check whether the employee is the project manager.
+	// returns true if there is no current projectManager
 	public boolean isProjectManager(Employee employee) {
-		if (this.projectManager == employee) {
+		if (this.projectManager == employee || this.projectManager == null) {
 			return true;
 		}
 		return false;
@@ -64,6 +80,7 @@ public class Activity implements Comparable<Activity> {
 		return this.name.compareTo(activity.getName());
 	}
 
+	//Getters and Setters
 	public String getName() {
 		return this.name;
 	}
@@ -79,8 +96,8 @@ public class Activity implements Comparable<Activity> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void setMessage(String string){
+
+	public void setMessage(String string) {
 		this.message = string;
 	}
 
@@ -89,7 +106,6 @@ public class Activity implements Comparable<Activity> {
 	}
 
 	public String getMessageText() {
-		// TODO Auto-generated method stub
 		return message;
 	}
 

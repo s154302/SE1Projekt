@@ -20,6 +20,7 @@ public class LoginPanel extends JPanel{
 	public JComboBox<String> employees;
 	
 	
+	//the first panel, for when the employee chooses who he is
 	public LoginPanel(Model model, ButtonListener bL) {
 		this.model = model;
 		employees = new JComboBox<String>();
@@ -42,14 +43,11 @@ public class LoginPanel extends JPanel{
 		gbc.gridy = 0;
 		gbc.gridwidth = GridBagConstraints.LINE_END;
 		gbc.gridheight = 1;
-//		JLabel pName = new JLabel("Employee");
-//		this.add(pName, gbc);
 
 		updateEmployeeComboBox();
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-	//	gbc.gridwidth = 2;
 		gbc.gridheight = 1;
 		this.add(employees, gbc);
 		

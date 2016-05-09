@@ -94,9 +94,31 @@ public class TestEditProject {
 	public void testProjectManager() throws OperationNotAllowedException{
 		Employee e1 = new Employee("Simon");
 		Employee e2 = new Employee("Alexss");
-		Project project = new Project("Test", e1, 0, 0, 0, 0, 0, 0);
-		assertTrue(project.isProjectManager(e1));
-		assertFalse(project.isProjectManager(e2));
+		model.createProject("Test", e1, 0, 0, 0, 0, 0, 0);
+		assertTrue(model.projectList.get(0).isProjectManager(e1));
+		assertFalse(model.projectList.get(0).isProjectManager(e2));
+		
+		//sets e2 to the user of the system.
+		model.setCurrentEmployee(e2);
+		
+		//tests if e2 can delete the project without being project manager
+		try {
+			model.deleteProject(model.projectList.get(0));
+			fail("An OperationNotAllowedException should have been thrown.");
+		} catch (OperationNotAllowedException e) {
+			assertEquals("Only the manager for this project can delete it", e.getMessage());
+		}
+		//creates an activity
+		model.projectList.get(0).createActivity("testActivity", 5, e1);
+		//tests if e2 can delete the activity without being project manager
+		try {
+			model.deleteActivity(model.projectList.get(0), model.projectList.get(0).activityList.get(0));;
+			fail("An OperationNotAllowedException should have been thrown.");
+		} catch (OperationNotAllowedException e) {
+			assertEquals("Activities can only be deleted by the project manager.", e.getMessage());
+		}
 	}
+	
+	
 
 }

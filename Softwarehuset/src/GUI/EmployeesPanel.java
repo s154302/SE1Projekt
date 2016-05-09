@@ -16,6 +16,7 @@ public class EmployeesPanel extends JPanel {
 	private String[] columnNames = { "Employee", "Completed Hours" };
 	private JScrollPane tableContainer;
 
+	//panel for overview of employees added in a activity
 	public EmployeesPanel(Activity a, ButtonListener bL) {
 		this.setLayout(new BorderLayout());
 		data = new Object[a.employeeList.size()][2];

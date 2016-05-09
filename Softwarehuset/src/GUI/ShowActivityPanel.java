@@ -22,6 +22,7 @@ public class ShowActivityPanel extends JPanel {
 	private Activity a;
 	private JTextField addTimeText;
 
+	//a panel that describes the the activity
 	public ShowActivityPanel(Model model, Frame f, Activity a) {
 
 		this.a = a;
@@ -35,7 +36,6 @@ public class ShowActivityPanel extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-	//	gbc.ipady = 20;
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;

@@ -11,11 +11,11 @@ public class CreateActivityFrame extends JFrame {
 	private CreateActivityPanel cAP;
 	private Frame f;
 
+	//a frame for when creating an activity
 	public CreateActivityFrame(Model model, ButtonListener bL, Frame f) {
 		this.setSize(300, 400);
 		this.f = f;
 		this.setLocationRelativeTo(null);
-		// this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Create Activity");
 
 		cAP = new CreateActivityPanel(model, bL, f);

@@ -30,8 +30,8 @@ public class CreateActivityPanel extends JPanel{
 	private JButton removeEmp;
 	private JTextArea messageText;
 	
+	//a panel for when creating an activity
 	public CreateActivityPanel(Model model, ButtonListener bL, Frame f) {
-		// TODO Auto-generated constructor stub
 		this.model = model;
 		this.bL = bL;
 		this.f = f;

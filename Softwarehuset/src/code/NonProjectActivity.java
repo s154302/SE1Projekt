@@ -8,7 +8,7 @@ public class NonProjectActivity {
 
 	private String name;
 	private TimeManager timeManager;
-
+	
 	private List<Employee> employeeList;
 	
 	public NonProjectActivity(String name) {
@@ -23,10 +23,8 @@ public class NonProjectActivity {
 		for(Employee employee: employees){
 			employeeList.add(employee);
 		}
-		System.out.println(employees.size());
 		timeManager.addEmployees(employees);
 		Collections.sort(this.employeeList);
-		
 	}
 	
 	// Removes an employee from the activity's employee list and sorts it
@@ -35,6 +33,7 @@ public class NonProjectActivity {
 		Collections.sort(employeeList);
 	}
 	
+	//Getters and Setters
 	public String getName (){
 		return name;
 	}

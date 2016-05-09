@@ -29,6 +29,7 @@ public class Frame extends JFrame{
 	private Project p;
 	private ActivityFrame aF;
 
+	//constructing the main frame
 	public Frame() throws FileNotFoundException, UnsupportedEncodingException{
 
 		//constructing frame
@@ -123,39 +124,33 @@ public class Frame extends JFrame{
 
 	public void initializingModel() {
 		model = new Model();
-		for (int i = 1; i <= 50; i++) {
-			model.createEmployee("Employee" + i);
-		}
-
-		for (int i = 1; i <= 30; i++) {
+//		for (int i = 1; i <= 50; i++) {
+//			model.createEmployee("Employee" + i);
+//		}
+		model.createEmployee("MaEA");
+		model.createEmployee("SiHe");
+		model.createEmployee("AlKA");
+		model.createEmployee("EmID");
 			try {
-				model.createProject("Project" + i, model.employeeList.get(1), 2017, 12, 12, 2017, 12, 13);
+				model.createProject("SoftwareProjekt" , model.employeeList.get(0), 2017, 12, 12, 2018, 12, 13);
 			} catch (OperationNotAllowedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
-		}
-
-		int a = 1;
-		for (Project p : model.projectList) {
-			for (int i = 1; i <= 6; i++) {
 				try {
-					p.setProjectManager(model.employeeList.get(a));
-					p.createActivity(a+"Activity" + i, 10, model.employeeList.get(a));
+					model.projectList.get(0).setProjectManager(model.employeeList.get(1));
+					model.projectList.get(0).createActivity("GUI" , 10, model.employeeList.get(1));
+					model.projectList.get(0).createActivity("Rapport" , 10, model.employeeList.get(1));
+					model.projectList.get(0).createActivity("Aflevering" , 10, model.employeeList.get(1));
 				} catch (OperationNotAllowedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
-			}
-			a++;
+		
+		for(NonProjectActivity npa : model.nonProjectActivityList ){
+			npa.addEmployee(model.employeeList);
 		}
-
-		model.nonProjectActivityList.add(new NonProjectActivity("Ferie"));	
-		model.nonProjectActivityList.add(new NonProjectActivity("Sygdom"));
-		model.nonProjectActivityList.add(new NonProjectActivity("Kursus"));
-		model.nonProjectActivityList.add(new NonProjectActivity("Barsel"));
-		model.nonProjectActivityList.add(new NonProjectActivity("Afspadsering"));
-		model.nonProjectActivityList.add(new NonProjectActivity("Andet"));
+		
 	}
 		
 	public void showIt(){
@@ -164,12 +159,10 @@ public class Frame extends JFrame{
 
 
 	public ProjectPanel getProjectPanel() {
-		// TODO Auto-generated method stub
 		return projectPanel;
 	}
 	
 	public ActivityPanel getActivityPanel() {
-		// TODO Auto-generated method stub
 		return activityPanel;
 	}
 	
@@ -183,9 +176,6 @@ public class Frame extends JFrame{
 	public TableListener getTableListener(){
 		return tableListener;
 	}
-//	public ButtonPanel getButtonPanel(){
-//		return buttonPanel;
-//	}
 	
 	public void setActivity(Activity a) {
 		this.a = a;
@@ -196,7 +186,6 @@ public class Frame extends JFrame{
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
 		this.revalidate();
 	}
 

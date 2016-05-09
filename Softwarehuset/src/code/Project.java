@@ -33,19 +33,8 @@ public class Project {
 
 	}
 
-	public void setSerialNumber(String serialNumber) {
-		this.serialNumber = serialNumber;
-	}
 
-	public String getSerialNumber() {
-		return serialNumber;
-	}
-
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	// Creates an activity and adds it to the activity list.
+	// Creates an activity and adds it to the project's activityList.
 	public Activity createActivity(String name, int expectedWorkload, Employee projectManager)
 			throws OperationNotAllowedException {
 		if (this.projectManager == projectManager) {
@@ -58,34 +47,13 @@ public class Project {
 		}
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public Employee getProjectManager() {
-		return projectManager;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setName(String newName) {
-		name = newName;
-	}
-
-	public void setProjectManager(Employee e1) {
-		projectManager = e1;
-	}
-
-	public void setStartDate(int startYear, int startMonth, int startDay) {
-		startDate = LocalDate.of(startYear, startMonth, startDay);
-	}
-
-	public void setEndDate(int endYear, int endMonth, int endDay) {
-		endDate = LocalDate.of(endYear, endMonth, endDay);
-	}
-
+	
+	/*Check if the given date is correct:
+	 * If the startDate is before today
+	 * If the endDate is before today
+	 * If the endDate is before startDate
+	 */
 	public void checkDate(int startYear, int startMonth, int startDayOfMonth, int endYear, int endMonth,
 			int endDayOfMonth) throws OperationNotAllowedException {
 		if (startYear == 0 || startMonth == 0 || startDayOfMonth == 0) {
@@ -120,23 +88,64 @@ public class Project {
 	}
 
 	// Check whether the employee is the project manager.
+	// returns true if there is no current projectManager
 	public boolean isProjectManager(Employee employee) {
-		if (this.projectManager == employee) {
+		if (this.projectManager == employee || this.projectManager==null) {
 			return true;
 		}
 		return false;
 	}
 
+	//Searches the project's activityList for a given activity and  returns it
+	//returns null if no activity is found
 	public Activity searchActivity(String string) {
-		// TODO Auto-generated method stub
 		for(int i =0; i<activityList.size();i++){
 			if(string.equals(activityList.get(i).getName())){
 				return activityList.get(i);
 			}
 		}
-		System.out.println("No Activity");
 		return null;
 
+	}
+	
+	//getters and setters
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public Employee getProjectManager() {
+		return projectManager;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setName(String newName) {
+		name = newName;
+	}
+
+	public void setProjectManager(Employee e1) {
+		projectManager = e1;
+	}
+
+	public void setStartDate(int startYear, int startMonth, int startDay) {
+		startDate = LocalDate.of(startYear, startMonth, startDay);
+	}
+
+	public void setEndDate(int endYear, int endMonth, int endDay) {
+		endDate = LocalDate.of(endYear, endMonth, endDay);
 	}
 
 }

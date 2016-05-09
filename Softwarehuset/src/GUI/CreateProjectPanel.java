@@ -21,15 +21,11 @@ public class CreateProjectPanel extends JPanel {
 	private ButtonListener bL;
 	private GridBagConstraints gbc;
 	private JButton delete;
-	
-//	public CreateProjectPanel(Model model, ButtonListener bL) {
-//		this.model = model;
-//	}
  
+	//a panel for the create project frame.
 	public CreateProjectPanel(Model model,ButtonListener bL) {
 		this.model = model;
 		this.bL = bL;
-		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5);
@@ -196,13 +192,7 @@ public class CreateProjectPanel extends JPanel {
 		delete.addActionListener(bL);
 		delete.setEnabled(false);
 		this.add(delete, gbc);
-		
-
-		// gbc.gridx = 0;
-		// gbc.gridy = 1;
-		// gbc.gridwidth = 2;
-		// gbc.gridheight = 1;
-		// this.add(new JButton("Button3"), gbc);
+	
 	}
 	
 	public void editProject(Project p) {

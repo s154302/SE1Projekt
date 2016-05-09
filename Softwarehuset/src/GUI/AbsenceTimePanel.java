@@ -19,6 +19,7 @@ public class AbsenceTimePanel extends JPanel {
 	private JLabel name;
 	private JTextField courseTime, sickTime, vaTime, otherTime;
 
+	//adding absence time
 	public AbsenceTimePanel(Model model, ButtonListener bL, AbsenceFrame aF) {
 		this.model = model;
 		this.bL = bL;
@@ -52,7 +53,7 @@ public class AbsenceTimePanel extends JPanel {
 		gbc.gridy = 1;
 		gbc.gridwidth = GridBagConstraints.LINE_END;
 		gbc.gridheight = 1;
-		courseTime = new JTextField();
+		courseTime = new JTextField("0");
 		this.add(courseTime, gbc);
 		
 		// add sickness time + label
@@ -67,7 +68,7 @@ public class AbsenceTimePanel extends JPanel {
 		gbc.gridy = 2;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-		sickTime = new JTextField();
+		sickTime = new JTextField("0");
 		this.add(sickTime, gbc);
 		
 		// add vacation time + label
@@ -82,7 +83,7 @@ public class AbsenceTimePanel extends JPanel {
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-		vaTime = new JTextField();
+		vaTime = new JTextField("0");
 		this.add(vaTime, gbc);
 		
 		// add other time + label
@@ -97,7 +98,7 @@ public class AbsenceTimePanel extends JPanel {
 		gbc.gridy = 4;
 		gbc.gridwidth = 2;
 		gbc.gridheight = 1;
-		otherTime = new JTextField();
+		otherTime = new JTextField("0");
 		this.add(otherTime, gbc);
 		
 		//add save button
@@ -112,10 +113,12 @@ public class AbsenceTimePanel extends JPanel {
 	}
 	
 	public double getCourseTime() {
-		
+		System.out.println("courseTime: "+courseTime.getText());
 		double t = 0;
 		try {
+			System.out.println("courseTime: "+courseTime.getText());
 			t = Double.parseDouble(courseTime.getText());
+			
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(aF,"The course time has to be a double.");
 		}
@@ -136,6 +139,7 @@ public class AbsenceTimePanel extends JPanel {
 		double t = 0;
 		try {
 			t = Double.parseDouble(vaTime.getText());
+			
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(aF,"The vacation time has to be a double.");
 		}
@@ -146,6 +150,7 @@ public class AbsenceTimePanel extends JPanel {
 		double t = 0;
 		try {
 			t = Double.parseDouble(otherTime.getText());
+			
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(aF,"The other time has to be a double.");
 		}

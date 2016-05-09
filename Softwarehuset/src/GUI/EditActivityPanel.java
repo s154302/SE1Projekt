@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,18 +25,18 @@ public class EditActivityPanel extends JPanel {
 	private JTextField name, expWorkload;
 	public JComboBox<String> employees, employeesAddedBox;
 	private ArrayList<Employee> addedEmployees, tempEmployees;
-	private boolean firstRun;
+	private boolean firstRun =true;
 	private Activity a;
 	private JButton removeEmp;
 	private GridBagConstraints gbc;
 	private JTextArea messageArea;
+	private HashMap<Employee, Character> changeList = new HashMap<Employee, Character>();
 
+	//panel for when editing an activity
 	public EditActivityPanel(Model model, ButtonListener bL, Activity a) {
-		// TODO Auto-generated constructor stub
 		this.a = a;
 		this.model = model;
 		this.bL = bL;
-		// this.setBackground(Color.GREEN);
 		this.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -45,7 +46,6 @@ public class EditActivityPanel extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-	//	gbc.ipady = 20;
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -139,7 +139,7 @@ public class EditActivityPanel extends JPanel {
 			employeesAddedBox.addItem(a.employeeList.get(i).getName());
 			addedEmployees.add(a.employeeList.get(i));
 			tempEmployees.remove(a.employeeList.get(i));
-			employees.removeItem(model.employeeList.get(i).getName());
+			employees.removeItem(a.employeeList.get(i).getName());
 		}
 
 		gbc.gridx = 0;
@@ -177,13 +177,15 @@ public class EditActivityPanel extends JPanel {
 			this.remove(employeesAddedBox);
 		}
 		this.remove(employees);
-
+		
 		// updating the employeeList
 		employees.removeAllItems();
 		employees.addItem("");
 		for (int i = 0; i < tempEmployees.size(); i++) {
+			
 			employees.addItem(tempEmployees.get(i).getName());
 		}
+		
 		employees.setSelectedItem(0);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
@@ -227,6 +229,7 @@ public class EditActivityPanel extends JPanel {
 	public void addEmployee(Employee e1) {
 		addedEmployees.add(e1);
 		tempEmployees.remove(e1);
+		changeList.put(e1, '+');
 		revalidate();
 	}
 
@@ -238,6 +241,7 @@ public class EditActivityPanel extends JPanel {
 		if (addedEmployees.size() > 0) {
 			tempEmployees.add(e1);
 			addedEmployees.remove(e1);
+			changeList.put(e1, '-');
 			revalidate();
 		} else {
 			System.out.println("Create ActivityPanel");
@@ -258,5 +262,8 @@ public class EditActivityPanel extends JPanel {
 	
 	public String getMessage() {
 		return this.messageArea.getText();
+	}
+	public HashMap<Employee,Character> getChangeList(){
+		return changeList;
 	}
 }

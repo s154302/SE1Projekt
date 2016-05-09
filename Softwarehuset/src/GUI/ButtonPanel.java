@@ -12,6 +12,7 @@ import code.Model;
 
 public class ButtonPanel extends JPanel {
 
+	//panel for the buttons on the main frame
 	public ButtonPanel(Frame f, Model model) {
 		ButtonListener bL =f.getButtonListener();
 		this.setLayout(new GridBagLayout());

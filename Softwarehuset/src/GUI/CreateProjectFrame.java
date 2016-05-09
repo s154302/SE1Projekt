@@ -10,11 +10,11 @@ public class CreateProjectFrame extends JFrame {
 	
 	private CreateProjectPanel cPP;
 
+	//a frame for when creating a new project
 	public CreateProjectFrame(Model model, ButtonListener bL) {
 
 		this.setSize(450, 250);
 		this.setLocationRelativeTo(null);
-	//	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Create Project");
 
 		cPP = new CreateProjectPanel(model, bL);

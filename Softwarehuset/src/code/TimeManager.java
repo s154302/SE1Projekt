@@ -21,7 +21,7 @@ public class TimeManager {
 	}
 
 	// Adds the specified work to an employees completed workload.
-	public void addTime(Employee employee, double hours) {
+	public void addTime(Employee employee, double hours) throws OperationNotAllowedException {
 		if (employeeTimeList.containsKey(employee) && employee != null) {
 			Double time = this.employeeTimeList.get(employee);
 			this.employeeTimeList.put(employee, time + hours);
@@ -34,13 +34,12 @@ public class TimeManager {
 				nA.addEmployee(employees);
 			}
 			addTime(employee, hours);
+		} else if ( employee == null) {
+			throw new OperationNotAllowedException("Guests can't add time to an activity.");
 		}
 	}
 
-	// Return the amount of hours an employee has worked.
-	public double getTime(Employee employee) {
-		return this.employeeTimeList.get(employee);
-	}
+
 
 	// Adds a list of employees to the TimeManager.
 	public void addEmployees(List<Employee> employees) {
@@ -48,8 +47,13 @@ public class TimeManager {
 			this.employeeTimeList.put(e, 0.0);
 		}
 	}
-
+	//checks if the employee is already in the timeManager
 	public boolean containsKey(Employee e) {
 		return this.employeeTimeList.containsKey(e);
+	}
+	
+	// Return the amount of hours an employee has worked.
+	public double getTime(Employee employee) {
+		return this.employeeTimeList.get(employee);
 	}
 }

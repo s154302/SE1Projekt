@@ -17,6 +17,7 @@ public class TableListener implements ListSelectionListener {
 	private Activity activity;
 	private ActivityFrame activityFrame;
 
+	//when selected a row in the 
 	public TableListener(Model model, Frame f) {
 		this.model = model;
 		this.f = f;

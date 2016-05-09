@@ -15,6 +15,7 @@ public class AbsenceFrame extends JFrame {
 	private Model model;
 	private ButtonListener bL;
 
+	//frame for when one wants to check or add absence time
 	public AbsenceFrame(Model model, ButtonListener bL) {
 		this.model= model;
 		this.bL = bL;
@@ -55,9 +56,10 @@ public class AbsenceFrame extends JFrame {
 	}
 	
 	public void saveTime() {
+		
 		this.remove(aTP);
 		aP.updateList();
-		this.add(aP,BorderLayout.CENTER);	
+		this.add(aP,BorderLayout.CENTER);
 		this.update();
 	}
 

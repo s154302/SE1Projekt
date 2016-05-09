@@ -28,6 +28,7 @@ public class ActivityPanel extends JPanel {
 	private ProjectPanel projectPanel;
 	private JLabel welcome;
 
+	//overview of the project's activities 
 	public ActivityPanel(Frame f, Model model, ProjectPanel projectPanel, ButtonListener bL) {
 		this.f = f;
 		this.model = model;

@@ -10,13 +10,15 @@ import org.junit.Test;
 import code.Employee;
 import code.Model;
 import code.NonProjectActivity;
+import code.OperationNotAllowedException;
+import code.OperationNotAllowedException;
 
 public class TestEmployeeAbsence {
 	
 	Model model = new Model();
 
 	@Test
-	public void test() {
+	public void test() throws OperationNotAllowedException {
 
 		
 		assertEquals(4, model.nonProjectActivityList.size());
